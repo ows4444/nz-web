@@ -1,3 +1,5 @@
+"use client"
+
 import { Theme, Variant, Variants } from '@styles/theme';
 import React from 'react';
 import styled from 'styled-components';

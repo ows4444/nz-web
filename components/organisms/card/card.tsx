@@ -1,3 +1,5 @@
+"use client"
+
 import { Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
 import type React from 'next';
 import styled from 'styled-components';

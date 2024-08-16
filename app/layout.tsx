@@ -1,24 +1,11 @@
-'use client';
-
 import type React from 'next';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import { lightTheme } from '../styles/themes';
-import GlobalStyle from '../styles/global';
-import StyledComponentsRegistry from '@lib/registry';
 
-type LayoutProps = {
-  children: React.ReactNode;
-};
+import StyledComponentProvider from '@lib/styled-component.providor';
 
-const Layout = ({ children }: LayoutProps) => (
+const Layout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">
     <body>
-      <StyledThemeProvider theme={lightTheme}>
-        <StyledComponentsRegistry>
-          <GlobalStyle />
-          {children}
-        </StyledComponentsRegistry>
-      </StyledThemeProvider>
+      <StyledComponentProvider>{children}</StyledComponentProvider>
     </body>
   </html>
 );
