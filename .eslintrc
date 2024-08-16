@@ -1,0 +1,25 @@
+{
+  "plugins": ["react", "react-hooks"],
+  "extends": [
+    "prettier",
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:storybook/recommended",
+    "eslint:recommended"
+  ],
+  "ignorePatterns": ["!.storybook", "!.eslintrc"],
+  "rules": {
+    "react/react-in-jsx-scope": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ]
+  }
+}
