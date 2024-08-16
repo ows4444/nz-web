@@ -1,10 +1,10 @@
 'use server';
+
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { ResponseState } from '../app/login/login.response';
 import { API_URL } from 'constants/api';
 
-export default async function login(_prevState: Record<string, any>, formData: FormData): Promise<ResponseState> {
+export async function login(_prevState: {}, formData: FormData) {
   let isGuest = true;
   try {
     const res = await fetch(`${API_URL}/auth/login`, {
