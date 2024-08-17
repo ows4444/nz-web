@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
 import type React from 'next';
@@ -7,11 +7,11 @@ import styled from 'styled-components';
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   $variant: Variant;
   $size: Size;
-  title: string;
+  $title: string;
   theme?: Theme;
 }
 
-const ButtonStyled = styled.button<Omit<ButtonProps, 'title'>>`
+const ButtonStyled = styled.button<Omit<ButtonProps, '$title'>>`
   padding: 8px 8px;
   font-size: 16px;
   cursor: pointer;
@@ -49,18 +49,14 @@ const ButtonStyled = styled.button<Omit<ButtonProps, 'title'>>`
 `;
 
 const Button: React.FC<Omit<ButtonProps, '$variant' | '$size'> & { $variant?: Variant; $size?: Size }> = ({
-  title,
+  $title,
   $size = Sizes.Default,
   $variant = Variants.Default,
-  children,
   ...rest
-}: Omit<ButtonProps, '$variant' | '$size'> & { $variant?: Variant; $size?: Size }) => {
-  return (
-    <ButtonStyled $size={$size} $variant={$variant} {...rest}>
-      {title}
-      {children}
-    </ButtonStyled>
-  );
-};
+}: Omit<ButtonProps, '$variant' | '$size'> & { $variant?: Variant; $size?: Size }) => (
+  <ButtonStyled $size={$size} $variant={$variant} {...rest}>
+    {$title}
+  </ButtonStyled>
+);
 
 export default Button;

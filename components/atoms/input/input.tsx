@@ -1,12 +1,14 @@
-"use client"
+'use client';
 
-import { Theme, Variant, Variants } from '@styles/theme';
+import { MediaSizes, Sizes, Theme, Variant, Variants } from '@styles/theme';
 import React from 'react';
 import styled from 'styled-components';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  $variant: Variant;
   theme?: Theme;
+  $variant: Variant;
+  $gridArea?: string;
+  $size?: Sizes;
 }
 
 const InputStyled = styled.input<InputProps>`
@@ -18,7 +20,6 @@ const InputStyled = styled.input<InputProps>`
   outline: none;
   background-color: ${({ theme, $variant }) => theme.palette[$variant].BackgroundColor};
   color: ${({ theme, $variant }) => theme.palette[$variant].FontColor};
-  width: 100%;
   &:hover {
     border-color: ${({ theme, $variant }) => theme.palette[$variant]?.['Hover.BorderColor']};
     background-color: ${({ theme, $variant }) => theme.palette[$variant]?.['Hover.BackgroundColor']};
@@ -29,7 +30,6 @@ const InputStyled = styled.input<InputProps>`
     border-color: ${({ theme, $variant }) => theme.palette[$variant]?.['Active.BorderColor']};
     background-color: ${({ theme, $variant }) => theme.palette[$variant]?.['Active.BackgroundColor']};
     color: ${({ theme, $variant }) => theme.palette[$variant]?.['Active.FontColor']};
-    transform: translateY(1px);
   }
   &:disabled {
     border-color: ${({ theme, $variant }) => theme.palette[$variant]?.['Disabled.BorderColor']};
@@ -42,18 +42,34 @@ const InputStyled = styled.input<InputProps>`
     background-color: ${({ theme, $variant }) => theme.palette[$variant]?.['Focus.BackgroundColor']};
     color: ${({ theme, $variant }) => theme.palette[$variant]?.['Focus.FontColor']};
   }
+  ${({ $gridArea }) => $gridArea && `grid-area: ${$gridArea};`}
+
+  ${({ $size = Sizes.Default, theme }) =>
+    Object.entries(MediaSizes)
+      .map(([value, MediaKey]) => {
+        const head = `@media only screen and (min-width: ${theme.mediaSizes[MediaKey]}) {`;
+        const body = Object.entries(Sizes)
+          .map(([size, SizeKey]) => {
+            if (size === $size && theme.inputSizes[SizeKey]) {
+              return `width: ${theme.inputSizes[SizeKey]};`;
+            }
+          })
+          .join('');
+        const tail = `}`;
+
+        return `${head} ${body} ${tail}`;
+      })
+      .join('')}
 `;
 
-const Button: React.FC<Omit<InputProps, '$variant'> & { $variant?: Variant }> = ({
+const Input: React.FC<Omit<InputProps, '$variant'> & { $variant?: Variant }> = ({
   $variant = Variants.Default,
   children,
   ...rest
-}) => {
-  return (
-    <InputStyled $variant={$variant} {...rest}>
-      {children}
-    </InputStyled>
-  );
-};
+}) => (
+  <InputStyled $variant={$variant} {...rest}>
+    {children}
+  </InputStyled>
+);
 
-export default Button;
+export default Input;

@@ -1,9 +1,11 @@
 import { ColorGenerator } from './colorGenerator';
 import { ColorProperty } from './colorProperties';
 import { Color } from './colors';
+import { MediaSize } from './media';
 import { PaletteItem } from './paletteItem';
 import { PropertyState } from './propertyStates';
-import { Variant } from './variants'; 
+import { Size } from './sizes';
+import { Variant } from './variants';
 
 export { Variants } from './variants';
 export type { Variant } from './variants';
@@ -11,22 +13,41 @@ export type { Variant } from './variants';
 export { Sizes } from './sizes';
 export type { Size } from './sizes';
 
+export { MediaSizes } from './media';
+export type { MediaSize } from './media';
+
 export type factor = number;
 export type transparency = number;
 
 export interface Theme {
   palette: Record<Variant, PaletteItem>;
+  mediaSizes: Record<MediaSize, string>;
+  inputSizes: Record<Size, string>;
   global: Record<string, any>;
 }
 
 export class ThemeGenerator {
   private variantPalette: Record<string, any>;
   private globalStyles: Record<string, any>;
+  private mediaSizes: Record<string, any> = {};
+  private inputSizes: Record<string, any> = {};
   private readonly cg: ColorGenerator = new ColorGenerator();
 
   constructor() {
     this.variantPalette = {};
     this.globalStyles = {};
+    this.mediaSizes = {};
+    this.inputSizes = {};
+  }
+
+  addMediaSize(mediaSize: MediaSize, size: string) {
+    this.mediaSizes[mediaSize] = size;
+    return this;
+  }
+
+  addInputSize(inputSize: Size, size: string) {
+    this.inputSizes[inputSize] = size;
+    return this;
   }
 
   addPaletteColors(
@@ -75,6 +96,8 @@ export class ThemeGenerator {
     return {
       global: this.globalStyles,
       palette: this.variantPalette,
+      mediaSizes: this.mediaSizes,
+      inputSizes: this.inputSizes,
     };
   }
 }

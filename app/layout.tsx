@@ -1,6 +1,6 @@
 import type React from 'next';
 
-import StyledComponentProvider from '@lib/styled-component.providor';
+import StyledComponentProvider from '@lib/styled-component.provider';
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">

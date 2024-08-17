@@ -1,6 +1,26 @@
 import { ThemeGenerator } from './theme';
 
 export const lightTheme = new ThemeGenerator()
+  .addMediaSize('xl', '1200px')
+  .addMediaSize('xxl', '1600px')
+  .addMediaSize('xs', '320px')
+  .addMediaSize('sm', '480px')
+  .addMediaSize('md', '768px')
+  .addMediaSize('lg', '992px')
+  .addMediaSize('xl', '1200px')
+  .addMediaSize('xxl', '1600px')
+
+  .addInputSize('XXXSmall', '240px')
+  .addInputSize('XXSmall', '240px')
+  .addInputSize('XSmall', '240px')
+  .addInputSize('Small', '240px')
+  .addInputSize('Medium', '320px')
+  .addInputSize('Default', '320px')
+  .addInputSize('Large', '480px')
+  .addInputSize('XLarge', '600px')
+  .addInputSize('XXLarge', '700px')
+  .addInputSize('XXXLarge', '720px')
+
   .addGlobalStyles([
     ['BackgroundColor', 'White'],
     ['FontColor', 'Black'],
@@ -54,6 +74,25 @@ export const lightTheme = new ThemeGenerator()
   .getTheme();
 
 export const darkTheme = new ThemeGenerator()
+  .addMediaSize('xl', '1200px')
+  .addMediaSize('xxl', '1600px')
+  .addMediaSize('xs', '320px')
+  .addMediaSize('sm', '480px')
+  .addMediaSize('md', '768px')
+  .addMediaSize('lg', '992px')
+  .addMediaSize('xl', '1200px')
+  .addMediaSize('xxl', '1600px')
+
+  .addInputSize('XXXSmall', '240px')
+  .addInputSize('XXSmall', '240px')
+  .addInputSize('XSmall', '240px')
+  .addInputSize('Small', '240px')
+  .addInputSize('Medium', '320px')
+  .addInputSize('Default', '320px')
+  .addInputSize('Large', '480px')
+  .addInputSize('XLarge', '600px')
+  .addInputSize('XXLarge', '700px')
+  .addInputSize('XXXLarge', '720px')
   .addGlobalStyles([
     ['BackgroundColor', 'Black'],
     ['FontColor', 'White'],
