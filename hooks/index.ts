@@ -9,35 +9,36 @@ export function useViewportSize({
   xl = 1200,
   xxl = 1600,
 } = {}) {
-  if (typeof window === 'undefined') return { width: 0, height: 0, size: 'xs', orientation: 'portrait' };
-
   const [viewportSize, setViewportSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
     size: 'xs',
-    orientation: window.innerWidth > window.innerHeight ? 'landscape' : 'portrait',
+    orientation: 'portrait',
   });
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const updateViewportSize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
       setViewportSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width,
+        height,
         size:
-          window.innerWidth <= xs
+          width <= xs
             ? 'xs'
-            : window.innerWidth <= sm
+            : width <= sm
             ? 'sm'
-            : window.innerWidth <= md
+            : width <= md
             ? 'md'
-            : window.innerWidth <= lg
+            : width <= lg
             ? 'lg'
-            : window.innerWidth <= xl
+            : width <= xl
             ? 'xl'
-            : window.innerWidth <= xxl
-            ? 'xxl'
             : 'xxl',
-        orientation: window.innerWidth > window.innerHeight ? 'landscape' : 'portrait',
+        orientation: width > height ? 'landscape' : 'portrait',
       });
     };
 
@@ -51,7 +52,7 @@ export function useViewportSize({
     return () => {
       window.removeEventListener('resize', updateViewportSize);
     };
-  }, [xs, sm, md, lg, xl, xxl]); // Add dependencies for the breakpoints
+  }, [xs, sm, md, lg, xl, xxl]);
 
   return viewportSize;
 }
