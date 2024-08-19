@@ -11,11 +11,11 @@ export interface FlexBoxProps extends React.HTMLAttributes<HTMLElement> {
   $gridArea?: string;
 }
 
-const FlexBoxStyled = styled.div<FlexBoxProps>`
+export const FlexBoxStyled = styled.div<FlexBoxProps>`
   display: flex;
   flex-direction: ${({ $direction }) => $direction || 'row'};
-  justify-content: ${({ $justifyContent }) => $justifyContent || 'flex-start'};
-  align-items: ${({ $alignItems }) => $alignItems || 'stretch'};
+  justify-content: ${({ $justifyContent }) => $justifyContent || 'center'};
+  align-items: ${({ $alignItems }) => $alignItems || 'center'};
   flex-wrap: ${({ $wrap }) => $wrap || 'nowrap'};
 
   ${({ $gridArea }) => $gridArea && `grid-area: ${$gridArea};`}

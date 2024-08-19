@@ -33,27 +33,6 @@ type InputType =
   | 'color'
   | 'range'
   | 'search'
-  | 'hidden'
-  | 'radio'
-  | 'checkbox'
-  | 'file'
-  | 'image'
-  | 'reset'
-  | 'submit'
-  | 'text'
-  | 'email'
-  | 'number'
-  | 'password'
-  | 'tel'
-  | 'url'
-  | 'date'
-  | 'datetime-local'
-  | 'month'
-  | 'time'
-  | 'week'
-  | 'color'
-  | 'range'
-  | 'search'
   | 'hidden';
 
 export interface InputGroupProps extends React.HTMLAttributes<HTMLElement> {
@@ -84,11 +63,7 @@ const InputGroup: React.FC<InputGroupProps> = ({
         <Label title={label} $size={$size} HtmlFor={name} $variant={$variant} />
         <FlexBox $direction="column">
           <Input name={name} type={inputType} $variant={$variant} $size={$size} />
-          {feedBack && (
-            <Span $size={$size} $variant={$variant}>
-              {feedBack}
-            </Span>
-          )}
+          {feedBack && <Span>{feedBack}</Span>}
         </FlexBox>
       </FlexBox>
     </InputGroupStyled>
