@@ -11,13 +11,7 @@ export interface CardFooterProps extends React.ComponentProps<'footer'> {
 }
 
 const CardFooterStyled = styled(Footer)<CardFooterProps>`
-  padding: 8px;
-  border: 1px solid #c0c;
-  border-radius: 5px;
-
-  margin: 8px;
-
-  background-color: #f09;
+ 
 `;
 
 const CardFooter: React.FC<CardFooterProps> = ({

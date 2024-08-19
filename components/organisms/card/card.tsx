@@ -19,10 +19,8 @@ export interface CardProps extends FlexBoxProps {
 }
 
 const CardStyled = styled.div<CardProps>`
-  border: 1px solid #ccc;
-  border-radius: 5px;
-
-  background-color: #f2f;
+ 
+ 
 `;
 
 const Card: React.FC<CardProps> = ({

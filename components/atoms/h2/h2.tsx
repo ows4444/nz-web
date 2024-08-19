@@ -8,9 +8,7 @@ export interface H2Props extends React.HTMLAttributes<HTMLElement> {
   theme?: Theme;
 }
 
-const H2Styled = styled.h2<H2Props>`
-  display: flex;
-`;
+const H2Styled = styled.h2<H2Props>``;
 
 const H2: React.FC<H2Props> = ({ children, ...rest }: H2Props) => <H2Styled {...rest}>{children}</H2Styled>;
 

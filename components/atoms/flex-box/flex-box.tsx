@@ -8,6 +8,7 @@ export interface FlexBoxProps extends React.HTMLAttributes<HTMLElement> {
   $justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
   $alignItems?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
   $wrap?: 'wrap' | 'nowrap' | 'wrap-reverse';
+  $gap?: string;
   $gridArea?: string;
 }
 
@@ -16,6 +17,7 @@ export const FlexBoxStyled = styled.div<FlexBoxProps>`
   flex-direction: ${({ $direction }) => $direction || 'row'};
   justify-content: ${({ $justifyContent }) => $justifyContent || 'center'};
   align-items: ${({ $alignItems }) => $alignItems || 'center'};
+  gap: ${({ $gap }) => $gap || '0'};
   flex-wrap: ${({ $wrap }) => $wrap || 'nowrap'};
 
   ${({ $gridArea }) => $gridArea && `grid-area: ${$gridArea};`}

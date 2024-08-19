@@ -11,11 +11,7 @@ export interface CardHeaderProps extends React.ComponentProps<'header'> {
 }
 
 const CardHeaderStyled = styled(Header)<Omit<CardHeaderProps, '$title'>>`
-  padding: 8px;
-  border: 1px solid #c0c;
-  border-radius: 5px;
-  margin: 8px;
-  background-color: #92f;
+ 
 `;
 
 const CardHeader: React.FC<CardHeaderProps> = ({

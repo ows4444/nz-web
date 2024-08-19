@@ -59,7 +59,11 @@ const InputGroup: React.FC<InputGroupProps> = ({
 
   return (
     <InputGroupStyled $variant={$variant}>
-      <FlexBox $justifyContent="space-between" $direction={['xs', 'sm'].includes(size) ? 'column' : 'row'}>
+      <FlexBox
+        $justifyContent="space-between"
+        $alignItems="center"
+        $direction={['xs', 'sm'].includes(size) ? 'column' : 'row'}
+      >
         <Label title={label} $size={$size} HtmlFor={name} $variant={$variant} />
         <FlexBox $direction="column">
           <Input name={name} type={inputType} $variant={$variant} $size={$size} />

@@ -12,6 +12,7 @@ import Button from '@components/atoms/button/button';
 import CardFooter from '@components/molecules/card-footer/card-footer';
 import CardBody from '@components/molecules/card-body/card-body';
 import H2 from '@components/atoms/h2/h2';
+import FlexBox from '@components/atoms/flex-box/flex-box';
 
 type D = {
   message: string;
@@ -37,15 +38,21 @@ export function LoginForm() {
     <Form action={action}>
       <Card $variant="Default" $size="Default" $direction="column">
         <CardHeader>
-          <H2>Login</H2>
+          <FlexBox $justifyContent="center">
+            <H2>Login</H2>
+          </FlexBox>
         </CardHeader>
         <CardBody>
-          <InputGroup $variant="Default" label="Email" name="email" inputType="text" />
-          <InputGroup $variant="Default" label="Password" name="password" inputType="password" />
-          {state && state.error && <p>{state.error}</p>}
+          <FlexBox $gap='4px' $justifyContent="center" $direction='column' $alignItems='flex-end'>
+            <InputGroup $variant="Default" label="Email" name="email" inputType="text" />
+            <InputGroup $variant="Default" label="Password" name="password" inputType="password" />
+            {state && state.error && <p>{state.error}</p>}
+          </FlexBox>
         </CardBody>
         <CardFooter>
-          <Button $variant="Primary" $title="Login" type="submit" />
+          <FlexBox $justifyContent="center">
+            <Button $variant="Primary" $title="Login" type="submit" />
+          </FlexBox>
         </CardFooter>
       </Card>
     </Form>
