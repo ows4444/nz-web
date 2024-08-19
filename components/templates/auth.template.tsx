@@ -1,21 +1,17 @@
 'use client';
 
-import GridBox from '@components/atoms/grid-box/grid-box';
+import Container from '@components/atoms/container/container';
 import type React from 'next';
 import styled from 'styled-components';
 
 export interface AuthTemplateProps extends React.ComponentProps<'section'> {}
 
-const AuthTemplateStyled = styled.section<AuthTemplateProps>`
-  height: 100vh;
-  width: 100vw;
-  background-color: gray;
-`;
+const AuthTemplateStyled = styled.section<AuthTemplateProps>``;
 
-const AuthTemplate: React.FC<AuthTemplateProps> = ({ children, ...rest }) => (
-  <GridBox $fit>
+const AuthTemplate: React.FC<AuthTemplateProps> = ({ children, ...rest }: AuthTemplateProps) => (
+  <Container $size={'Small'}>
     <AuthTemplateStyled {...rest}>{children}</AuthTemplateStyled>
-  </GridBox>
+  </Container>
 );
 
 export default AuthTemplate;

@@ -46,7 +46,7 @@ const InputStyled = styled.input<InputProps>`
 
   ${({ $size = Sizes.Default, theme }) =>
     Object.entries(MediaSizes)
-      .map(([value, MediaKey]) => {
+      .map(([_value, MediaKey]) => {
         const head = `@media only screen and (min-width: ${theme.mediaSizes[MediaKey]}) {`;
         const body = Object.entries(Sizes)
           .map(([size, SizeKey]) => {
