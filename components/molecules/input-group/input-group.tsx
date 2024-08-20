@@ -1,6 +1,6 @@
 'use client';
 
-import { Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
+import { Size, Theme, Variant, Variants } from '@styles/theme';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -53,7 +53,7 @@ const InputGroup: React.FC<InputGroupProps> = ({
   name,
   feedBack,
   inputType,
-  $size = Sizes.MD,
+  $size,
 }) => {
   const { size } = useViewportSize();
 

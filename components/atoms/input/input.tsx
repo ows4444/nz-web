@@ -43,7 +43,7 @@ const InputStyled = styled.input<InputProps>`
     color: ${({ theme, $variant }) => theme.palette[$variant]?.['Focus.FontColor']};
   }
 
-  ${({ $size = Sizes.MD, theme }) =>
+  ${({ $size = Sizes.MAX, theme }) =>
     Object.entries(MediaSizes)
       .map(
         ([_value, MediaKey]) =>
