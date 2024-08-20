@@ -1,6 +1,6 @@
 'use client';
 
-import { MediaSizes, Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
+import { Components, MediaSizes, Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -48,7 +48,7 @@ const InputStyled = styled.input<InputProps>`
       .map(
         ([_value, MediaKey]) =>
           `@media only screen and (min-width: ${theme.mediaSizes[MediaKey]}) { 
-            ${theme.elements['INPUT'][$size]?.[MediaKey] ? `width: ${theme.elements['INPUT'][$size][MediaKey]};` : ''}
+            ${theme.elements[Components.INPUT][$size]?.[MediaKey] ? `width: ${theme.elements[Components.INPUT][$size][MediaKey]};` : ''}
           }`,
       )
       .join('')}
