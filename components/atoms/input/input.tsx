@@ -1,6 +1,7 @@
 'use client';
 
-import { Components, MediaSizes, Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
+import { Components, ElementCss, ElementsCss, MediaSizes, Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
+import { TransformName } from '@styles/theme/styles';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -47,8 +48,15 @@ const InputStyled = styled.input<InputProps>`
     Object.entries(MediaSizes)
       .map(
         ([_value, MediaKey]) =>
-          `@media only screen and (min-width: ${theme.mediaSizes[MediaKey]}) { 
-            ${theme.elements[Components.INPUT][$size]?.[MediaKey] ? `width: ${theme.elements[Components.INPUT][$size][MediaKey]};` : ''}
+          `
+          @media only screen and (min-width: ${theme.mediaSizes[MediaKey]}) {
+          ${Object.keys(theme.elements[Components.INPUT][$size]?.[MediaKey]!)
+            .map(
+              (value) =>
+                `${TransformName(ElementsCss[value as ElementCss])}:${theme.elements[Components.INPUT][$size]?.[MediaKey]![value as ElementCss]};`,
+            )
+            .join('')}
+            
           }`,
       )
       .join('')}

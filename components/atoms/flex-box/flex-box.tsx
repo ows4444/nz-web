@@ -19,8 +19,6 @@ export const FlexBoxStyled = styled.div<FlexBoxProps>`
   align-items: ${({ $alignItems }) => $alignItems || 'center'};
   gap: ${({ $gap }) => $gap || '0'};
   flex-wrap: ${({ $wrap }) => $wrap || 'nowrap'};
-
-  
 `;
 
 const FlexBox: React.FC<FlexBoxProps> = ({ children, ...rest }) => <FlexBoxStyled {...rest}>{children}</FlexBoxStyled>;

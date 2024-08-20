@@ -6,6 +6,7 @@ import { MediaSize } from './media';
 import { PaletteItem } from './paletteItem';
 import { PropertyState } from './propertyStates';
 import { Size } from './sizes';
+import { ElementCss } from './styles';
 import { Variant } from './variants';
 
 export { Variants } from './variants';
@@ -17,6 +18,9 @@ export type { Size } from './sizes';
 export { MediaSizes } from './media';
 export type { MediaSize } from './media';
 
+export { ElementsCss } from './styles';
+export type { ElementCss } from './styles';
+
 export { Components } from './components';
 export type { Component } from './components';
 
@@ -26,7 +30,7 @@ export type transparency = number;
 export interface Theme {
   palette: Record<Variant, PaletteItem>;
   mediaSizes: Record<MediaSize, string>;
-  elements: Record<Component, Partial<Record<Size, Partial<Record<MediaSize, string>>>>>;
+  elements: Record<Component, Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>>;
   global: Record<string, any>;
 }
 
@@ -34,7 +38,7 @@ export class ThemeGenerator {
   private variantPalette: Record<string, any>;
   private globalStyles: Record<string, any>;
   private mediaSizes: Record<string, any> = {};
-  private elements: Record<string, Partial<Record<Size, Partial<Record<MediaSize, string>>>>> = {};
+  private elements: Record<string, Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>> = {};
   private readonly cg: ColorGenerator = new ColorGenerator();
 
   constructor() {
@@ -49,7 +53,7 @@ export class ThemeGenerator {
     return this;
   }
 
-  addElement(element: Component, data: Partial<Record<Size, Partial<Record<MediaSize, string>>>>) {
+  addElement(element: Component, data: Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>) {
     this.elements[element] = data;
     return this;
   }

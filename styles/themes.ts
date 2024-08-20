@@ -9,14 +9,86 @@ export const lightTheme = new ThemeGenerator()
   .addMediaSize('xxl', '1600px')
 
   .addElement('INPUT', {
-    MIN: { xs: '200px', sm: '220px', md: '240px', lg: '300px', xl: '400px', xxl: '500px' },
-    MD: { xs: '220px', sm: '240px', md: '300px', lg: '400px', xl: '500px', xxl: '600px' },
-    MAX: { xs: '100%', sm: '100%', md: '100%', lg: '100%', xl: '100%', xxl: '100%' },
-    LG: { xs: '300px', sm: '400px', md: '500px', lg: '600px', xl: '700px', xxl: '800px' },
-    XL: { xs: '400px', sm: '500px', md: '600px', lg: '700px', xl: '800px', xxl: '900px' },
-    XXL: { xs: '500px', sm: '600px', md: '700px', lg: '800px', xl: '900px', xxl: '1000px' },
-    XS: { xs: '220px', sm: '240px', md: '300px', lg: '400px', xl: '500px', xxl: '600px' },
-    XXS: { xs: '200px', sm: '220px', md: '240px', lg: '300px', xl: '400px', xxl: '500px' },
+    MIN: {
+      xs: { width: '200px' },
+      lg: { width: '300px' },
+      xl: { width: '400px' },
+      xxl: { width: '500px' },
+      md: { width: '240px' },
+      sm: { width: '220px' },
+    },
+
+    MD: {
+      xs: { width: '220px' },
+      lg: { width: '400px' },
+      xl: { width: '500px' },
+      xxl: { width: '600px' },
+      md: { width: '300px' },
+      sm: { width: '249px' },
+    },
+
+    MAX: {
+      xs: { width: '248px' },
+      lg: { width: '500px' },
+      xl: { width: '600px' },
+      xxl: { width: '700px' },
+      md: { width: '400px' },
+      sm: { width: '220px' },
+    },
+
+    LG: {
+      xs: { width: '300px' },
+      lg: { width: '600px' },
+      xl: { width: '700px' },
+      xxl: { width: '800px' },
+      md: { width: '500px' },
+      sm: { width: '400px' },
+    },
+
+    XL: {
+      xs: { width: '400px' },
+      lg: { width: '700px' },
+      xl: { width: '800px' },
+      xxl: { width: '900px' },
+      md: { width: '600px' },
+      sm: { width: '500px' },
+    },
+
+    XXL: {
+      xs: { width: '500px' },
+      lg: { width: '800px' },
+      xl: { width: '900px' },
+      xxl: { width: '1000px' },
+      md: { width: '700px' },
+      sm: { width: '600px' },
+    },
+
+    XS: {
+      xs: { width: '220px' },
+      lg: { width: '400px' },
+      xl: { width: '500px' },
+      xxl: { width: '600px' },
+      md: { width: '300px' },
+      sm: { width: '247px' },
+    },
+
+    XXS: {
+      xs: { width: '200px' },
+      lg: { width: '300px' },
+      xl: { width: '400px' },
+      xxl: { width: '500px' },
+      md: { width: '246px' },
+      sm: { width: '220px' },
+    },
+
+    SM: {
+      xs: { width: '245px' },
+      lg: { width: '400px' },
+      xl: { width: '500px' },
+      xxl: { width: '600px' },
+      md: { width: '300px' },
+      sm: { width: '220px' },
+    },
   })
 
   .addGlobalStyles([
@@ -81,14 +153,86 @@ export const darkTheme = new ThemeGenerator()
   .addMediaSize('xxl', '1600px')
 
   .addElement('INPUT', {
-    MIN: { xs: '200px', sm: '220px', md: '240px', lg: '300px', xl: '400px', xxl: '500px' },
-    MD: { xs: '220px', sm: '240px', md: '300px', lg: '400px', xl: '500px', xxl: '600px' },
-    MAX: { xs: '240px', sm: '300px', md: '400px', lg: '500px', xl: '600px', xxl: '700px' },
-    LG: { xs: '300px', sm: '400px', md: '500px', lg: '600px', xl: '700px', xxl: '800px' },
-    XL: { xs: '400px', sm: '500px', md: '600px', lg: '700px', xl: '800px', xxl: '900px' },
-    XXL: { xs: '500px', sm: '600px', md: '700px', lg: '800px', xl: '900px', xxl: '1000px' },
-    XS: { xs: '220px', sm: '240px', md: '300px', lg: '400px', xl: '500px', xxl: '600px' },
-    XXS: { xs: '200px', sm: '220px', md: '240px', lg: '300px', xl: '400px', xxl: '500px' },
+    MIN: {
+      xs: { width: '200px' },
+      lg: { width: '300px' },
+      xl: { width: '400px' },
+      xxl: { width: '500px' },
+      md: { width: '244px' },
+      sm: { width: '220px' },
+    },
+
+    MD: {
+      xs: { width: '220px' },
+      lg: { width: '400px' },
+      xl: { width: '500px' },
+      xxl: { width: '600px' },
+      md: { width: '300px' },
+      sm: { width: '243px' },
+    },
+
+    MAX: {
+      xs: { width: '244px' },
+      lg: { width: '500px' },
+      xl: { width: '600px' },
+      xxl: { width: '700px' },
+      md: { width: '400px' },
+      sm: { width: '220px' },
+    },
+
+    LG: {
+      xs: { width: '300px' },
+      lg: { width: '600px' },
+      xl: { width: '700px' },
+      xxl: { width: '800px' },
+      md: { width: '500px' },
+      sm: { width: '400px' },
+    },
+
+    XL: {
+      xs: { width: '400px' },
+      lg: { width: '700px' },
+      xl: { width: '800px' },
+      xxl: { width: '900px' },
+      md: { width: '600px' },
+      sm: { width: '500px' },
+    },
+
+    XXL: {
+      xs: { width: '500px' },
+      lg: { width: '800px' },
+      xl: { width: '900px' },
+      xxl: { width: '1000px' },
+      md: { width: '700px' },
+      sm: { width: '600px' },
+    },
+
+    XS: {
+      xs: { width: '220px' },
+      lg: { width: '400px' },
+      xl: { width: '500px' },
+      xxl: { width: '600px' },
+      md: { width: '300px' },
+      sm: { width: '242px' },
+    },
+
+    XXS: {
+      xs: { width: '200px' },
+      lg: { width: '300px' },
+      xl: { width: '400px' },
+      xxl: { width: '500px' },
+      md: { width: '241px' },
+      sm: { width: '220px' },
+    },
+
+    SM: {
+      xs: { width: '240px' },
+      lg: { width: '400px' },
+      xl: { width: '500px' },
+      xxl: { width: '600px' },
+      md: { width: '300px' },
+      sm: { width: '220px' },
+    },
   })
 
   .addGlobalStyles([
