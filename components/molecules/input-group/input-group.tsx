@@ -1,6 +1,6 @@
 'use client';
 
-import { Sizes, Theme, Variant, Variants } from '@styles/theme';
+import { Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -42,7 +42,7 @@ export interface InputGroupProps extends React.HTMLAttributes<HTMLElement> {
   name: string;
   feedBack?: string;
   inputType: InputType;
-  $size?: Sizes;
+  $size?: Size;
 }
 
 const InputGroupStyled = styled.label<Omit<InputGroupProps, 'name' | 'HtmlFor' | 'label' | 'inputType'>>``;
@@ -53,7 +53,7 @@ const InputGroup: React.FC<InputGroupProps> = ({
   name,
   feedBack,
   inputType,
-  $size = Sizes.Default,
+  $size = Sizes.MD,
 }) => {
   const { size } = useViewportSize();
 

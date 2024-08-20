@@ -1,15 +1,14 @@
 /* eslint-disable no-unused-vars */
 export enum Sizes {
-  XXXSmall = 'XXXSmall',
-  XXSmall = 'XXSmall',
-  XSmall = 'XSmall',
-  Small = 'Small',
-  Medium = 'Medium',
-  Default = 'Default',
-  Large = 'Large',
-  XLarge = 'XLarge',
-  XXLarge = 'XXLarge',
-  XXXLarge = 'XXXLarge',
+  MIN = 'MIN',
+  XXS = 'XXS',
+  XS = 'XS',
+  SM = 'SM',
+  MD = 'MD',
+  LG = 'LG',
+  XL = 'XL',
+  XXL = 'XXL',
+  MAX = 'MAX',
 }
 
 export type Size = keyof typeof Sizes;

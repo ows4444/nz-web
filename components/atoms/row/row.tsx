@@ -13,7 +13,7 @@ const RowStyled = styled.section<RowProps>`
   display: flex;
 `;
 
-const Row: React.FC<RowProps> = ({ $size = Sizes.Default, children, ...rest }: RowProps) => (
+const Row: React.FC<RowProps> = ({ $size = Sizes.MD, children, ...rest }: RowProps) => (
   <RowStyled $size={$size} {...rest}>
     {children}
   </RowStyled>

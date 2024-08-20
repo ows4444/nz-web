@@ -16,7 +16,7 @@ const CardBodyStyled = styled(Section)<CardBodyProps>`
 
 const CardBody: React.FC<CardBodyProps> = ({
   children,
-  $size = Sizes.Default,
+  $size = Sizes.MD,
   $variant = Variants.Primary,
   ...rest
 }: CardBodyProps) => (

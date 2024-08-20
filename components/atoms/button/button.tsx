@@ -21,7 +21,7 @@ const ButtonStyled = styled.button<Omit<ButtonProps, '$title'>>`
   background-color: ${({ theme, $variant }) => theme.palette[$variant].BackgroundColor};
   color: ${({ theme, $variant }) => theme.palette[$variant].FontColor};
 
-  width: ${({ $size }) => ($size === Sizes.Default ? '100px' : $size === Sizes.Medium ? '200px' : '300px')};
+  width: ${({ $size }) => ($size === Sizes.MD ? '100px' : $size === Sizes.LG ? '200px' : '300px')};
 
   &:hover {
     border-color: ${({ theme, $variant }) => theme.palette[$variant]?.['Hover.BorderColor']};
@@ -50,7 +50,7 @@ const ButtonStyled = styled.button<Omit<ButtonProps, '$title'>>`
 
 const Button: React.FC<Omit<ButtonProps, '$variant' | '$size'> & { $variant?: Variant; $size?: Size }> = ({
   $title,
-  $size = Sizes.Default,
+  $size = Sizes.MD,
   $variant = Variants.Default,
   ...rest
 }: Omit<ButtonProps, '$variant' | '$size'> & { $variant?: Variant; $size?: Size }) => (

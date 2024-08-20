@@ -27,7 +27,7 @@ const Card: React.FC<CardProps> = ({
   $direction = 'column',
   $justifyContent = 'center',
   $alignItems = 'center',
-  $size = Sizes.Default,
+  $size = Sizes.MD,
   $variant = Variants.Primary,
 
   children,

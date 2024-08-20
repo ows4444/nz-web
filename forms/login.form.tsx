@@ -36,16 +36,16 @@ export function LoginForm() {
 
   return (
     <Form action={action}>
-      <Card $variant="Default" $size="Default" $direction="column">
+      <Card $variant="Default" $size="LG" $direction="column">
         <CardHeader>
           <FlexBox $justifyContent="center">
             <H2>Login</H2>
           </FlexBox>
         </CardHeader>
         <CardBody>
-          <FlexBox $gap='4px' $justifyContent="center" $direction='column' $alignItems='flex-end'>
-            <InputGroup $variant="Default" label="Email" name="email" inputType="text" />
-            <InputGroup $variant="Default" label="Password" name="password" inputType="password" />
+          <FlexBox $gap="4px" $justifyContent="center" $direction="column" $alignItems="flex-end">
+            <InputGroup $variant="Default" $size="MAX" label="Email" name="email" inputType="text" />
+            <InputGroup $variant="Default" $size="MAX" label="Password" name="password" inputType="password" />
             {state && state.error && <p>{state.error}</p>}
           </FlexBox>
         </CardBody>

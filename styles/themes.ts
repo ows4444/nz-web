@@ -1,8 +1,6 @@
 import { ThemeGenerator } from './theme';
 
 export const lightTheme = new ThemeGenerator()
-  .addMediaSize('xl', '1200px')
-  .addMediaSize('xxl', '1600px')
   .addMediaSize('xs', '320px')
   .addMediaSize('sm', '480px')
   .addMediaSize('md', '768px')
@@ -10,16 +8,16 @@ export const lightTheme = new ThemeGenerator()
   .addMediaSize('xl', '1200px')
   .addMediaSize('xxl', '1600px')
 
-  .addInputSize('XXXSmall', '240px')
-  .addInputSize('XXSmall', '240px')
-  .addInputSize('XSmall', '240px')
-  .addInputSize('Small', '240px')
-  .addInputSize('Medium', '320px')
-  .addInputSize('Default', '320px')
-  .addInputSize('Large', '480px')
-  .addInputSize('XLarge', '600px')
-  .addInputSize('XXLarge', '700px')
-  .addInputSize('XXXLarge', '720px')
+  .addElement('INPUT', {
+    MIN: { xs: '200px', sm: '220px', md: '240px', lg: '300px', xl: '400px', xxl: '500px' },
+    MD: { xs: '220px', sm: '240px', md: '300px', lg: '400px', xl: '500px', xxl: '600px' },
+    MAX: { xs: '100%', sm: '100%', md: '100%', lg: '100%', xl: '100%', xxl: '100%' },
+    LG: { xs: '300px', sm: '400px', md: '500px', lg: '600px', xl: '700px', xxl: '800px' },
+    XL: { xs: '400px', sm: '500px', md: '600px', lg: '700px', xl: '800px', xxl: '900px' },
+    XXL: { xs: '500px', sm: '600px', md: '700px', lg: '800px', xl: '900px', xxl: '1000px' },
+    XS: { xs: '220px', sm: '240px', md: '300px', lg: '400px', xl: '500px', xxl: '600px' },
+    XXS: { xs: '200px', sm: '220px', md: '240px', lg: '300px', xl: '400px', xxl: '500px' },
+  })
 
   .addGlobalStyles([
     ['BackgroundColor', 'White'],
@@ -74,8 +72,7 @@ export const lightTheme = new ThemeGenerator()
   .getTheme();
 
 export const darkTheme = new ThemeGenerator()
-  .addMediaSize('xl', '1200px')
-  .addMediaSize('xxl', '1600px')
+
   .addMediaSize('xs', '320px')
   .addMediaSize('sm', '480px')
   .addMediaSize('md', '768px')
@@ -83,16 +80,17 @@ export const darkTheme = new ThemeGenerator()
   .addMediaSize('xl', '1200px')
   .addMediaSize('xxl', '1600px')
 
-  .addInputSize('XXXSmall', '240px')
-  .addInputSize('XXSmall', '240px')
-  .addInputSize('XSmall', '240px')
-  .addInputSize('Small', '240px')
-  .addInputSize('Medium', '320px')
-  .addInputSize('Default', '320px')
-  .addInputSize('Large', '480px')
-  .addInputSize('XLarge', '600px')
-  .addInputSize('XXLarge', '700px')
-  .addInputSize('XXXLarge', '720px')
+  .addElement('INPUT', {
+    MIN: { xs: '200px', sm: '220px', md: '240px', lg: '300px', xl: '400px', xxl: '500px' },
+    MD: { xs: '220px', sm: '240px', md: '300px', lg: '400px', xl: '500px', xxl: '600px' },
+    MAX: { xs: '240px', sm: '300px', md: '400px', lg: '500px', xl: '600px', xxl: '700px' },
+    LG: { xs: '300px', sm: '400px', md: '500px', lg: '600px', xl: '700px', xxl: '800px' },
+    XL: { xs: '400px', sm: '500px', md: '600px', lg: '700px', xl: '800px', xxl: '900px' },
+    XXL: { xs: '500px', sm: '600px', md: '700px', lg: '800px', xl: '900px', xxl: '1000px' },
+    XS: { xs: '220px', sm: '240px', md: '300px', lg: '400px', xl: '500px', xxl: '600px' },
+    XXS: { xs: '200px', sm: '220px', md: '240px', lg: '300px', xl: '400px', xxl: '500px' },
+  })
+
   .addGlobalStyles([
     ['BackgroundColor', 'Black'],
     ['FontColor', 'White'],

@@ -8,7 +8,7 @@ export interface SpanProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const SpanStyled = styled.span<SpanProps>`
-  ${({ $gridArea }) => $gridArea && `grid-area: ${$gridArea};`}
+  
 `;
 
 const Span: React.FC<SpanProps> = ({ children, ...rest }) => <SpanStyled {...rest}>{children}</SpanStyled>;

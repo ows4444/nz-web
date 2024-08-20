@@ -11,7 +11,7 @@ export interface ColumnProps extends React.HTMLAttributes<HTMLElement> {
 
 const ColumnStyled = styled.section<ColumnProps>``;
 
-const Column: React.FC<ColumnProps> = ({ $size = Sizes.Default, children, ...rest }: ColumnProps) => (
+const Column: React.FC<ColumnProps> = ({ $size = Sizes.MD, children, ...rest }: ColumnProps) => (
   <ColumnStyled $size={$size} {...rest}>
     {children}
   </ColumnStyled>

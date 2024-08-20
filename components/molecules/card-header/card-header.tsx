@@ -15,7 +15,7 @@ const CardHeaderStyled = styled(Header)<Omit<CardHeaderProps, '$title'>>`
 `;
 
 const CardHeader: React.FC<CardHeaderProps> = ({
-  $size = Sizes.Default,
+  $size = Sizes.MD,
   $variant = Variants.Primary,
   children,
   ...rest

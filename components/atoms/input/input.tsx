@@ -1,6 +1,6 @@
 'use client';
 
-import { MediaSizes, Sizes, Theme, Variant, Variants } from '@styles/theme';
+import { MediaSizes, Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -8,7 +8,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   theme?: Theme;
   $variant: Variant;
   $gridArea?: string;
-  $size?: Sizes;
+  $size?: Size;
 }
 
 const InputStyled = styled.input<InputProps>`
@@ -42,23 +42,15 @@ const InputStyled = styled.input<InputProps>`
     background-color: ${({ theme, $variant }) => theme.palette[$variant]?.['Focus.BackgroundColor']};
     color: ${({ theme, $variant }) => theme.palette[$variant]?.['Focus.FontColor']};
   }
-  ${({ $gridArea }) => $gridArea && `grid-area: ${$gridArea};`}
 
-  ${({ $size = Sizes.Default, theme }) =>
+  ${({ $size = Sizes.MD, theme }) =>
     Object.entries(MediaSizes)
-      .map(([_value, MediaKey]) => {
-        const head = `@media only screen and (min-width: ${theme.mediaSizes[MediaKey]}) {`;
-        const body = Object.entries(Sizes)
-          .map(([size, SizeKey]) => {
-            if (size === $size && theme.inputSizes[SizeKey]) {
-              return `width: ${theme.inputSizes[SizeKey]};`;
-            }
-          })
-          .join('');
-        const tail = `}`;
-
-        return `${head} ${body} ${tail}`;
-      })
+      .map(
+        ([_value, MediaKey]) =>
+          `@media only screen and (min-width: ${theme.mediaSizes[MediaKey]}) { 
+            ${theme.elements['INPUT'][$size]?.[MediaKey] ? `width: ${theme.elements['INPUT'][$size][MediaKey]};` : ''}
+          }`,
+      )
       .join('')}
 `;
 

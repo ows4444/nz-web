@@ -15,7 +15,7 @@ const CardFooterStyled = styled(Footer)<CardFooterProps>`
 `;
 
 const CardFooter: React.FC<CardFooterProps> = ({
-  $size = Sizes.Default,
+  $size = Sizes.MD,
   $variant = Variants.Primary,
   children,
 

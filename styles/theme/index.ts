@@ -1,6 +1,7 @@
 import { ColorGenerator } from './colorGenerator';
 import { ColorProperty } from './colorProperties';
 import { Color } from './colors';
+import { Component } from './components';
 import { MediaSize } from './media';
 import { PaletteItem } from './paletteItem';
 import { PropertyState } from './propertyStates';
@@ -16,13 +17,16 @@ export type { Size } from './sizes';
 export { MediaSizes } from './media';
 export type { MediaSize } from './media';
 
+export { Components } from './components';
+export type { Component } from './components';
+
 export type factor = number;
 export type transparency = number;
 
 export interface Theme {
   palette: Record<Variant, PaletteItem>;
   mediaSizes: Record<MediaSize, string>;
-  inputSizes: Record<Size, string>;
+  elements: Record<Component, Partial<Record<Size, Partial<Record<MediaSize, string>>>>>;
   global: Record<string, any>;
 }
 
@@ -30,14 +34,14 @@ export class ThemeGenerator {
   private variantPalette: Record<string, any>;
   private globalStyles: Record<string, any>;
   private mediaSizes: Record<string, any> = {};
-  private inputSizes: Record<string, any> = {};
+  private elements: Record<string, Partial<Record<Size, Partial<Record<MediaSize, string>>>>> = {};
   private readonly cg: ColorGenerator = new ColorGenerator();
 
   constructor() {
     this.variantPalette = {};
     this.globalStyles = {};
     this.mediaSizes = {};
-    this.inputSizes = {};
+    this.elements = {};
   }
 
   addMediaSize(mediaSize: MediaSize, size: string) {
@@ -45,8 +49,8 @@ export class ThemeGenerator {
     return this;
   }
 
-  addInputSize(inputSize: Size, size: string) {
-    this.inputSizes[inputSize] = size;
+  addElement(element: Component, data: Partial<Record<Size, Partial<Record<MediaSize, string>>>>) {
+    this.elements[element] = data;
     return this;
   }
 
@@ -97,7 +101,7 @@ export class ThemeGenerator {
       global: this.globalStyles,
       palette: this.variantPalette,
       mediaSizes: this.mediaSizes,
-      inputSizes: this.inputSizes,
+      elements: this.elements,
     };
   }
 }

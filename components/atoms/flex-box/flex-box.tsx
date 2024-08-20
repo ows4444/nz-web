@@ -20,7 +20,7 @@ export const FlexBoxStyled = styled.div<FlexBoxProps>`
   gap: ${({ $gap }) => $gap || '0'};
   flex-wrap: ${({ $wrap }) => $wrap || 'nowrap'};
 
-  ${({ $gridArea }) => $gridArea && `grid-area: ${$gridArea};`}
+  
 `;
 
 const FlexBox: React.FC<FlexBoxProps> = ({ children, ...rest }) => <FlexBoxStyled {...rest}>{children}</FlexBoxStyled>;
