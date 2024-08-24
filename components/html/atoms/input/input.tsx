@@ -15,7 +15,6 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 const InputStyled = styled.input<InputProps>`
   padding: 8px 8px;
   font-size: 16px;
-  cursor: pointer;
   border: 1px solid ${({ theme, $variant }) => theme.palette[$variant].BorderColor};
   border-radius: 4px;
   outline: none;

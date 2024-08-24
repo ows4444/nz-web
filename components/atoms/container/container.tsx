@@ -1,19 +1,25 @@
 'use client';
-
-import { Theme } from '@styles/theme';
-import type React from 'next';
+import React from 'react';
 import styled from 'styled-components';
-import Section from '../section/section';
+import type { ReactNode, HTMLAttributes, FC } from 'react';
 
-export interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
-  $Full?: Boolean;
-  $WidthPercent?: number;
-  theme?: Theme;
+export interface ContainerProps extends HTMLAttributes<HTMLElement> {
+  theme?: any;
+  children: ReactNode;
 }
 
-const Container = styled(Section)<ContainerProps>`
-  ${({ $Full, $WidthPercent }) => ($Full ? 'width: 100%;' : `width: ${$WidthPercent ?? '75'}%;`)};
-  margin: 0 auto;
-`;
+const ContainerStyled = styled.section<ContainerProps>``;
 
+const Container: FC<ContainerProps> = ({ children, ...rest }) => (
+  <ContainerStyled {...rest}>{children}</ContainerStyled>
+);
+
+/**
+ * @name Container
+ * @description Container
+ * @param {ContainerProps} props
+ * @returns {React.ReactElement}
+ * @example <Container> </Container>
+ * DONE
+ */
 export default Container;
