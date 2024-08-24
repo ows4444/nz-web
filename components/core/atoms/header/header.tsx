@@ -1,16 +1,17 @@
 'use client';
-
-import { Theme } from '@styles/theme';
 import React from 'react';
 import styled from 'styled-components';
+import type { HTMLAttributes, FC, ReactNode } from 'react';
+import { Theme } from '@styles/theme';
 
-export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
+export interface HeaderProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
+  children: ReactNode;
 }
 
-const HeaderStyled = styled.header<HeaderProps>``;
+const HeaderStyled = styled.header<Partial<HeaderProps>>``;
 
-const Header: React.FC<Omit<HeaderProps, '$theme'>> = ({ children, ...rest }) => (
+const Header: FC<HeaderProps> = ({ children, ...rest }: HeaderProps) => (
   <HeaderStyled {...rest}>{children}</HeaderStyled>
 );
 

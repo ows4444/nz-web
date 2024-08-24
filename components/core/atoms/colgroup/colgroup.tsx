@@ -9,7 +9,7 @@ export interface ColgroupProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
 }
 
-const ColgroupStyled = styled.col<ColgroupProps>``;
+const ColgroupStyled = styled.colgroup<ColgroupProps>``;
 
 const Colgroup: FC<ColgroupProps> = ({ children, ...rest }) => <ColgroupStyled {...rest}>{children}</ColgroupStyled>;
 
