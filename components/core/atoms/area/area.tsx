@@ -11,11 +11,6 @@ const AreaStyled = styled.area<AreaProps>``;
 const Area: FC<AreaProps> = ({ children, ...rest }) => <AreaStyled {...rest}>{children}</AreaStyled>;
 
 /**
- * @name Area
- * @description Area
- * @param {AreaProps} props
- * @returns {React.ReactElement}
- * @example <Area> </Area>
  * DONE 
  */
 export default Area;

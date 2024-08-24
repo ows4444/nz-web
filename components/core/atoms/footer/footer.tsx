@@ -14,11 +14,6 @@ const FooterStyled = styled.footer<FooterProps>``;
 const Footer: FC<FooterProps> = ({ children, ...rest }) => <FooterStyled {...rest}>{children}</FooterStyled>;
 
 /**
- * @name Footer
- * @description Footer
- * @param {FooterProps} props
- * @returns {React.ReactElement}
- * @example <Footer> </Footer>
  * DONE
  */
 export default Footer;

@@ -24,11 +24,6 @@ export const FlexBoxStyled = styled.div<FlexBoxProps>`
 const FlexBox: FC<FlexBoxProps> = ({ children, ...rest }) => <FlexBoxStyled {...rest}>{children}</FlexBoxStyled>;
 
 /**
- * @name FlexBox
- * @description FlexBox
- * @param {FlexBoxProps} props
- * @returns {React.ReactElement}
- * @example <FlexBox> </FlexBox>
  * DONE
  */
 

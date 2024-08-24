@@ -11,11 +11,6 @@ const AsideStyled = styled.aside<AsideProps>``;
 const Aside: FC<AsideProps> = ({ children, ...rest }) => <AsideStyled {...rest}>{children}</AsideStyled>;
 
 /**
- * @name Aside
- * @description Aside
- * @param {AsideProps} props
- * @returns {React.ReactElement}
- * @example <Aside> </Aside>
  * DONE 
  */
 export default Aside;

@@ -24,11 +24,6 @@ const GridBoxStyled = styled.div<GridBoxProps>`
 const GridBox: FC<GridBoxProps> = ({ children, ...rest }) => <GridBoxStyled {...rest}>{children}</GridBoxStyled>;
 
 /**
- * @name GridBox
- * @description GridBox
- * @param {GridBoxProps} props
- * @returns {React.ReactElement}
- * @example <GridBox> </GridBox>
  * DONE
  */
 

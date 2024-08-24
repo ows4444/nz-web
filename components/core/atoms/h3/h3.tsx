@@ -12,11 +12,6 @@ export interface H3Props extends HTMLAttributes<HTMLElement> {
 const H3Styled = styled.h3<Partial<H3Props>>``;
 
 /**
- * @name H3
- * @description H3
- * @param {H3Props} props
- * @returns {React.ReactElement}
- * @example <H3 content="Hello, World!" />
  * DONE
  */
 const H3: FC<H3Props> = ({ content, ...rest }: H3Props) => <H3Styled {...rest}>{content}</H3Styled>;

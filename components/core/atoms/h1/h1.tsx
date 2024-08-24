@@ -12,11 +12,6 @@ export interface H1Props extends HTMLAttributes<HTMLElement> {
 const H1Styled = styled.h1<Partial<H1Props>>``;
 
 /**
- * @name H1
- * @description H1
- * @param {H1Props} props
- * @returns {React.ReactElement}
- * @example <H1 content="Hello, World!" />
  * DONE
  */
 const H1: FC<H1Props> = ({ content, ...rest }: H1Props) => <H1Styled {...rest}>{content}</H1Styled>;

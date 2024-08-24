@@ -10,11 +10,6 @@ const AddressStyled = styled.address<AddressProps>``;
 const Address: FC<AddressProps> = ({ children, ...rest }) => <AddressStyled {...rest}>{children}</AddressStyled>;
 
 /**
- * @name Address
- * @description Address
- * @param {AddressProps} props
- * @returns {React.ReactElement}
- * @example <Address> </Address>
  * DONE 
  */
 export default Address;

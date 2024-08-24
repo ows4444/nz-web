@@ -10,11 +10,6 @@ const BStyled = styled.b<Partial<AProps>>``;
 const B: FC<AProps> = ({ content, ...rest }) => <BStyled {...rest}>{content}</BStyled>;
 
 /**
- * @name B
- * @description B
- * @param {AProps} props
- * @returns {React.ReactElement}
- * @example <B> </B>
  * DONE
  */
 export default B;

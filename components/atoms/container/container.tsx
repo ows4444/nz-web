@@ -15,11 +15,6 @@ const Container: FC<ContainerProps> = ({ children, ...rest }) => (
 );
 
 /**
- * @name Container
- * @description Container
- * @param {ContainerProps} props
- * @returns {React.ReactElement}
- * @example <Container> </Container>
  * DONE
  */
 export default Container;

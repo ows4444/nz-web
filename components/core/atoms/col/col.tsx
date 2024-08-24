@@ -14,11 +14,6 @@ const ColStyled = styled.col<ColProps>``;
 const Col: FC<ColProps> = ({ children, ...rest }) => <ColStyled {...rest}>{children}</ColStyled>;
 
 /**
- * @name Col
- * @description Col
- * @param {ColProps} props
- * @returns {React.ReactElement}
- * @example <Col> </Col>
  * DONE
  */
 export default Col;
