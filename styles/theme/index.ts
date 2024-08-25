@@ -1,35 +1,52 @@
-import { Color } from './colors';
-import { FontWeight, LineHight, RadiusSize, ShadowSize, Size } from './sizes';
-import { Gradient, Variant } from './variants';
+// import { Color } from './colors';
+// import { FontWeight, LineHight, RadiusSize, ShadowSize, Size } from './sizes';
+// import { Gradient, Variant } from './variants';
 
-export type factor = number;
-export type transparency = number;
+// export type factor = number;
+// export type transparency = number;
 
-export interface Theme {
-  palette: Partial<Record<Variant, Color>>;
-  mediaSizes: Partial<Record<Size, string>>;
-  fontSizes: Partial<Record<FontWeight, string>>;
-  radiusSizes: Partial<Record<RadiusSize, string>>;
-  shadowSizes: Partial<Record<ShadowSize, string>>;
-  gradients: Partial<Record<Gradient, string>>;
-  lineHights: Partial<Record<LineHight, string>>;
+// export interface Theme {
+//   palette: Partial<Record<Variant, Color>>;
+//   mediaSizes: Partial<Record<Size, string>>;
+//   fontSizes: Partial<Record<FontWeight, string>>;
+//   radiusSizes: Partial<Record<RadiusSize, string>>;
+//   shadowSizes: Partial<Record<ShadowSize, string>>;
+//   gradients: Partial<Record<Gradient, string>>;
+//   lineHights: Partial<Record<LineHight, string>>;
 
-  //elements: Record<Component, Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>>;
-}
+//   //elements: Record<Component, Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>>;
+// }
 
 export class ThemeGenerator {
-  private readonly _theme: Theme;
+  // private palette: Partial<Record<Variant, Color>>;
+  // private mediaSizes: Partial<Record<Size, string>>;
+  // private fontSizes: Partial<Record<FontWeight, string>>;
+  // private radiusSizes: Partial<Record<RadiusSize, string>>;
+  // private shadowSizes: Partial<Record<ShadowSize, string>>;
+  // private gradients: Partial<Record<Gradient, string>>;
+  // private lineHights: Partial<Record<LineHight, string>>;
+  // constructor() {
+  //   this.palette = {};
+  //   this.mediaSizes = {};
+  //   this.fontSizes = {};
+  //   this.radiusSizes = {};
+  //   this.shadowSizes = {};
+  //   this.gradients = {};
+  //   this.lineHights = {};
+  // }
+  /*
   constructor() {
     this._theme = {
-      lineHights: {},
-      gradients: {},
-      shadowSizes: {},
-      radiusSizes: {},
-      fontSizes: {},
       palette: {},
       mediaSizes: {},
+      fontSizes: {},
+      radiusSizes: {},
+      shadowSizes: {},
+      gradients: {},
+      lineHights: {},
     };
   }
+
   addLineHight(lineHight: LineHight, value: string): ThemeGenerator {
     this._theme.lineHights[lineHight] = value;
     return this;
@@ -63,9 +80,18 @@ export class ThemeGenerator {
   addShadowSize(shadowSize: ShadowSize, value: string): ThemeGenerator {
     this._theme.shadowSizes[shadowSize] = value;
     return this;
-  }
-
-  get theme(): Theme {
-    return this._theme;
-  }
+  }*/
+  // public theme(): Theme {
+  //   return {
+  //     palette: this.palette,
+  //     mediaSizes: this.mediaSizes,
+  //     fontSizes: this.fontSizes,
+  //     radiusSizes: this.radiusSizes,
+  //     shadowSizes: this.shadowSizes,
+  //     gradients: this.gradients,
+  //     lineHights: this.lineHights,
+  //   };
+  // }
 }
+
+ 

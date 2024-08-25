@@ -1,7 +1,13 @@
 import { ThemeGenerator } from './theme';
 
-export const lightTheme = new ThemeGenerator()
-  .addMediaSize('xxs', '200px')
+
+
+console.log('ThemeGenerator',  new ThemeGenerator());
+
+export const lightTheme = {};
+
+//new ThemeGenerator()
+/* .addMediaSize('xxs', '200px')
   .addMediaSize('xs', '320px')
   .addMediaSize('sm', '480px')
   .addMediaSize('md', '768px')
@@ -52,7 +58,6 @@ export const lightTheme = new ThemeGenerator()
 
   .addGradientStyles('Default', 'linear-gradient(90deg, #FFC371 0%, #FF5F6D 100%)')
 
-
   .addLineHight('loose', '1.75')
   .addLineHight('normal', '1.5')
   .addLineHight('tight', ' 1.2')
@@ -68,9 +73,11 @@ export const lightTheme = new ThemeGenerator()
   .addRadiusSize('md', '16px')
   .addRadiusSize('lg', '24px')
   .addRadiusSize('xl', '32px')
-  .addRadiusSize('xxl', '48px').theme;
+  .addRadiusSize('xxl', '48px')*/
+//.theme();
 
-export const darkTheme = new ThemeGenerator()
+export const darkTheme = {};
+/*
 
   .addMediaSize('xxs', '200px')
   .addMediaSize('xs', '320px')
@@ -123,6 +130,12 @@ export const darkTheme = new ThemeGenerator()
 
   .addGradientStyles('Default', 'linear-gradient(90deg, #FFC371 0%, #FF5F6D 100%)')
 
+  .addLineHight('loose', '1.75')
+  .addLineHight('normal', '1.5')
+  .addLineHight('tight', ' 1.2')
+  .addLineHight('responsiveBase', '1.5')
+  .addLineHight('responsiveScale', '1.1')
+
   .addRadiusSize('pill', '50px')
   .addRadiusSize('circle', '50%')
   .addRadiusSize('none', '0')
@@ -132,4 +145,5 @@ export const darkTheme = new ThemeGenerator()
   .addRadiusSize('md', '16px')
   .addRadiusSize('lg', '24px')
   .addRadiusSize('xl', '32px')
-  .addRadiusSize('xxl', '48px').theme;
+  .addRadiusSize('xxl', '48px')*/
+// .theme;

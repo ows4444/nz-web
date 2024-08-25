@@ -1,48 +1,19 @@
 'use client';
-
-import { Components, ElementCss, ElementsCss, MediaSizes, Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
-import { TransformName } from '@styles/theme/styles';
 import React from 'react';
 import styled from 'styled-components';
+import type { HTMLAttributes, FC } from 'react';
+import { Theme } from '@styles/theme';
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface ButtonProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  $variant: Variant;
-  $gridArea?: string;
-  $size?: Size;
+  title: string;
 }
 
-const InputStyled = styled.input<InputProps>`
-  ${({ $size = Sizes.MAX, theme }) =>
-    Object.entries(MediaSizes)
-      .filter(
-        ([_, MediaKey]) =>
-          theme.elements && theme.elements[Components.INPUT] && theme.mediaSizes && theme.mediaSizes[MediaKey],
-      )
-      .map(
-        ([_value, MediaKey]) =>
-          `
-          @media only screen and (min-width: ${theme.mediaSizes[MediaKey]}) {
-          ${Object.keys(theme.elements[Components.INPUT][$size]?.[MediaKey]!)
-            .map(
-              (value) =>
-                `${TransformName(ElementsCss[value as ElementCss])}:${theme.elements[Components.INPUT][$size]?.[MediaKey]![value as ElementCss]};`,
-            )
-            .join('')}
-            
-          }`,
-      )
-      .join('')}
-`;
+const ButtonStyled = styled.button<Partial<ButtonProps>>``;
 
-const Input: React.FC<Omit<InputProps, '$variant'> & { $variant?: Variant }> = ({
-  $variant = Variants.Default,
-  children,
-  ...rest
-}) => (
-  <InputStyled $variant={$variant} {...rest}>
-    {children}
-  </InputStyled>
-);
+/**
+ * DONE
+ */
+const Button: FC<ButtonProps> = ({ title, ...rest }: ButtonProps) => <ButtonStyled {...rest}>{title}</ButtonStyled>;
 
-export default Input;
+export default Button;
