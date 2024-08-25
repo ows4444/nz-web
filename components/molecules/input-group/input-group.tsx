@@ -1,6 +1,6 @@
 'use client';
 
-import { Size, Theme, Variant, Variants } from '@styles/theme';
+import { Theme } from '@styles/theme';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -36,29 +36,20 @@ type InputType =
   | 'hidden';
 
 export interface InputGroupProps extends React.HTMLAttributes<HTMLElement> {
-  $variant: Variant;
   theme?: Theme;
   label: string;
   name: string;
   feedBack?: string;
   inputType: InputType;
-  $size?: Size;
 }
 
 const InputGroupStyled = styled.label<Omit<InputGroupProps, 'name' | 'HtmlFor' | 'label' | 'inputType'>>``;
 
-const InputGroup: React.FC<InputGroupProps> = ({
-  $variant = Variants.Default,
-  label,
-  name,
-  feedBack,
-  inputType,
-  $size,
-}) => {
+const InputGroup: React.FC<InputGroupProps> = ({ label, name, feedBack }) => {
   const { size } = useViewportSize();
 
   return (
-    <InputGroupStyled $variant={$variant}>
+    <InputGroupStyled>
       <FlexBox
         $justifyContent="space-between"
         $alignItems="center"
@@ -66,7 +57,7 @@ const InputGroup: React.FC<InputGroupProps> = ({
       >
         <Label title={label} content={name} />
         <FlexBox $direction="column">
-          <Input name={name} type={inputType} $variant={$variant} $size={$size} />
+          <Input title={'Title'} />
           {feedBack && <Span>{feedBack}</Span>}
         </FlexBox>
       </FlexBox>

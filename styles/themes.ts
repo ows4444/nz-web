@@ -1,13 +1,9 @@
 import { ThemeGenerator } from './theme';
 
+ 
 
-
-console.log('ThemeGenerator',  new ThemeGenerator());
-
-export const lightTheme = {};
-
-//new ThemeGenerator()
-/* .addMediaSize('xxs', '200px')
+export const lightTheme =  new ThemeGenerator()
+  .addMediaSize('xxs', '200px')
   .addMediaSize('xs', '320px')
   .addMediaSize('sm', '480px')
   .addMediaSize('md', '768px')
@@ -73,11 +69,11 @@ export const lightTheme = {};
   .addRadiusSize('md', '16px')
   .addRadiusSize('lg', '24px')
   .addRadiusSize('xl', '32px')
-  .addRadiusSize('xxl', '48px')*/
-//.theme();
+  .addRadiusSize('xxl', '48px')
+ .theme();
 
-export const darkTheme = {};
-/*
+export const darkTheme =   new ThemeGenerator()
+ 
 
   .addMediaSize('xxs', '200px')
   .addMediaSize('xs', '320px')
@@ -145,5 +141,5 @@ export const darkTheme = {};
   .addRadiusSize('md', '16px')
   .addRadiusSize('lg', '24px')
   .addRadiusSize('xl', '32px')
-  .addRadiusSize('xxl', '48px')*/
-// .theme;
+  .addRadiusSize('xxl', '48px') 
+  
