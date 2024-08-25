@@ -2,13 +2,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import type { ReactNode, HTMLAttributes, FC } from 'react';
+import Section from '@components/core/atoms/section/section';
 
 export interface ContainerProps extends HTMLAttributes<HTMLElement> {
-  theme?: any;
-  children: ReactNode;
+    theme?: Theme;
+  children?: ReactNode;
 }
 
-const ContainerStyled = styled.section<ContainerProps>``;
+const ContainerStyled = styled(Section)<ContainerProps>``;
 
 const Container: FC<ContainerProps> = ({ children, ...rest }) => (
   <ContainerStyled {...rest}>{children}</ContainerStyled>

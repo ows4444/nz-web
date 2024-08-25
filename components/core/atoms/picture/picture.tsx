@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface PictureProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const PictureStyled = styled.picture<PictureProps>``;

@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface SectionProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const SectionStyled = styled.section<SectionProps>``;

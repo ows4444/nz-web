@@ -9,7 +9,7 @@ export interface GridBoxProps extends HTMLAttributes<HTMLElement> {
   $gap?: number;
   $autoRows?: 'auto' | 'minmax' | 'max-content' | 'min-content' | 'auto-fit' | 'auto-fill';
   $autoFlow?: 'row' | 'column' | 'row dense' | 'column dense';
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const GridBoxStyled = styled.div<GridBoxProps>`

@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface DDProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const DDStyled = styled.dd<DDProps>``;

@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface DivProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const DivStyled = styled.div<DivProps>``;

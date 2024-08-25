@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface UlProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const UlStyled = styled.ul<UlProps>``;

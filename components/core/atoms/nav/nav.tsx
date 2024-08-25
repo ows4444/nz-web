@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface NavProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const NavStyled = styled.nav<NavProps>``;

@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface DialogProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const DialogStyled = styled.dialog<DialogProps>``;

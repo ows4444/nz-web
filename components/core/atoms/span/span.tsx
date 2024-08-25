@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface SpanProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const SpanStyled = styled.span<SpanProps>``;

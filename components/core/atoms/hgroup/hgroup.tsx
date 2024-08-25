@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface HGroupProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const HGroupStyled = styled.hgroup<Partial<HGroupProps>>``;

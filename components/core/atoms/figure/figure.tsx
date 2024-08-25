@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface FigureProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const FigureStyled = styled.figure<FigureProps>``;

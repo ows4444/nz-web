@@ -4,11 +4,11 @@ import { Size, Theme, Variant, Variants } from '@styles/theme';
 import React from 'react';
 import styled from 'styled-components';
 
-import Input from '@components/atoms/input/input';
-import Label from '@components/atoms/label/label';
-import Span from '@components/atoms/span/span';
 import FlexBox from '@components/atoms/flex-box/flex-box';
 import { useViewportSize } from 'hooks';
+import Label from '@components/core/atoms/label/label';
+import Input from '@components/core/atoms/input/input';
+import Span from '@components/core/atoms/span/span';
 
 type InputType =
   | 'button'
@@ -64,7 +64,7 @@ const InputGroup: React.FC<InputGroupProps> = ({
         $alignItems="center"
         $direction={['xs', 'sm'].includes(size) ? 'column' : 'row'}
       >
-        <Label title={label} $size={$size} HtmlFor={name} $variant={$variant} />
+        <Label title={label} content={name} />
         <FlexBox $direction="column">
           <Input name={name} type={inputType} $variant={$variant} $size={$size} />
           {feedBack && <Span>{feedBack}</Span>}

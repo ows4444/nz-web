@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface TBodyProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const TBodyStyled = styled.tbody<TBodyProps>``;

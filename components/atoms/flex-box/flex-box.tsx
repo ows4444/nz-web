@@ -9,7 +9,7 @@ export interface FlexBoxProps extends HTMLAttributes<HTMLElement> {
   $alignItems?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
   $wrap?: 'wrap' | 'nowrap' | 'wrap-reverse';
   $gap?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const FlexBoxStyled = styled.div<FlexBoxProps>`

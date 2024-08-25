@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface MapProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const MapStyled = styled.map<MapProps>``;

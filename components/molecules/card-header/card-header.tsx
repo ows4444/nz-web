@@ -1,8 +1,8 @@
 'use client';
 import type React from 'next';
-import styled from 'styled-components';
-import Header from '@components/atoms/header/header';
+import styled from 'styled-components'; 
 import { Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
+import Header from '@components/core/atoms/header/header';
 
 export interface CardHeaderProps extends React.ComponentProps<'header'> {
   $variant?: Variant;

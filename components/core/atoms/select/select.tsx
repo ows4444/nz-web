@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface SelectProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const SelectStyled = styled.select<SelectProps>``;

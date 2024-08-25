@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface TRProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const TRStyled = styled.tr<TRProps>``;

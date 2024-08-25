@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface OlProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const OlStyled = styled.ol<OlProps>``;

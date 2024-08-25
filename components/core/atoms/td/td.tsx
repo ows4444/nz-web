@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface TDProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const TDStyled = styled.td<TDProps>``;

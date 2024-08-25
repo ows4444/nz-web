@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface MarkProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const MarkStyled = styled.mark<MarkProps>``;

@@ -1,15 +1,34 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, HTMLAttributes, FC } from 'react';
-export interface AProps extends HTMLAttributes<HTMLElement> {
-  theme?: any;
-  children: ReactNode;
+import type { HTMLAttributes, FC } from 'react';
+import { Theme, Variants } from '@styles/theme';
+
+interface AProps extends HTMLAttributes<HTMLAnchorElement> {
+  title: string;
 }
-const AStyled = styled.a<AProps>``;
-const A: FC<AProps> = ({ children, ...rest }) => <AStyled {...rest}>{children}</AStyled>;
+
+interface ThemeProps {
+  theme: Theme;
+  variant: Variants;
+}
+
+const AStyled = styled.a<Partial<ThemeProps>>`
+  color: ${({ theme, variant = Variants.Primary }) => theme.palette[variant]['Active.BackgroundColor']};
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+const A: FC<AProps & Omit<Partial<ThemeProps>, 'theme'>> = ({ title, children, ...rest }) => (
+  <AStyled {...rest}>
+    {title}
+    {children}
+  </AStyled>
+);
 
 /**
- * DONE 
+ * DONE
  */
 export default A;

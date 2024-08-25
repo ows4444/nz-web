@@ -1,8 +1,8 @@
 'use client';
 import type React from 'next';
-import styled from 'styled-components';
-import Footer from '@components/atoms/footer/footer';
+import styled from 'styled-components'; 
 import { Size, Sizes, Theme, Variant, Variants } from '@styles/theme';
+import Footer from '@components/core/atoms/footer/footer';
 
 export interface CardFooterProps extends React.ComponentProps<'footer'> {
   $variant?: Variant;

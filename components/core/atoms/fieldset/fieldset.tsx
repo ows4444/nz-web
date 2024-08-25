@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface FieldsetProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const FieldsetStyled = styled.fieldset<FieldsetProps>``;

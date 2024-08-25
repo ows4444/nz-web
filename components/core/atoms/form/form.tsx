@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface FormProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const FormStyled = styled.form<FormProps>``;

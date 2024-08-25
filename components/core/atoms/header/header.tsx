@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface HeaderProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const HeaderStyled = styled.header<Partial<HeaderProps>>``;

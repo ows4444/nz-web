@@ -6,7 +6,7 @@ import { Theme } from '@styles/theme';
 
 export interface DetailsProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const DetailsStyled = styled.details<DetailsProps>``;

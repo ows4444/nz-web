@@ -8,6 +8,7 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
     'storybook-addon-pseudo-states',
+    'storybook-addon-responsive-views',
   ],
   framework: {
     name: '@storybook/nextjs',
