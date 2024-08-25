@@ -39,8 +39,6 @@ enum LineHightTypes {
   responsiveScale = 'responsiveScale',
 }
 
- 
-
 export const Sizes = Object.fromEntries(
   Object.entries(SizesList).filter(([key]) => !['none', 'pill', 'circle', 'inset', 'all'].includes(key)),
 ) as Record<Exclude<keyof typeof SizesList, 'none' | 'pill' | 'circle' | 'inset' | 'all'>, SizesList>;
@@ -54,8 +52,8 @@ export const ShadowSizes = Object.fromEntries(
 ) as Record<Exclude<keyof typeof SizesList, 'pill' | 'circle' | 'all'>, SizesList>;
 
 export const TransitionSizes = Object.fromEntries(
-  Object.entries(SizesList).filter(([key]) => !['none', 'xxs', 'pill', 'circle'].includes(key)),
-) as Record<Exclude<keyof typeof SizesList, 'none' | 'xxs' | 'pill' | 'circle'>, SizesList>;
+  Object.entries(SizesList).filter(([key]) => !['none', 'xxs', 'pill', 'circle', 'inset'].includes(key)),
+) as Record<Exclude<keyof typeof SizesList, 'none' | 'xxs' | 'pill' | 'circle' | 'inset'>, SizesList>;
 
 export type FontWeight = keyof typeof FontWeightList;
 export type Size = keyof typeof Sizes;

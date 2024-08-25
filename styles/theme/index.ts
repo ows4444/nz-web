@@ -1,5 +1,5 @@
 import { Color } from './colors';
-import { FontWeight, LineHight, RadiusSize, ShadowSize, Size } from './sizes';
+import { FontWeight, LineHight, RadiusSize, ShadowSize, Size, TransitionSize } from './sizes';
 import { Gradient, Variant } from './variants';
 
 export type factor = number;
@@ -13,6 +13,7 @@ export interface Theme {
   shadowSizes: Partial<Record<ShadowSize, string>>;
   gradients: Partial<Record<Gradient, string>>;
   lineHights: Partial<Record<LineHight, string>>;
+  transition: Partial<Record<TransitionSize, string>>;
 
   //elements: Record<Component, Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>>;
 }
@@ -25,6 +26,7 @@ export class ThemeGenerator {
   private shadowSizes: Partial<Record<ShadowSize, string>>;
   private gradients: Partial<Record<Gradient, string>>;
   private lineHights: Partial<Record<LineHight, string>>;
+  private transition: Partial<Record<TransitionSize, string>>;
   constructor() {
     this.palette = {};
     this.mediaSizes = {};
@@ -33,6 +35,12 @@ export class ThemeGenerator {
     this.shadowSizes = {};
     this.gradients = {};
     this.lineHights = {};
+    this.transition = {};
+  }
+
+  addTransitionSize(transitionSize: TransitionSize, value: string): ThemeGenerator {
+    this.transition[transitionSize] = value;
+    return this;
   }
 
   addLineHight(lineHight: LineHight, value: string): ThemeGenerator {
@@ -60,7 +68,7 @@ export class ThemeGenerator {
     return this;
   }
 
-  addFontSize(fontWeight: FontWeight, value: string): ThemeGenerator {
+  addFontWeight(fontWeight: FontWeight, value: string): ThemeGenerator {
     this.fontSizes[fontWeight] = value;
     return this;
   }
@@ -71,6 +79,7 @@ export class ThemeGenerator {
   }
   public theme(): Theme {
     return {
+      transition: this.transition,
       palette: this.palette,
       mediaSizes: this.mediaSizes,
       fontSizes: this.fontSizes,
