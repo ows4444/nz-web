@@ -11,4 +11,9 @@ export enum Variants {
   White = 'White',
 }
 
+export const Gradients = Object.fromEntries(
+  Object.entries(Variants).filter(([key]) => !['Black', 'White'].includes(key)),
+) as Record<Exclude<keyof typeof Variants, 'Black' | 'White'>, Variants>;
+
+export type Gradient = keyof typeof Gradients;
 export type Variant = keyof typeof Variants;

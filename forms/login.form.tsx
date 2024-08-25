@@ -7,9 +7,9 @@ import { login } from '@server/login';
 import Card from '@components/organisms/card/card';
 import Form from '@components/organisms/form/form';
 import InputGroup from '@components/molecules/input-group/input-group';
-import CardHeader from '@components/molecules/card-header/card-header'; 
+import CardHeader from '@components/molecules/card-header/card-header';
 import CardFooter from '@components/molecules/card-footer/card-footer';
-import CardBody from '@components/molecules/card-body/card-body'; 
+import CardBody from '@components/molecules/card-body/card-body';
 import FlexBox from '@components/atoms/flex-box/flex-box';
 import H2 from '@components/core/atoms/h2/h2';
 import Button from '@components/core/atoms/button/button';
@@ -39,7 +39,7 @@ export function LoginForm() {
       <Card $variant="Default" $direction="column">
         <CardHeader>
           <FlexBox $justifyContent="center">
-            <H2 content={'Login'}/>
+            <H2 content={'Login'} />
           </FlexBox>
         </CardHeader>
         <CardBody>
@@ -51,7 +51,7 @@ export function LoginForm() {
         </CardBody>
         <CardFooter>
           <FlexBox $justifyContent="center">
-            <Button $variant="Primary" $title="Login" type="submit" />
+            <Button title={'Login'} />
           </FlexBox>
         </CardFooter>
       </Card>

@@ -14,7 +14,7 @@ interface ThemeProps {
 }
 
 const AStyled = styled.a<Partial<ThemeProps>>`
-  color: ${({ theme, variant = Variants.Primary }) => theme.palette[variant]['Active.BackgroundColor']};
+  color: ${({ theme, variant = Variants.Primary }) => theme.palette[variant]};
   text-decoration: none;
   &:hover {
     text-decoration: underline;

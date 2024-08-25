@@ -1,111 +1,71 @@
-import { ColorGenerator } from './colorGenerator';
-import { ColorProperty } from './colorProperties';
 import { Color } from './colors';
-import { Component } from './components';
-import { MediaSize } from './media';
-import { PaletteItem } from './paletteItem';
-import { PropertyState } from './propertyStates';
-import { Size } from './sizes';
-import { ElementCss } from './styles';
-import { Variant } from './variants';
-
-export { Variants } from './variants';
-export type { Variant } from './variants';
-
-export { Sizes } from './sizes';
-export type { Size } from './sizes';
-
-export { MediaSizes } from './media';
-export type { MediaSize } from './media';
-
-export { ElementsCss } from './styles';
-export type { ElementCss } from './styles';
-
-export { Components } from './components';
-export type { Component } from './components';
+import { FontWeight, LineHight, RadiusSize, ShadowSize, Size } from './sizes';
+import { Gradient, Variant } from './variants';
 
 export type factor = number;
 export type transparency = number;
 
 export interface Theme {
-  palette: Record<Variant, PaletteItem>;
-  mediaSizes: Record<MediaSize, string>;
-  elements: Record<Component, Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>>;
-  global: Record<string, any>;
+  palette: Partial<Record<Variant, Color>>;
+  mediaSizes: Partial<Record<Size, string>>;
+  fontSizes: Partial<Record<FontWeight, string>>;
+  radiusSizes: Partial<Record<RadiusSize, string>>;
+  shadowSizes: Partial<Record<ShadowSize, string>>;
+  gradients: Partial<Record<Gradient, string>>;
+  lineHights: Partial<Record<LineHight, string>>;
+
+  //elements: Record<Component, Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>>;
 }
 
 export class ThemeGenerator {
-  private variantPalette: Record<string, any>;
-  private globalStyles: Record<string, any>;
-  private mediaSizes: Record<string, any> = {};
-  private elements: Record<string, Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>> = {};
-  private readonly cg: ColorGenerator = new ColorGenerator();
-
+  private readonly _theme: Theme;
   constructor() {
-    this.variantPalette = {};
-    this.globalStyles = {};
-    this.mediaSizes = {};
-    this.elements = {};
-  }
-
-  addMediaSize(mediaSize: MediaSize, size: string) {
-    this.mediaSizes[mediaSize] = size;
-    return this;
-  }
-
-  addElement(element: Component, data: Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>) {
-    this.elements[element] = data;
-    return this;
-  }
-
-  addPaletteColors(
-    variant: Variant,
-    payload: Array<
-      | [ColorProperty, Color]
-      | [ColorProperty, Color, PropertyState]
-      | [ColorProperty, Color, PropertyState, factor]
-      | [ColorProperty, Color, PropertyState, factor, transparency]
-    >,
-  ) {
-    this.variantPalette[variant] = payload.reduce(
-      (acc, [paletteItem, color, propertyState = 'Default', factor = 0, transparency = 1]) => {
-        if (propertyState === 'Default') {
-          acc[paletteItem] = this.cg.generateRGBA(color, factor, transparency);
-        } else {
-          acc[`${propertyState}.${paletteItem}`] = this.cg.generateRGBA(color, factor, transparency);
-        }
-        return acc;
-      },
-      this.variantPalette[variant] || {},
-    );
-
-    return this;
-  }
-
-  addGlobalStyles(
-    payload: Array<
-      | [ColorProperty, Color]
-      | [ColorProperty, Color, PropertyState]
-      | [ColorProperty, Color, PropertyState, factor]
-      | [ColorProperty, Color, PropertyState, factor, transparency]
-    >,
-  ) {
-    payload.forEach(([paletteItem, color, propertyState = 'Default', factor = 0, transparency = 1]) => {
-      if (propertyState === 'Default') {
-        this.globalStyles[paletteItem] = this.cg.generateRGBA(color, factor, transparency);
-      } else {
-        this.globalStyles[`${propertyState}.${paletteItem}`] = this.cg.generateRGBA(color, factor, transparency);
-      }
-    });
-    return this;
-  }
-
-  public getTheme(): Theme {
-    return {
-      global: this.globalStyles,
-      palette: this.variantPalette,
-      mediaSizes: this.mediaSizes,
-      elements: this.elements,
+    this._theme = {
+      lineHights: {},
+      gradients: {},
+      shadowSizes: {},
+      radiusSizes: {},
+      fontSizes: {},
+      palette: {},
+      mediaSizes: {},
     };
+  }
+  addLineHight(lineHight: LineHight, value: string): ThemeGenerator {
+    this._theme.lineHights[lineHight] = value;
+    return this;
+  }
+
+  addGradientStyles(gradient: Gradient, value: string): ThemeGenerator {
+    this._theme.gradients[gradient] = value;
+    return this;
+  }
+
+  addPaletteStyles(variant: Variant, color: Color): ThemeGenerator {
+    this._theme.palette[variant] = color;
+    return this;
+  }
+
+  addMediaSize(size: Size, value: string): ThemeGenerator {
+    this._theme.mediaSizes[size] = value;
+    return this;
+  }
+
+  addRadiusSize(radiusSize: RadiusSize, value: string): ThemeGenerator {
+    this._theme.radiusSizes[radiusSize] = value;
+    return this;
+  }
+
+  addFontSize(fontWeight: FontWeight, value: string): ThemeGenerator {
+    this._theme.fontSizes[fontWeight] = value;
+    return this;
+  }
+
+  addShadowSize(shadowSize: ShadowSize, value: string): ThemeGenerator {
+    this._theme.shadowSizes[shadowSize] = value;
+    return this;
+  }
+
+  get theme(): Theme {
+    return this._theme;
   }
 }
