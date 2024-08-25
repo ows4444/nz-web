@@ -4,16 +4,16 @@ import styled from 'styled-components';
 import type { ReactNode, HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
 
-export interface MainProps extends HTMLAttributes<HTMLElement> {
+export interface TBodyProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
   children: ReactNode;
 }
 
-const MainStyled = styled.main<MainProps>``;
+const TBodyStyled = styled.tbody<TBodyProps>``;
 
-const Main: FC<MainProps> = ({ children, ...rest }) => <MainStyled {...rest}>{children}</MainStyled>;
+const TBody: FC<TBodyProps> = ({ children, ...rest }) => <TBodyStyled {...rest}>{children}</TBodyStyled>;
 
 /**
  * DONE
  */
-export default Main;
+export default TBody;

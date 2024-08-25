@@ -4,16 +4,16 @@ import styled from 'styled-components';
 import type { ReactNode, HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
 
-export interface MainProps extends HTMLAttributes<HTMLElement> {
+export interface UlProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
   children: ReactNode;
 }
 
-const MainStyled = styled.main<MainProps>``;
+const UlStyled = styled.ul<UlProps>``;
 
-const Main: FC<MainProps> = ({ children, ...rest }) => <MainStyled {...rest}>{children}</MainStyled>;
+const Ul: FC<UlProps> = ({ children, ...rest }) => <UlStyled {...rest}>{children}</UlStyled>;
 
 /**
  * DONE
  */
-export default Main;
+export default Ul;

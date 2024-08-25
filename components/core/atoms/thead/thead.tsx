@@ -4,16 +4,16 @@ import styled from 'styled-components';
 import type { ReactNode, HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
 
-export interface MainProps extends HTMLAttributes<HTMLElement> {
+export interface THeadProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
   children: ReactNode;
 }
 
-const MainStyled = styled.main<MainProps>``;
+const THeadStyled = styled.thead<THeadProps>``;
 
-const Main: FC<MainProps> = ({ children, ...rest }) => <MainStyled {...rest}>{children}</MainStyled>;
+const THead: FC<THeadProps> = ({ children, ...rest }) => <THeadStyled {...rest}>{children}</THeadStyled>;
 
 /**
  * DONE
  */
-export default Main;
+export default THead;

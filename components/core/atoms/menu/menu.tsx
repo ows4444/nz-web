@@ -4,16 +4,16 @@ import styled from 'styled-components';
 import type { ReactNode, HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
 
-export interface MainProps extends HTMLAttributes<HTMLElement> {
+export interface MenuProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
   children: ReactNode;
 }
 
-const MainStyled = styled.main<MainProps>``;
+const MenuStyled = styled.menu<MenuProps>``;
 
-const Main: FC<MainProps> = ({ children, ...rest }) => <MainStyled {...rest}>{children}</MainStyled>;
+const Menu: FC<MenuProps> = ({ children, ...rest }) => <MenuStyled {...rest}>{children}</MenuStyled>;
 
 /**
  * DONE
  */
-export default Main;
+export default Menu;

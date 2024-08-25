@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { HTMLAttributes, FC, ReactNode } from 'react';
+import type { ReactNode, HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
 
 export interface SpanProps extends HTMLAttributes<HTMLElement> {
@@ -11,6 +11,9 @@ export interface SpanProps extends HTMLAttributes<HTMLElement> {
 
 const SpanStyled = styled.span<SpanProps>``;
 
-const Span: FC<SpanProps> = ({ content, ...rest }: SpanProps) => <SpanStyled {...rest}>{content}</SpanStyled>;
+const Span: FC<SpanProps> = ({ children, ...rest }) => <SpanStyled {...rest}>{children}</SpanStyled>;
 
+/**
+ * DONE
+ */
 export default Span;

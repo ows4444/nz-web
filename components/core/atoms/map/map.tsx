@@ -4,16 +4,16 @@ import styled from 'styled-components';
 import type { ReactNode, HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
 
-export interface MainProps extends HTMLAttributes<HTMLElement> {
+export interface MapProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
   children: ReactNode;
 }
 
-const MainStyled = styled.main<MainProps>``;
+const MapStyled = styled.map<MapProps>``;
 
-const Main: FC<MainProps> = ({ children, ...rest }) => <MainStyled {...rest}>{children}</MainStyled>;
+const Map: FC<MapProps> = ({ children, ...rest }) => <MapStyled {...rest}>{children}</MapStyled>;
 
 /**
  * DONE
  */
-export default Main;
+export default Map;

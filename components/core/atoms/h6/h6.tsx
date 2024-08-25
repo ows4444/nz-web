@@ -11,7 +11,9 @@ export interface H6Props extends HTMLAttributes<HTMLElement> {
 
 const H6Styled = styled.h6<Partial<H6Props>>``;
 
- 
+/**
+ * DONE
+ */
 const H6: FC<H6Props> = ({ content, ...rest }: H6Props) => <H6Styled {...rest}>{content}</H6Styled>;
 
 export default H6;
