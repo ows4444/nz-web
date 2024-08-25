@@ -4,16 +4,15 @@ import styled from 'styled-components';
 import type { HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
 
-export interface ButtonProps extends HTMLAttributes<HTMLElement> {
+export interface InputProps extends HTMLAttributes<HTMLInputElement> {
   theme?: Theme;
-  title: string;
 }
 
-const ButtonStyled = styled.button<Partial<ButtonProps>>``;
+const InputStyled = styled.input<Partial<InputProps>>``;
 
 /**
  * DONE
  */
-const Button: FC<ButtonProps> = ({ title, ...rest }: ButtonProps) => <ButtonStyled {...rest}>{title}</ButtonStyled>;
+const Input: FC<InputProps> = ({ ...rest }: InputProps) => <InputStyled {...rest} />;
 
-export default Button;
+export default Input;
