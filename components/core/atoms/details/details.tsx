@@ -13,7 +13,7 @@ const DetailsStyled = styled.details<DetailsProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.DETAILS)};
 `;
 
-const DETAILS: FC<DetailsProps> = ({ children, ...rest }) => <DetailsStyled {...rest}>{children}</DetailsStyled>;
+const DETAILS: FC<DetailsProps> = (props) => <DetailsStyled {...props}/>;{children}</DetailsStyled>;
 
 /**
  * DONE

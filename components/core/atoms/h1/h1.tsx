@@ -9,13 +9,13 @@ export interface H1Props extends ComponentProps<'h1'> {
   content: string;
 }
 
-const H1Styled = styled.h1<Omit<H1Props, 'content'> & { theme: Theme }>`
+const H1Styled = styled.h1<H1Props & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.H1)};
 `;
 
 /**
  * DONE
  */
-const H1: FC<H1Props> = ({ content, ...rest }: H1Props) => <H1Styled {...rest}>{content}</H1Styled>;
+const H1: FC<H1Props> = (props: H1Props) => <H1Styled {...props}>{props.content}</H1Styled>;
 
 export default H1;

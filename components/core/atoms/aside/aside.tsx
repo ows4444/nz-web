@@ -10,7 +10,7 @@ export interface AsideProps extends ComponentProps<'aside'> {
 const AsideStyled = styled.aside<AsideProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.ASIDE)};
 `;
-const Aside: FC<AsideProps> = ({ children, ...rest }) => <AsideStyled {...rest}>{children}</AsideStyled>;
+const Aside: FC<AsideProps> = (props) => <AsideStyled {...props}/>; 
 
 /**
  * DONE

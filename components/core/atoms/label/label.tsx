@@ -6,21 +6,16 @@ import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
 export interface LabelProps extends ComponentProps<'label'> {
-  htmlFor: string;
   content: string;
 }
 
-const LabelStyled = styled.label<Omit<LabelProps, 'content'> & { theme: Theme }>`
+const LabelStyled = styled.label<LabelProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.LABEL)};
 `;
 
 /**
  * DONE
  */
-const Label: FC<LabelProps> = ({ content, htmlFor, ...rest }: LabelProps) => (
-  <LabelStyled htmlFor={htmlFor} {...rest}>
-    {content}
-  </LabelStyled>
-);
+const Label: FC<LabelProps> = (props) => <LabelStyled {...props}>{props.content}</LabelStyled>;
 
 export default Label;

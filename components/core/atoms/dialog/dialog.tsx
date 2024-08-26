@@ -13,7 +13,7 @@ const DialogStyled = styled.dialog<DialogProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.DIALOG)};
 `;
 
-const Dialog: FC<DialogProps> = ({ children, ...rest }) => <DialogStyled {...rest}>{children}</DialogStyled>;
+const Dialog: FC<DialogProps> = (props) => <DialogStyled {...props}/>;{children}</DialogStyled>;
 
 /**
  * DONE

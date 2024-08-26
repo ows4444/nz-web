@@ -13,7 +13,7 @@ const EMStyled = styled.em<EMProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.EM)};
 `;
 
-const EM: FC<EMProps> = ({ children, ...rest }) => <EMStyled {...rest}>{children}</EMStyled>;
+const EM: FC<EMProps> = (props) => <EMStyled {...props}/>;{children}</EMStyled>;
 
 /**
  * DONE

@@ -13,7 +13,7 @@ const ColgroupStyled = styled.colgroup<ColgroupProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.COLGROUP)};
 `;
 
-const Colgroup: FC<ColgroupProps> = ({ children, ...rest }) => <ColgroupStyled {...rest}>{children}</ColgroupStyled>;
+const Colgroup: FC<ColgroupProps> = (props) => <ColgroupStyled {...props} />;
 
 /**
  * DONE

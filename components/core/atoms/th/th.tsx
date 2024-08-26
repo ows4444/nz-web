@@ -9,13 +9,13 @@ export interface THProps extends ComponentProps<'th'> {
   content: string;
 }
 
-const THStyled = styled.th<Omit<THProps, 'content'> & { theme: Theme }>`
+const THStyled = styled.th<THProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.TH)};
 `;
 
 /**
  * DONE
  */
-const TH: FC<THProps> = ({ content, ...rest }: THProps) => <THStyled {...rest}>{content}</THStyled>;
+const TH: FC<THProps> = (props) => <THStyled {...props}>{props.content}</THStyled>;
 
 export default TH;

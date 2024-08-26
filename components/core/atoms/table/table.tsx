@@ -13,7 +13,7 @@ const TableStyled = styled.table<TableProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.TABLE)};
 `;
 
-const Table: FC<TableProps> = ({ children, ...rest }) => <TableStyled {...rest}>{children}</TableStyled>;
+const Table: FC<TableProps> = (props) => <TableStyled {...props}/>;{children}</TableStyled>;
 
 /**
  * DONE

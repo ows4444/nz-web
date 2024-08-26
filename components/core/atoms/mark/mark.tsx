@@ -13,7 +13,7 @@ const MarkStyled = styled.mark<MarkProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.MARK)};
 `;
 
-const Mark: FC<MarkProps> = ({ children, ...rest }) => <MarkStyled {...rest}>{children}</MarkStyled>;
+const Mark: FC<MarkProps> = (props) => <MarkStyled {...props}/>;{children}</MarkStyled>;
 
 /**
  * DONE

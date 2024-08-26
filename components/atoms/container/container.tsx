@@ -9,15 +9,9 @@ export interface ContainerProps extends ComponentProps<'section'> {
   children?: ReactNode;
 }
 
-interface ThemeProps {
-  theme?: Theme;
-}
+const ContainerStyled = styled(Section)<ContainerProps & { theme: Theme }>``;
 
-const ContainerStyled = styled(Section)<ThemeProps>``;
-
-const Container: FC<ContainerProps> = ({ children, ...rest }) => (
-  <ContainerStyled {...rest}>{children}</ContainerStyled>
-);
+const Container: FC<ContainerProps> = (props) => <ContainerStyled {...props} />;
 
 /**
  * DONE

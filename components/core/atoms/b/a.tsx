@@ -7,11 +7,11 @@ import { Theme } from '@styles/theme';
 export interface BProps extends ComponentProps<'b'> {
   content: string;
 }
-const BStyled = styled.b<Omit<BProps, 'content'> & { theme: Theme }>`
+const BStyled = styled.b<BProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.B)};
 `;
 
-const B: FC<BProps> = ({ content, ...rest }) => <BStyled {...rest}>{content}</BStyled>;
+const B: FC<BProps> = (props) => <BStyled {...props}>{props.content}</BStyled>;
 
 /**
  * DONE

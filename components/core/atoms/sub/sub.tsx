@@ -9,13 +9,13 @@ export interface SubProps extends ComponentProps<'sub'> {
   content: string;
 }
 
-const SubStyled = styled.sub<Omit<SubProps, 'content'> & { theme: Theme }>`
+const SubStyled = styled.sub<SubProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.SUB)};
 `;
 
 /**
  * DONE
  */
-const Sub: FC<SubProps> = ({ content, ...rest }: SubProps) => <SubStyled {...rest}>{content}</SubStyled>;
+const Sub: FC<SubProps> = (props) => <SubStyled {...props}>{props.content}</SubStyled>;
 
 export default Sub;

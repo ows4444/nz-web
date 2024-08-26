@@ -9,15 +9,10 @@ interface AProps extends ComponentProps<'a'> {
   title: string;
 }
 
-const AStyled = styled.a<Omit<AProps, 'title'> & { theme: Theme }>`
+const AStyled = styled.a<AProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.A)}
 `;
-const A: FC<AProps> = ({ title, children, ...rest }) => (
-  <AStyled {...rest}>
-    {title}
-    {children}
-  </AStyled>
-);
+const A: FC<AProps> = (props) => <AStyled {...props}>{props.title}</AStyled>;
 
 /**
  * DONE

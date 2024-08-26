@@ -9,13 +9,13 @@ export interface SmallProps extends ComponentProps<'small'> {
   content: string;
 }
 
-const SmallStyled = styled.p<Omit<SmallProps, 'content'> & { theme: Theme }>`
+const SmallStyled = styled.small<SmallProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.SMALL)};
 `;
 
 /**
  * DONE
  */
-const Small: FC<SmallProps> = ({ content, ...rest }: SmallProps) => <SmallStyled {...rest}>{content}</SmallStyled>;
+const Small: FC<SmallProps> = (props) => <SmallStyled {...props}>{props.content}</SmallStyled>;
 
 export default Small;

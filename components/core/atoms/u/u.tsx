@@ -9,13 +9,13 @@ export interface UProps extends ComponentProps<'u'> {
   content: string;
 }
 
-const UStyled = styled.u<Omit<UProps, 'content'> & { theme: Theme }>`
+const UStyled = styled.u<UProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.U)};
 `;
 
 /**
  * DONE
  */
-const U: FC<UProps> = ({ content, ...rest }: UProps) => <UStyled {...rest}>{content}</UStyled>;
+const U: FC<UProps> = (props) => <UStyled {...props}>{props.content}</UStyled>;
 
 export default U;

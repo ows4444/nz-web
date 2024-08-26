@@ -44,8 +44,8 @@ export function LoginForm() {
         </CardHeader>
         <CardBody>
           <FlexBox $gap="4px" $justifyContent="center" $direction="column" $alignItems="flex-end">
-            <InputGroup label="Email" name="email" inputType="text" />
-            <InputGroup label="Password" name="password" inputType="password" />
+            <InputGroup label="Email" name="email" type="email" />
+            <InputGroup label="Password" name="password" type="password" />
             {state && state.error && <p>{state.error}</p>}
           </FlexBox>
         </CardBody>

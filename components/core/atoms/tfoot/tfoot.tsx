@@ -13,7 +13,7 @@ const TFootStyled = styled.tfoot<TFootProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.TFOOT)};
 `;
 
-const TFoot: FC<TFootProps> = ({ children, ...rest }) => <TFootStyled {...rest}>{children}</TFootStyled>;
+const TFoot: FC<TFootProps> = (props) => <TFootStyled {...props}/>;{children}</TFootStyled>;
 
 /**
  * DONE

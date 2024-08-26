@@ -9,13 +9,13 @@ export interface QProps extends ComponentProps<'q'> {
   content: string;
 }
 
-const QStyled = styled.p<Omit<QProps, 'content'> & { theme: Theme }>`
+const QStyled = styled.p<QProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.Q)};
 `;
 
 /**
  * DONE
  */
-const Q: FC<QProps> = ({ content, ...rest }: QProps) => <QStyled {...rest}>{content}</QStyled>;
+const Q: FC<QProps> = (props) => <QStyled {...props}>{props.content}</QStyled>;
 
 export default Q;

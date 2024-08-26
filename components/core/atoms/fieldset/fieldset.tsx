@@ -13,7 +13,7 @@ const FieldsetStyled = styled.fieldset<FieldsetProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.FIELDSET)};
 `;
 
-const Fieldset: FC<FieldsetProps> = ({ children, ...rest }) => <FieldsetStyled {...rest}>{children}</FieldsetStyled>;
+const Fieldset: FC<FieldsetProps> = (props) => <FieldsetStyled {...props}/>;{children}</FieldsetStyled>;
 
 /**
  * DONE

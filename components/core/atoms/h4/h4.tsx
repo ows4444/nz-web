@@ -9,13 +9,13 @@ export interface H4Props extends ComponentProps<'h4'> {
   content: string;
 }
 
-const H4Styled = styled.h4<Omit<H4Props, 'content'> & { theme: Theme }>`
+const H4Styled = styled.h4<H4Props & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.H4)};
 `;
 
 /**
  * DONE
  */
-const H4: FC<H4Props> = ({ content, ...rest }: H4Props) => <H4Styled {...rest}>{content}</H4Styled>;
+const H4: FC<H4Props> = (props) => <H4Styled {...props}>{props.content}</H4Styled>;
 
 export default H4;

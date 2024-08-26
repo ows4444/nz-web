@@ -9,13 +9,13 @@ export interface OptionProps extends ComponentProps<'option'> {
   content: string;
 }
 
-const OptionStyled = styled.option<Omit<OptionProps, 'content'> & { theme: Theme }>`
+const OptionStyled = styled.option<OptionProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.OPTION)};
 `;
 
 /**
  * DONE
  */
-const Option: FC<OptionProps> = ({ content, ...rest }: OptionProps) => <OptionStyled {...rest}>{content}</OptionStyled>;
+const Option: FC<OptionProps> = (props) => <OptionStyled {...props}>{props.content}</OptionStyled>;
 
 export default Option;

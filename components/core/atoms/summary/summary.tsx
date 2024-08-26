@@ -9,15 +9,13 @@ export interface SummaryProps extends ComponentProps<'summary'> {
   content: string;
 }
 
-const SummaryStyled = styled.summary<Omit<SummaryProps, 'content'> & { theme: Theme }>`
+const SummaryStyled = styled.summary<SummaryProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.SUMMARY)};
 `;
 
 /**
  * DONE
  */
-const Summary: FC<SummaryProps> = ({ content, ...rest }: SummaryProps) => (
-  <SummaryStyled {...rest}>{content}</SummaryStyled>
-);
+const Summary: FC<SummaryProps> = (props) => <SummaryStyled {...props}>{props.content}</SummaryStyled>;
 
 export default Summary;

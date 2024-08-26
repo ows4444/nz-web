@@ -13,7 +13,7 @@ const MenuStyled = styled.menu<MenuProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.MENU)}
 `;
 
-const Menu: FC<MenuProps> = ({ children, ...rest }) => <MenuStyled {...rest}>{children}</MenuStyled>;
+const Menu: FC<MenuProps> = (props) => <MenuStyled {...props}/>;{children}</MenuStyled>;
 
 /**
  * DONE

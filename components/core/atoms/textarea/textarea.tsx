@@ -9,15 +9,13 @@ export interface TextareaProps extends ComponentProps<'textarea'> {
   content: string;
 }
 
-const TextareaStyled = styled.textarea<Omit<TextareaProps, 'content'> & { theme: Theme }>`
+const TextareaStyled = styled.textarea<TextareaProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.TEXTAREA)};
 `;
 
 /**
  * DONE
  */
-const Textarea: FC<TextareaProps> = ({ content, ...rest }: TextareaProps) => (
-  <TextareaStyled value={content} {...rest} />
-);
+const Textarea: FC<TextareaProps> = (props) => <TextareaStyled value={props.content} {...props} />;
 
 export default Textarea;

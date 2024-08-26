@@ -13,7 +13,7 @@ const SelectStyled = styled.select<SelectProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.SELECT)};
 `;
 
-const Select: FC<SelectProps> = ({ children, ...rest }) => <SelectStyled {...rest}>{children}</SelectStyled>;
+const Select: FC<SelectProps> = (props) => <SelectStyled {...props}/>;{children}</SelectStyled>;
 
 /**
  * DONE

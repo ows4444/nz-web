@@ -12,7 +12,7 @@ const CaptionStyled = styled.caption<CaptionProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.CAPTION)};
 `;
 
-const Caption: FC<CaptionProps> = ({ ...rest }) => <CaptionStyled {...rest} />;
+const Caption: FC<CaptionProps> = (props) => <CaptionStyled {...props} />;
 
 /**
  * DONE

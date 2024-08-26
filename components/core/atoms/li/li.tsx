@@ -9,13 +9,13 @@ export interface LiProps extends ComponentProps<'li'> {
   content: string;
 }
 
-const LiStyled = styled.li<Omit<LiProps, 'content'> & { theme: Theme }>`
+const LiStyled = styled.li<LiProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.LI)};
 `;
 
 /**
  * DONE
  */
-const Li: FC<LiProps> = ({ content, ...rest }: LiProps) => <LiStyled {...rest}>{content}</LiStyled>;
+const Li: FC<LiProps> = (props) => <LiStyled {...props}>{props.content}</LiStyled>;
 
 export default Li;

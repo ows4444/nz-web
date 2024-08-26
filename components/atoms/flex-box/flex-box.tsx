@@ -22,7 +22,7 @@ export const FlexBoxStyled = styled.div<FlexBoxProps & { theme: Theme }>`
   flex-wrap: ${({ $wrap }) => $wrap || 'nowrap'};
 `;
 
-const FlexBox: FC<FlexBoxProps> = ({ children, ...rest }) => <FlexBoxStyled {...rest}>{children}</FlexBoxStyled>;
+const FlexBox: FC<FlexBoxProps> = (props) => <FlexBoxStyled {...props} />;
 
 /**
  * DONE

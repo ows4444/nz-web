@@ -13,7 +13,7 @@ const OlStyled = styled.ol<OlProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.OL)};
 `;
 
-const Ol: FC<OlProps> = ({ children, ...rest }) => <OlStyled {...rest}>{children}</OlStyled>;
+const Ol: FC<OlProps> = (props) => <OlStyled {...props}/>;{children}</OlStyled>;
 
 /**
  * DONE

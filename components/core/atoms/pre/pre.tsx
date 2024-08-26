@@ -9,13 +9,13 @@ export interface PreProps extends ComponentProps<'pre'> {
   content: string;
 }
 
-const PreStyled = styled.pre<Omit<PreProps, 'content'> & { theme: Theme }>`
+const PreStyled = styled.pre<PreProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.PRE)};
 `;
 
 /**
  * DONE
  */
-const Pre: FC<PreProps> = ({ content, ...rest }: PreProps) => <PreStyled {...rest}>{content}</PreStyled>;
+const Pre: FC<PreProps> = (props) => <PreStyled {...props}>{props.content}</PreStyled>;
 
 export default Pre;

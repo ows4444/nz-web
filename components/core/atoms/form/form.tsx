@@ -14,7 +14,7 @@ const FormStyled = styled.form<FormProps>`
   ${({ theme }) => theme && theme.generateCSS(Components.FORM)}
 `;
 
-const Form: FC<FormProps> = ({ children, ...rest }) => <FormStyled {...rest}>{children}</FormStyled>;
+const Form: FC<FormProps> = (props) => <FormStyled {...props}/>;{children}</FormStyled>;
 
 /**
  * DONE

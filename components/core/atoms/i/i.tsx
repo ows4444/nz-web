@@ -9,13 +9,13 @@ export interface IProps extends ComponentProps<'i'> {
   content: string;
 }
 
-const IStyled = styled.i<Omit<IProps, 'content'> & { theme: Theme }>`
+const IStyled = styled.i<IProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.I)};
 `;
 
 /**
  * DONE
  */
-const I: FC<IProps> = ({ content, ...rest }: IProps) => <IStyled {...rest}>{content}</IStyled>;
+const I: FC<IProps> = (props) => <IStyled {...props}>{props.content}</IStyled>;
 
 export default I;

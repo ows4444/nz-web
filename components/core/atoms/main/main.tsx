@@ -14,7 +14,7 @@ const MainStyled = styled.main<MainProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.MAIN)};
 `;
 
-const Main: FC<MainProps> = ({ children, ...rest }) => <MainStyled {...rest}>{children}</MainStyled>;
+const Main: FC<MainProps> = (props) => <MainStyled {...props}/>;{children}</MainStyled>;
 
 /**
  * DONE

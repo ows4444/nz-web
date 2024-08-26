@@ -10,9 +10,9 @@ export interface CardProps extends DivProps {}
 
 const CardStyled = styled.div<CardProps & { theme: Theme }>``;
 
-const Card: React.FC<CardProps> = ({ children, ...rest }: CardProps & FlexBoxProps) => (
+const Card: React.FC<CardProps> = ({ children, ...props }: CardProps & FlexBoxProps) => (
   <FlexBox>
-    <CardStyled {...rest}>{children}</CardStyled>
+    <CardStyled {...props}>{children}</CardStyled>
   </FlexBox>
 );
 

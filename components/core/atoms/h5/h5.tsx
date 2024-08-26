@@ -9,13 +9,13 @@ export interface H5Props extends ComponentProps<'h5'> {
   content: string;
 }
 
-const H5Styled = styled.h5<Omit<H5Props, 'content'> & { theme: Theme }>`
+const H5Styled = styled.h5<H5Props & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.H5)};
 `;
 
 /**
  * DONE
  */
-const H5: FC<H5Props> = ({ content, ...rest }: H5Props) => <H5Styled {...rest}>{content}</H5Styled>;
+const H5: FC<H5Props> = (props) => <H5Styled {...props}>{props.content}</H5Styled>;
 
 export default H5;

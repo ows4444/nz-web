@@ -9,13 +9,13 @@ export interface StrongProps extends ComponentProps<'strong'> {
   content: string;
 }
 
-const StrongStyled = styled.strong<Omit<StrongProps, 'content'> & { theme: Theme }>`
+const StrongStyled = styled.strong<StrongProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.STRONG)};
 `;
 
 /**
  * DONE
  */
-const Strong: FC<StrongProps> = ({ content, ...rest }: StrongProps) => <StrongStyled {...rest}>{content}</StrongStyled>;
+const Strong: FC<StrongProps> = (props) => <StrongStyled {...props}>{props.content}</StrongStyled>;
 
 export default Strong;

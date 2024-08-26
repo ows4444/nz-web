@@ -13,7 +13,7 @@ const FigureStyled = styled.figure<FigureProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.FIGURE)};
 `;
 
-const Figure: FC<FigureProps> = ({ children, ...rest }) => <FigureStyled {...rest}>{children}</FigureStyled>;
+const Figure: FC<FigureProps> = (props) => <FigureStyled {...props}/>;{children}</FigureStyled>;
 
 /**
  * DONE

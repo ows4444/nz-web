@@ -9,13 +9,13 @@ export interface InsProps extends ComponentProps<'ins'> {
   content: string;
 }
 
-const InsStyled = styled.ins<Omit<InsProps, 'content'> & { theme: Theme }>`
+const InsStyled = styled.ins<InsProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.INS)};
 `;
 
 /**
  * DONE
  */
-const Ins: FC<InsProps> = ({ content, ...rest }: InsProps) => <InsStyled {...rest}>{content}</InsStyled>;
+const Ins: FC<InsProps> = (props) => <InsStyled {...props}>{props.content}</InsStyled>;
 
 export default Ins;

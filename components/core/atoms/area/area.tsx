@@ -10,7 +10,7 @@ export interface AreaProps extends ComponentProps<'area'> {
 const AreaStyled = styled.area<AreaProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.AREA)};
 `;
-const Area: FC<AreaProps> = ({ children, ...rest }) => <AreaStyled {...rest}>{children}</AreaStyled>;
+const Area: FC<AreaProps> = (props) => <AreaStyled {...props}/>; 
 
 /**
  * DONE

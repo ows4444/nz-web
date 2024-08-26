@@ -13,7 +13,7 @@ const THeadStyled = styled.thead<THeadProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.THEAD)};
 `;
 
-const THead: FC<THeadProps> = ({ children, ...rest }) => <THeadStyled {...rest}>{children}</THeadStyled>;
+const THead: FC<THeadProps> = (props) => <THeadStyled {...props}/>;{children}</THeadStyled>;
 
 /**
  * DONE

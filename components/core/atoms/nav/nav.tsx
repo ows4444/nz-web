@@ -13,7 +13,7 @@ const NavStyled = styled.nav<NavProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.NAV)}
 `;
 
-const Nav: FC<NavProps> = ({ children, ...rest }) => <NavStyled {...rest}>{children}</NavStyled>;
+const Nav: FC<NavProps> = (props) => <NavStyled {...props}/>;{children}</NavStyled>;
 
 /**
  * DONE

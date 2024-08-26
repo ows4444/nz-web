@@ -9,13 +9,13 @@ export interface SupProps extends ComponentProps<'sup'> {
   content: string;
 }
 
-const SupStyled = styled.sup<Omit<SupProps, 'content'> & { theme: Theme }>`
+const SupStyled = styled.sup<SupProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.SUP)}
 `;
 
 /**
  * DONE
  */
-const Sup: FC<SupProps> = ({ content, ...rest }: SupProps) => <SupStyled {...rest}>{content}</SupStyled>;
+const Sup: FC<SupProps> = (props) => <SupStyled {...props}>{props.content}</SupStyled>;
 
 export default Sup;

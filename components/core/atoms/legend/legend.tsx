@@ -9,13 +9,13 @@ export interface LegendProps extends ComponentProps<'legend'> {
   content: string;
 }
 
-const LegendStyled = styled.label<Omit<LegendProps, 'content'> & { theme: Theme }>`
+const LegendStyled = styled.label<LegendProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.LEGEND)}
 `;
 
 /**
  * DONE
  */
-const Legend: FC<LegendProps> = ({ content, ...rest }: LegendProps) => <LegendStyled {...rest}>{content}</LegendStyled>;
+const Legend: FC<LegendProps> = (props) => <LegendStyled {...props}>{props.content}</LegendStyled>;
 
 export default Legend;

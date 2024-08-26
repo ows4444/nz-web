@@ -22,7 +22,7 @@ const GridBoxStyled = styled.div<GridBoxProps & { theme: Theme }>`
   grid-auto-flow: ${({ $autoFlow = 'row' }) => $autoFlow};
 `;
 
-const GridBox: FC<GridBoxProps> = ({ children, ...rest }) => <GridBoxStyled {...rest}>{children}</GridBoxStyled>;
+const GridBox: FC<GridBoxProps> = (props) => <GridBoxStyled {...props} />;
 
 /**
  * DONE

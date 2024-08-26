@@ -33,19 +33,19 @@ type InputType =
   | 'hidden';
 
 export interface InputGroupProps extends ComponentProps<typeof Div> {
-   label: string;
-   name: string;
-   feedBack?: string;
-   inputType: InputType;
+  label: string;
+  name: string;
+  feedBack?: string;
+  type: InputType;
 }
 
 const InputGroupStyled = styled(Div)<InputGroupProps & { theme: Theme }>``;
 
-const InputGroup: React.FC<InputGroupProps> = ({ label, name ,...rest }) => {
+const InputGroup: React.FC<InputGroupProps> = (props) => {
   return (
-    <InputGroupStyled label={label} name={name} {...rest}>
-      <Label htmlFor={name} content={label} />
-      <Input title={'Title'} />
+    <InputGroupStyled {...props}>
+      <Label htmlFor={props.name} content={props.name} />
+      <Input type={props.type} />
     </InputGroupStyled>
   );
 };

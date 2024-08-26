@@ -13,7 +13,7 @@ const ColStyled = styled.col<ColProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.COL)};
 `;
 
-const Col: FC<ColProps> = ({ children, ...rest }) => <ColStyled {...rest}>{children}</ColStyled>;
+const Col: FC<ColProps> = (props) => <ColStyled {...props} />;
 
 /**
  * DONE

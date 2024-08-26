@@ -9,15 +9,13 @@ export interface ProgressProps extends ComponentProps<'progress'> {
   content: string;
 }
 
-const ProgressStyled = styled.progress<Omit<ProgressProps, 'content'> & { theme: Theme }>`
+const ProgressStyled = styled.progress<ProgressProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.PROGRESS)};
 `;
 
 /**
  * DONE
  */
-const Progress: FC<ProgressProps> = ({ content, ...rest }: ProgressProps) => (
-  <ProgressStyled {...rest}>{content}</ProgressStyled>
-);
+const Progress: FC<ProgressProps> = (props) => <ProgressStyled {...props}>{props.content}</ProgressStyled>;
 
 export default Progress;

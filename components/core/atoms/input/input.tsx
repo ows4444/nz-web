@@ -14,6 +14,6 @@ const InputStyled = styled.input<InputProps & { theme: Theme }>`
 /**
  * DONE
  */
-const Input: FC<InputProps> = ({ ...rest }: InputProps) => <InputStyled {...rest} />;
+const Input: FC<InputProps> = (props) => <InputStyled {...props} />;
 
 export default Input;

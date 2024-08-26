@@ -13,7 +13,7 @@ const DDStyled = styled.dd<DDProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.DD)};
 `;
 
-const DD: FC<DDProps> = ({ children, ...rest }) => <DDStyled {...rest}>{children}</DDStyled>;
+const DD: FC<DDProps> = (props) => <DDStyled {...props} />;
 
 /**
  * DONE

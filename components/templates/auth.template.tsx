@@ -9,9 +9,9 @@ export interface AuthTemplateProps extends React.ComponentProps<'section'> {}
 
 const AuthTemplateStyled = styled.section<AuthTemplateProps & { theme: Theme }>``;
 
-const AuthTemplate: React.FC<AuthTemplateProps> = ({ children, ...rest }: AuthTemplateProps) => (
+const AuthTemplate: React.FC<AuthTemplateProps> = ({ children, ...props }: AuthTemplateProps) => (
   <Container>
-    <AuthTemplateStyled {...rest}>{children}</AuthTemplateStyled>
+    <AuthTemplateStyled {...props}>{children}</AuthTemplateStyled>
   </Container>
 );
 

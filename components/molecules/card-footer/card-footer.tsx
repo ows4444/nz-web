@@ -10,8 +10,8 @@ export interface CardFooterProps extends React.ComponentProps<'footer'> {
 
 const CardFooterStyled = styled(Footer)<CardFooterProps>``;
 
-const CardFooter: React.FC<CardFooterProps> = ({ children, ...rest }: CardFooterProps) => (
-  <CardFooterStyled {...rest}>{children}</CardFooterStyled>
+const CardFooter: React.FC<CardFooterProps> = ({ children, ...props }: CardFooterProps) => (
+  <CardFooterStyled {...props}>{children}</CardFooterStyled>
 );
 
 export default CardFooter;

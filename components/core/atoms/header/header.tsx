@@ -13,8 +13,8 @@ const HeaderStyled = styled.header<HeaderProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.HEADER)};
 `;
 
-const Header: FC<HeaderProps> = ({ children, ...rest }: HeaderProps) => (
-  <HeaderStyled {...rest}>{children}</HeaderStyled>
+const Header: FC<HeaderProps> = ({ children, ...props }: HeaderProps) => (
+  <HeaderStyled {...props}/>;{children}</HeaderStyled>
 );
 
 export default Header;

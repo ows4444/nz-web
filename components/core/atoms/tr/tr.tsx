@@ -13,7 +13,7 @@ const TRStyled = styled.tr<TRProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.TR)};
 `;
 
-const TR: FC<TRProps> = ({ children, ...rest }) => <TRStyled {...rest}>{children}</TRStyled>;
+const TR: FC<TRProps> = (props) => <TRStyled {...props}/>;{children}</TRStyled>;
 
 /**
  * DONE

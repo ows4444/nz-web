@@ -9,15 +9,10 @@ interface ButtonProps extends ComponentProps<'button'> {
   title: string;
 }
 
-const ButtonStyled = styled.button<Omit<ButtonProps, 'title'> & { theme: Theme }>`
+const ButtonStyled = styled.button<ButtonProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.BUTTON)}
 `;
-const Button: FC<ButtonProps> = ({ title, children, ...rest }) => (
-  <ButtonStyled {...rest}>
-    {title}
-    {children}
-  </ButtonStyled>
-);
+const Button: FC<ButtonProps> = (props) => <ButtonStyled {...props}>{props.title}</ButtonStyled>;
 
 /**
  * DONE

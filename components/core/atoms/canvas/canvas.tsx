@@ -12,7 +12,7 @@ const CanvasStyled = styled.canvas<CanvasProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.CANVAS)};
 `;
 
-const Canvas: FC<CanvasProps> = ({ ...rest }) => <CanvasStyled {...rest} />;
+const Canvas: FC<CanvasProps> = (props) => <CanvasStyled {...props} />;
 
 /**
  * DONE

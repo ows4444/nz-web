@@ -13,7 +13,7 @@ const DTStyled = styled.col<DTProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.DT)};
 `;
 
-const DT: FC<DTProps> = ({ children, ...rest }) => <DTStyled {...rest}>{children}</DTStyled>;
+const DT: FC<DTProps> = (props) => <DTStyled {...props}/>;{children}</DTStyled>;
 
 /**
  * DONE
