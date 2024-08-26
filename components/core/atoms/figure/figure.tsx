@@ -3,13 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 import type { ReactNode, HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
+import { Components } from '@styles/theme/components';
 
 export interface FigureProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
   children?: ReactNode;
 }
 
-const FigureStyled = styled.figure<FigureProps>``;
+const FigureStyled = styled.figure<FigureProps>`${({ theme }) => theme&&theme.generateCSS(Components.FIGURE)};`;
 
 const Figure: FC<FigureProps> = ({ children, ...rest }) => <FigureStyled {...rest}>{children}</FigureStyled>;
 

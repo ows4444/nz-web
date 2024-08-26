@@ -39,12 +39,12 @@ export interface InputGroupProps extends React.HTMLAttributes<HTMLElement> {
   inputType: InputType;
 }
 
-const InputGroupStyled = styled.label<Omit<InputGroupProps, 'name' | 'HtmlFor' | 'label' | 'inputType'>>``;
+const InputGroupStyled = styled(Label)<InputGroupProps>``;
 
 const InputGroup: React.FC<InputGroupProps> = ({ label }) => {
   return (
     <InputGroupStyled>
-      <Label htmlFor='' content={label}  />
+      <Label htmlFor="" content={label} />
       <Input title={'Title'} />
     </InputGroupStyled>
   );

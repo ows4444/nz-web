@@ -3,13 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 import type { HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
+import { Components } from '@styles/theme/components';
 
 export interface SummaryProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
   content: string;
 }
 
-const SummaryStyled = styled.summary<Partial<SummaryProps>>``;
+const SummaryStyled = styled.summary<Partial<SummaryProps>>`${({ theme }) => theme&&theme.generateCSS(Components.SUMMARY)};`;
 
 /**
  * DONE

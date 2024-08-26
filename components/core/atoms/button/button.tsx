@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import type { FC, HTMLAttributes } from 'react';
 import { Theme } from '@styles/theme';
+import { Components } from '@styles/theme/components';
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   title: string;
@@ -13,11 +14,7 @@ interface ThemeProps {
 }
 
 const ButtonStyled = styled.button<Partial<ThemeProps>>`
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
+  ${({ theme }) => theme&&theme.generateCSS(Components.BUTTON)}
 `;
 const Button: FC<ButtonProps & Omit<Partial<ThemeProps>, 'theme'>> = ({ title, children, ...rest }) => (
   <ButtonStyled {...rest}>

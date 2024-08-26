@@ -3,13 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 import type { HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
+import { Components } from '@styles/theme/components';
 
 export interface THProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
   content: string;
 }
 
-const THStyled = styled.th<Partial<THProps>>``;
+const THStyled = styled.th<Partial<THProps>>`${({ theme }) => theme&&theme.generateCSS(Components.TH)};`;
 
 /**
  * DONE

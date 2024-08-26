@@ -4,8 +4,7 @@ import type React from 'next';
 import { useFormState } from 'react-dom';
 import { login } from '@server/login';
 
-import Card from '@components/organisms/card/card';
-import Form from '@components/organisms/form/form';
+import Card from '@components/organisms/card/card'; 
 import InputGroup from '@components/molecules/input-group/input-group';
 import CardHeader from '@components/molecules/card-header/card-header';
 import CardFooter from '@components/molecules/card-footer/card-footer';
@@ -13,6 +12,7 @@ import CardBody from '@components/molecules/card-body/card-body';
 import FlexBox from '@components/atoms/flex-box/flex-box';
 import H2 from '@components/core/atoms/h2/h2';
 import Button from '@components/core/atoms/button/button';
+import Form from '@components/core/atoms/form/form';
 
 type D = {
   message: string;

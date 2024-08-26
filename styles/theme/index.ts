@@ -1,6 +1,8 @@
 import { Color } from './colors';
 import { FontWeight, LineHight, RadiusSize, ShadowSize, Size, TransitionSize } from './sizes';
 import { Gradient, Variant } from './variants';
+import { Component } from './components';
+import { CSSProperty, TransformName } from './cssProperties';
 
 export type factor = number;
 export type transparency = number;
@@ -14,8 +16,10 @@ export interface Theme {
   gradients: Partial<Record<Gradient, string>>;
   lineHights: Partial<Record<LineHight, string>>;
   transition: Partial<Record<TransitionSize, string>>;
+  elements: Partial<Record<Component, Partial<Record<CSSProperty, string>>>>;
 
-  //elements: Record<Component, Partial<Record<Size, Partial<Record<MediaSize, Partial<Record<ElementCss, string>>>>>>>;
+  // eslint-disable-next-line no-unused-vars
+  generateCSS: (element: Component) => string;
 }
 
 export class ThemeGenerator {
@@ -27,7 +31,10 @@ export class ThemeGenerator {
   private gradients: Partial<Record<Gradient, string>>;
   private lineHights: Partial<Record<LineHight, string>>;
   private transition: Partial<Record<TransitionSize, string>>;
+  private elements: Partial<Record<Component, Partial<Record<CSSProperty, string>>>>;
+
   constructor() {
+    this.elements = {};
     this.palette = {};
     this.mediaSizes = {};
     this.fontSizes = {};
@@ -36,6 +43,28 @@ export class ThemeGenerator {
     this.gradients = {};
     this.lineHights = {};
     this.transition = {};
+  }
+
+  addElementStyle(element: Component, cssProperty: CSSProperty, value: string): ThemeGenerator {
+    if (!this.elements[element]) {
+      this.elements[element] = {};
+    }
+    this.elements[element][cssProperty] = value;
+    return this;
+  }
+
+  generateCSS(element: Component): string {
+    const CurrentElement = this.elements[element] as Record<string, any>;
+
+    if (CurrentElement) {
+      return Object.keys(CurrentElement).reduce(
+        (acc: string, cssProperty: string) =>
+          `${acc}${TransformName(cssProperty as CSSProperty)}: ${CurrentElement[cssProperty]};`,
+        '',
+      );
+    }
+
+    return '';
   }
 
   addTransitionSize(transitionSize: TransitionSize, value: string): ThemeGenerator {
@@ -79,6 +108,8 @@ export class ThemeGenerator {
   }
   public theme(): Theme {
     return {
+      generateCSS: (element) => this.generateCSS(element),
+      elements: this.elements,
       transition: this.transition,
       palette: this.palette,
       mediaSizes: this.mediaSizes,

@@ -3,13 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 import type { ReactNode, HTMLAttributes, FC } from 'react';
 import { Theme } from '@styles/theme';
+import { Components } from '@styles/theme/components';
 
 export interface DTProps extends HTMLAttributes<HTMLElement> {
   theme?: Theme;
   children?: ReactNode;
 }
 
-const DTStyled = styled.col<DTProps>``;
+const DTStyled = styled.col<DTProps>`${({ theme }) => theme&&theme.generateCSS(Components.DT)};`;
 
 const DT: FC<DTProps> = ({ children, ...rest }) => <DTStyled {...rest}>{children}</DTStyled>;
 

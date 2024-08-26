@@ -76,6 +76,23 @@ export const lightTheme = new ThemeGenerator()
   .addRadiusSize('lg', '24px')
   .addRadiusSize('xl', '32px')
   .addRadiusSize('xxl', '48px')
+
+  .addElementStyle('BUTTON', 'border', '1px solid')
+  .addElementStyle('BUTTON', 'borderRadius', '8px')
+  .addElementStyle('BUTTON', 'padding', '8px 16px')
+
+  .addElementStyle('INPUT', 'border', '1px solid')
+  .addElementStyle('INPUT', 'borderRadius', '8px')
+  .addElementStyle('INPUT', 'padding', '8px 16px')
+
+  .addElementStyle('LABEL', 'color', 'black')
+  .addElementStyle('LABEL', 'fontSize', '16px')
+  .addElementStyle('LABEL', 'fontWeight', 'bold')
+  .addElementStyle('LABEL', 'lineHeight', '1.5')
+  .addElementStyle('LABEL', 'padding', '8px')
+
+
+
   .theme();
 
 export const darkTheme = new ThemeGenerator()
@@ -154,4 +171,5 @@ export const darkTheme = new ThemeGenerator()
   .addRadiusSize('md', '16px')
   .addRadiusSize('lg', '24px')
   .addRadiusSize('xl', '32px')
-  .addRadiusSize('xxl', '48px');
+  .addRadiusSize('xxl', '48px')
+  .theme();

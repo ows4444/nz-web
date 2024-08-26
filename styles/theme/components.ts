@@ -45,6 +45,7 @@ export enum Components {
   LABEL = 'LABEL',
   LEGEND = 'LEGEND',
   LI = 'LI',
+  MENU = 'MENU',
   MAIN = 'MAIN',
   MAP = 'MAP',
   MARK = 'MARK',
