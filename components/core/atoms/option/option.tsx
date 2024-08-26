@@ -1,16 +1,17 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { HTMLAttributes, FC } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface OptionProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface OptionProps extends ComponentProps<'option'> {
   content: string;
 }
 
-const OptionStyled = styled.option<Partial<OptionProps>>`${({ theme }) => theme&&theme.generateCSS(Components.OPTION)};`;
+const OptionStyled = styled.option<Omit<OptionProps, 'content'> & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.OPTION)};
+`;
 
 /**
  * DONE

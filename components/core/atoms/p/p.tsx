@@ -1,16 +1,17 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { HTMLAttributes, FC } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface PProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface PProps extends ComponentProps<'p'> {
   content: string;
 }
 
-const PStyled = styled.p<Partial<PProps>>`${({ theme }) => theme&&theme.generateCSS(Components.P)};`;
+const PStyled = styled.p<Omit<PProps, 'content'> & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.P)};
+`;
 
 /**
  * DONE

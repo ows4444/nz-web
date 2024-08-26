@@ -1,18 +1,21 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, HTMLAttributes, FC } from 'react';
+import type { ReactNode, FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface FigcaptionProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface FigcaptionProps extends ComponentProps<'figcaption'> {
   children?: ReactNode;
 }
 
-const FigcaptionStyled = styled.fieldset<FigcaptionProps>`${({ theme }) => theme&&theme.generateCSS(Components.FIGCAPTION)};`;
+const FigcaptionStyled = styled.fieldset<FigcaptionProps & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.FIGCAPTION)};
+`;
 
-const Figcaption: FC<FigcaptionProps> = ({ children, ...rest }) => <FigcaptionStyled {...rest}>{children}</FigcaptionStyled>;
+const Figcaption: FC<FigcaptionProps> = ({ children, ...rest }) => (
+  <FigcaptionStyled {...rest}>{children}</FigcaptionStyled>
+);
 
 /**
  * DONE

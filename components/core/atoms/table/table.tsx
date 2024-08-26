@@ -1,16 +1,17 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, HTMLAttributes, FC } from 'react';
+import type { ReactNode, FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface TableProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface TableProps extends ComponentProps<'table'> {
   children?: ReactNode;
 }
 
-const TableStyled = styled.table<TableProps>`${({ theme }) => theme&&theme.generateCSS(Components.TABLE)};`;
+const TableStyled = styled.table<TableProps & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.TABLE)};
+`;
 
 const Table: FC<TableProps> = ({ children, ...rest }) => <TableStyled {...rest}>{children}</TableStyled>;
 

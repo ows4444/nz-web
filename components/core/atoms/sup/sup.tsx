@@ -1,16 +1,17 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { HTMLAttributes, FC } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface SupProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface SupProps extends ComponentProps<'sup'> {
   content: string;
 }
 
-const SupStyled = styled.sup<Partial<SupProps>>`${({ theme }) => theme&&theme.generateCSS(Components.SUP)}`;
+const SupStyled = styled.sup<Omit<SupProps, 'content'> & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.SUP)}
+`;
 
 /**
  * DONE

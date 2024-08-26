@@ -1,16 +1,17 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { HTMLAttributes, FC } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface H2Props extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface H2Props extends ComponentProps<'h2'> {
   content: string;
 }
 
-const H2Styled = styled.h2<Partial<H2Props>>`${({ theme }) => theme&&theme.generateCSS(Components.H2)};`;
+const H2Styled = styled.h2<Omit<H2Props, 'content'> & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.H2)};
+`;
 
 /**
  * DONE

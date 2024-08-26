@@ -1,16 +1,17 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, HTMLAttributes, FC } from 'react';
+import type { ReactNode, FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface THeadProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface THeadProps extends ComponentProps<'thead'> {
   children?: ReactNode;
 }
 
-const THeadStyled = styled.thead<THeadProps>`${({ theme }) => theme&&theme.generateCSS(Components.THEAD)};`;
+const THeadStyled = styled.thead<THeadProps & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.THEAD)};
+`;
 
 const THead: FC<THeadProps> = ({ children, ...rest }) => <THeadStyled {...rest}>{children}</THeadStyled>;
 

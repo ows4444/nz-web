@@ -1,10 +1,11 @@
 'use client';
 
 import { Theme } from '@styles/theme';
-import React from 'react';
+import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
 import Input from '@components/core/atoms/input/input';
 import Label from '@components/core/atoms/label/label';
+import Div from '@components/core/atoms/div/div';
 
 type InputType =
   | 'button'
@@ -31,20 +32,19 @@ type InputType =
   | 'search'
   | 'hidden';
 
-export interface InputGroupProps extends React.HTMLAttributes<HTMLElement> {
-  theme?: Theme;
-  label: string;
-  name: string;
-  feedBack?: string;
-  inputType: InputType;
+export interface InputGroupProps extends ComponentProps<typeof Div> {
+   label: string;
+   name: string;
+   feedBack?: string;
+   inputType: InputType;
 }
 
-const InputGroupStyled = styled(Label)<InputGroupProps>``;
+const InputGroupStyled = styled(Div)<InputGroupProps & { theme: Theme }>``;
 
-const InputGroup: React.FC<InputGroupProps> = ({ label }) => {
+const InputGroup: React.FC<InputGroupProps> = ({ label, name ,...rest }) => {
   return (
-    <InputGroupStyled>
-      <Label htmlFor="" content={label} />
+    <InputGroupStyled label={label} name={name} {...rest}>
+      <Label htmlFor={name} content={label} />
       <Input title={'Title'} />
     </InputGroupStyled>
   );

@@ -1,16 +1,17 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { HTMLAttributes, FC } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface IProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface IProps extends ComponentProps<'i'> {
   content: string;
 }
 
-const IStyled = styled.i<Partial<IProps>>`${({ theme }) => theme&&theme.generateCSS(Components.I)};`;
+const IStyled = styled.i<Omit<IProps, 'content'> & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.I)};
+`;
 
 /**
  * DONE

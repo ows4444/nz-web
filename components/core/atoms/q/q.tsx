@@ -1,16 +1,17 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { HTMLAttributes, FC } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface QProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface QProps extends ComponentProps<'q'> {
   content: string;
 }
 
-const QStyled = styled.p<Partial<QProps>>`${({ theme }) => theme&&theme.generateCSS(Components.Q)};`;
+const QStyled = styled.p<Omit<QProps, 'content'> & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.Q)};
+`;
 
 /**
  * DONE

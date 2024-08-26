@@ -1,16 +1,17 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, HTMLAttributes, FC } from 'react';
+import type { ReactNode, FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface DLProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface DLProps extends ComponentProps<'dl'> {
   children?: ReactNode;
 }
 
-const DLStyled = styled.dl<DLProps>`${({ theme }) => theme&&theme.generateCSS(Components.DL)};`;
+const DLStyled = styled.dl<DLProps & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.DL)};
+`;
 
 const DL: FC<DLProps> = ({ children, ...rest }) => <DLStyled {...rest}>{children}</DLStyled>;
 

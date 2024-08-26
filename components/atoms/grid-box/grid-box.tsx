@@ -1,9 +1,10 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, HTMLAttributes, FC } from 'react';
+import type { ReactNode, FC, ComponentProps } from 'react';
+import { Theme } from '@styles/theme';
 
-export interface GridBoxProps extends HTMLAttributes<HTMLElement> {
+export interface GridBoxProps extends ComponentProps<'div'> {
   $columns: number;
   $rows: number;
   $gap?: number;
@@ -12,7 +13,7 @@ export interface GridBoxProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
 }
 
-const GridBoxStyled = styled.div<GridBoxProps>`
+const GridBoxStyled = styled.div<GridBoxProps & { theme: Theme }>`
   display: grid;
   grid-template-columns: repeat(${({ $columns }) => $columns || 1}, 1fr);
   grid-template-rows: repeat(${({ $rows }) => $rows || 1}, 1fr);

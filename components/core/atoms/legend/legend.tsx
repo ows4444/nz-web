@@ -1,17 +1,16 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { HTMLAttributes, FC } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface LegendProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface LegendProps extends ComponentProps<'legend'> {
   content: string;
 }
 
-const LegendStyled = styled.label<Partial<LegendProps>>`
-  ${({ theme }) => theme&&theme.generateCSS(Components.LEGEND)}
+const LegendStyled = styled.label<Omit<LegendProps, 'content'> & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.LEGEND)}
 `;
 
 /**

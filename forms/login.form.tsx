@@ -4,7 +4,7 @@ import type React from 'next';
 import { useFormState } from 'react-dom';
 import { login } from '@server/login';
 
-import Card from '@components/organisms/card/card'; 
+import Card from '@components/organisms/card/card';
 import InputGroup from '@components/molecules/input-group/input-group';
 import CardHeader from '@components/molecules/card-header/card-header';
 import CardFooter from '@components/molecules/card-footer/card-footer';

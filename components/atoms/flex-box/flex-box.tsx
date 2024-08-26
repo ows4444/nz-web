@@ -1,9 +1,10 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, HTMLAttributes, FC } from 'react';
+import type { ReactNode, FC, ComponentProps } from 'react';
+import { Theme } from '@styles/theme';
 
-export interface FlexBoxProps extends HTMLAttributes<HTMLElement> {
+export interface FlexBoxProps extends ComponentProps<'div'> {
   $direction?: 'row' | 'column';
   $justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
   $alignItems?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
@@ -12,7 +13,7 @@ export interface FlexBoxProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
 }
 
-export const FlexBoxStyled = styled.div<FlexBoxProps>`
+export const FlexBoxStyled = styled.div<FlexBoxProps & { theme: Theme }>`
   display: flex;
   flex-direction: ${({ $direction }) => $direction || 'row'};
   justify-content: ${({ $justifyContent }) => $justifyContent || 'center'};

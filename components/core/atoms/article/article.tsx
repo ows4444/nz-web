@@ -1,17 +1,18 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, HTMLAttributes, FC } from 'react';
+import type { ReactNode, FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-export interface ArticleProps extends HTMLAttributes<HTMLElement> {
-  theme?: Theme;
+export interface ArticleProps extends ComponentProps<'article'> {
   children?: ReactNode;
 }
-const ArticleStyled = styled.article<ArticleProps>`${({ theme }) => theme&&theme.generateCSS(Components.ARTICLE)};`;
+const ArticleStyled = styled.article<ArticleProps & { theme: Theme }>`
+  ${({ theme }) => theme && theme.generateCSS(Components.ARTICLE)};
+`;
 const Article: FC<ArticleProps> = ({ children, ...rest }) => <ArticleStyled {...rest}>{children}</ArticleStyled>;
 
 /**
- * DONE 
+ * DONE
  */
 export default Article;
