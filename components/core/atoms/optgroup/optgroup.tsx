@@ -13,7 +13,7 @@ const OptGroupStyled = styled.optgroup<OptGroupProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.OPTGROUP)};
 `;
 
-const OptGroup: FC<OptGroupProps> = (props) => <OptGroupStyled {...props}/>;{children}</OptGroupStyled>;
+const OptGroup: FC<OptGroupProps> = (props) => <OptGroupStyled {...props} />;
 
 /**
  * DONE

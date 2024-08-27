@@ -13,7 +13,7 @@ const MapStyled = styled.map<MapProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.MAP)};
 `;
 
-const Map: FC<MapProps> = (props) => <MapStyled {...props}/>;{children}</MapStyled>;
+const Map: FC<MapProps> = (props) => <MapStyled {...props} />;
 
 /**
  * DONE

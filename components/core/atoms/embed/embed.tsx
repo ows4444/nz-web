@@ -13,7 +13,7 @@ const EmbedStyled = styled.embed<EmbedProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.EMBED)};
 `;
 
-const Embed: FC<EmbedProps> = (props) => <EmbedStyled {...props}/>;{children}</EmbedStyled>;
+const Embed: FC<EmbedProps> = (props) => <EmbedStyled {...props} />;
 
 /**
  * DONE

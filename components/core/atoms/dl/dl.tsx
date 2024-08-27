@@ -13,7 +13,7 @@ const DLStyled = styled.dl<DLProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.DL)};
 `;
 
-const DL: FC<DLProps> = (props) => <DLStyled {...props}/>;{children}</DLStyled>;
+const DL: FC<DLProps> = (props) => <DLStyled {...props} />;
 
 /**
  * DONE

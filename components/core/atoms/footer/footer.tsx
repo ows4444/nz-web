@@ -13,7 +13,7 @@ const FooterStyled = styled.footer<FooterProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.FOOTER)};
 `;
 
-const Footer: FC<FooterProps> = (props) => <FooterStyled {...props}/>;{children}</FooterStyled>;
+const Footer: FC<FooterProps> = (props) => <FooterStyled {...props} />;
 
 /**
  * DONE

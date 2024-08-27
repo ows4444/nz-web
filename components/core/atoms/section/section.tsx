@@ -13,8 +13,6 @@ const SectionStyled = styled.section<SectionProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.SECTION)};
 `;
 
-const Section: FC<SectionProps> = ({ children, ...props }: SectionProps) => (
-  <SectionStyled {...props}/>;{children}</SectionStyled>
-);
+const Section: FC<SectionProps> = (props) => <SectionStyled {...props} />;
 
 export default Section;

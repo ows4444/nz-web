@@ -13,7 +13,7 @@ const UlStyled = styled.ul<UlProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.UL)};
 `;
 
-const Ul: FC<UlProps> = (props) => <UlStyled {...props}/>;{children}</UlStyled>;
+const Ul: FC<UlProps> = (props) => <UlStyled {...props} />;
 
 /**
  * DONE

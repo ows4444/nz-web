@@ -14,8 +14,6 @@ const HGroupStyled = styled.hgroup<HGroupProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.HGROUP)};
 `;
 
-const HGroup: FC<HGroupProps> = ({ children, ...props }: HGroupProps) => (
-  <HGroupStyled {...props}/>;{children}</HGroupStyled>
-);
+const HGroup: FC<HGroupProps> = (props) => <HGroupStyled {...props} />;
 
 export default HGroup;

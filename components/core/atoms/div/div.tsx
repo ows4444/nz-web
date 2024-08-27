@@ -14,7 +14,7 @@ const DivStyled = styled.div<DivProps>`
   ${({ theme }) => theme && theme.generateCSS(Components.DIV)};
 `;
 
-const Div: FC<DivProps> = (props) => <DivStyled {...props}/>;{children}</DivStyled>;
+const Div: FC<DivProps> = (props) => <DivStyled {...props} />;
 
 /**
  * DONE

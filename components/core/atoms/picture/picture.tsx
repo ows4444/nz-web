@@ -13,7 +13,7 @@ const PictureStyled = styled.picture<PictureProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.PICTURE)};
 `;
 
-const Picture: FC<PictureProps> = (props) => <PictureStyled {...props}/>;{children}</PictureStyled>;
+const Picture: FC<PictureProps> = (props) => <PictureStyled {...props} />;
 
 /**
  * DONE

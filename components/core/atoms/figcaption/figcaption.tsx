@@ -13,9 +13,7 @@ const FigcaptionStyled = styled.fieldset<FigcaptionProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.FIGCAPTION)};
 `;
 
-const Figcaption: FC<FigcaptionProps> = (props) => (
-  <FigcaptionStyled {...props}/>;{children}</FigcaptionStyled>
-);
+const Figcaption: FC<FigcaptionProps> = (props) => <FigcaptionStyled {...props} />;
 
 /**
  * DONE

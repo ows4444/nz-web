@@ -13,7 +13,7 @@ const DfnStyled = styled.dfn<DfnProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.DFN)};
 `;
 
-const Dfn: FC<DfnProps> = (props) => <DfnStyled {...props}/>;{children}</DfnStyled>;
+const Dfn: FC<DfnProps> = (props) => <DfnStyled {...props} />;
 
 /**
  * DONE

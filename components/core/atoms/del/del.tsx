@@ -13,7 +13,7 @@ const DelStyled = styled.del<DelProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.DEL)};
 `;
 
-const DEL: FC<DelProps> = (props) => <DelStyled {...props}/>;{children}</DelStyled>;
+const DEL: FC<DelProps> = (props) => <DelStyled {...props} />;
 
 /**
  * DONE

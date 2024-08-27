@@ -13,7 +13,7 @@ const TBodyStyled = styled.tbody<TBodyProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.TBODY)};
 `;
 
-const TBody: FC<TBodyProps> = (props) => <TBodyStyled {...props}/>;{children}</TBodyStyled>;
+const TBody: FC<TBodyProps> = (props) => <TBodyStyled {...props} />;
 
 /**
  * DONE

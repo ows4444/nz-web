@@ -13,7 +13,7 @@ const SpanStyled = styled.span<SpanProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.SPAN)};
 `;
 
-const Span: FC<SpanProps> = (props) => <SpanStyled {...props}/>;{children}</SpanStyled>;
+const Span: FC<SpanProps> = (props) => <SpanStyled {...props} />;
 
 /**
  * DONE

@@ -13,7 +13,7 @@ const TDStyled = styled.td<TDProps & { theme: Theme }>`
   ${({ theme }) => theme && theme.generateCSS(Components.TD)};
 `;
 
-const TD: FC<TDProps> = (props) => <TDStyled {...props}/>;{children}</TDStyled>;
+const TD: FC<TDProps> = (props) => <TDStyled {...props} />;
 
 /**
  * DONE
