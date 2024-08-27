@@ -10,7 +10,7 @@ export interface MapProps extends ComponentProps<'map'> {
 }
 
 const MapStyled = styled.map<MapProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.MAP)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.MAP,props)};
 `;
 
 const Map: FC<MapProps> = (props) => <MapStyled {...props} />;

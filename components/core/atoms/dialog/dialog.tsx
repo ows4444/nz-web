@@ -10,7 +10,7 @@ export interface DialogProps extends ComponentProps<'dialog'> {
 }
 
 const DialogStyled = styled.dialog<DialogProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.DIALOG)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.DIALOG,props)};
 `;
 
 const Dialog: FC<DialogProps> = (props) => <DialogStyled {...props} />;

@@ -10,7 +10,7 @@ export interface FieldsetProps extends ComponentProps<'fieldset'> {
 }
 
 const FieldsetStyled = styled.fieldset<FieldsetProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.FIELDSET)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.FIELDSET,props)};
 `;
 
 const Fieldset: FC<FieldsetProps> = (props) => <FieldsetStyled {...props} />;

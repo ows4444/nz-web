@@ -10,7 +10,7 @@ export interface THProps extends ComponentProps<'th'> {
 }
 
 const THStyled = styled.th<THProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.TH)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.TH,props)};
 `;
 
 /**

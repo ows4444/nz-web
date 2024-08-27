@@ -8,7 +8,7 @@ export interface ArticleProps extends ComponentProps<'article'> {
   children?: ReactNode;
 }
 const ArticleStyled = styled.article<ArticleProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.ARTICLE)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.ARTICLE,props)};
 `;
 const Article: FC<ArticleProps> = (props) => <ArticleStyled {...props}/>; 
 

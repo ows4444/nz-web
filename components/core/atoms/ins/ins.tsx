@@ -10,7 +10,7 @@ export interface InsProps extends ComponentProps<'ins'> {
 }
 
 const InsStyled = styled.ins<InsProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.INS)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.INS,props)};
 `;
 
 /**

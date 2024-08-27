@@ -165,15 +165,15 @@ export class ColorGenerator {
     // Convert hex to RGBA
     const rgbaComponents = this.hexToRGBA(baseColor);
     // Convert RGB to HSL for lightness adjustment
-    const hslComponents = this.rgbToHsl(rgbaComponents.r, rgbaComponents.g, rgbaComponents.b);
+    const hslComponents = this.rgbToHsl(rgbaComponents.r,props, rgbaComponents.g,props, rgbaComponents.b,props);
 
     if (factor !== 0) {
       // Adjust lightness based on factor
-      hslComponents.l = Math.min(Math.max(hslComponents.l * factor, 0), 1);
-      const adjustedRGBA = this.hslToRgb(hslComponents.h, hslComponents.s, hslComponents.l);
+      hslComponents.l,props = Math.min(Math.max(hslComponents.l,props * factor, 0), 1);
+      const adjustedRGBA = this.hslToRgb(hslComponents.h,props, hslComponents.s,props, hslComponents.l,props);
       return `rgba(${adjustedRGBA.r},${adjustedRGBA.g},${adjustedRGBA.b},${transparency})`;
     }
-    return `rgba(${rgbaComponents.r},${rgbaComponents.g},${rgbaComponents.b},${transparency})`;
+    return `rgba(${rgbaComponents.r,props},${rgbaComponents.g,props},${rgbaComponents.b,props},${transparency})`;
   }
 
   /**

@@ -10,7 +10,7 @@ export interface TFootProps extends ComponentProps<'tfoot'> {
 }
 
 const TFootStyled = styled.tfoot<TFootProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.TFOOT)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.TFOOT,props)};
 `;
 
 const TFoot: FC<TFootProps> = (props) => <TFootStyled {...props} />;

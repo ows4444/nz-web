@@ -10,7 +10,7 @@ interface AProps extends ComponentProps<'a'> {
 }
 
 const AStyled = styled.a<AProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.A)}
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.A,props)}
 `;
 const A: FC<AProps> = (props) => <AStyled {...props}>{props.title}</AStyled>;
 

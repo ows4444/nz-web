@@ -10,7 +10,7 @@ export interface H4Props extends ComponentProps<'h4'> {
 }
 
 const H4Styled = styled.h4<H4Props & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.H4)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.H4,props)};
 `;
 
 /**

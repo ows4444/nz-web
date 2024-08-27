@@ -8,7 +8,7 @@ export interface AddressProps extends ComponentProps<'address'> {
   children?: ReactNode;
 }
 const AddressStyled = styled.address<AddressProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.ADDRESS)}
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.ADDRESS,props)}
 `;
 const Address: FC<AddressProps> = (props) => <AddressStyled {...props}/>
 

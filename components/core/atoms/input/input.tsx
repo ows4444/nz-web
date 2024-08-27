@@ -8,7 +8,7 @@ import { Components } from '@styles/theme/components';
 export interface InputProps extends ComponentProps<'input'> {}
 
 const InputStyled = styled.input<InputProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.INPUT)}}
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.INPUT,props)}}
 `;
 
 /**

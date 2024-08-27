@@ -8,7 +8,7 @@ export interface AreaProps extends ComponentProps<'area'> {
   children?: ReactNode;
 }
 const AreaStyled = styled.area<AreaProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.AREA)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.AREA,props)};
 `;
 const Area: FC<AreaProps> = (props) => <AreaStyled {...props}/>; 
 

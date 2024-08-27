@@ -10,7 +10,7 @@ export interface DetailsProps extends ComponentProps<'details'> {
 }
 
 const DetailsStyled = styled.details<DetailsProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.DETAILS)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.DETAILS,props)};
 `;
 
 const DETAILS: FC<DetailsProps> = (props) => <DetailsStyled {...props} />;

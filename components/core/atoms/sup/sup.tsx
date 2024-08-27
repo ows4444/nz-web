@@ -10,7 +10,7 @@ export interface SupProps extends ComponentProps<'sup'> {
 }
 
 const SupStyled = styled.sup<SupProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.SUP)}
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.SUP,props)}
 `;
 
 /**

@@ -10,7 +10,7 @@ export interface StrongProps extends ComponentProps<'strong'> {
 }
 
 const StrongStyled = styled.strong<StrongProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.STRONG)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.STRONG,props)};
 `;
 
 /**

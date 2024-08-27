@@ -1,4 +1,4 @@
-import type React from 'next';
+import type React from 'react';
 
 import StyledComponentProvider from '@lib/styled-component.provider';
 

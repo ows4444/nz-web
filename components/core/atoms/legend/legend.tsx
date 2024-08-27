@@ -10,7 +10,7 @@ export interface LegendProps extends ComponentProps<'legend'> {
 }
 
 const LegendStyled = styled.label<LegendProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.LEGEND)}
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.LEGEND,props)}
 `;
 
 /**

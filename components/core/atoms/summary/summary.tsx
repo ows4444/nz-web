@@ -10,7 +10,7 @@ export interface SummaryProps extends ComponentProps<'summary'> {
 }
 
 const SummaryStyled = styled.summary<SummaryProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.SUMMARY)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.SUMMARY,props)};
 `;
 
 /**

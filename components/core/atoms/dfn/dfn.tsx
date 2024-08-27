@@ -10,7 +10,7 @@ export interface DfnProps extends ComponentProps<'dfn'> {
 }
 
 const DfnStyled = styled.dfn<DfnProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.DFN)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.DFN,props)};
 `;
 
 const Dfn: FC<DfnProps> = (props) => <DfnStyled {...props} />;

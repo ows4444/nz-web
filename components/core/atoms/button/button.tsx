@@ -10,7 +10,7 @@ interface ButtonProps extends ComponentProps<'button'> {
 }
 
 const ButtonStyled = styled.button<ButtonProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.BUTTON)}
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.BUTTON,props)}
 `;
 const Button: FC<ButtonProps> = (props) => <ButtonStyled {...props}>{props.title}</ButtonStyled>;
 

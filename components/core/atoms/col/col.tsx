@@ -10,7 +10,7 @@ export interface ColProps extends ComponentProps<'col'> {
 }
 
 const ColStyled = styled.col<ColProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.COL)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.COL,props)};
 `;
 
 const Col: FC<ColProps> = (props) => <ColStyled {...props} />;

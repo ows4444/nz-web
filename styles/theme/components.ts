@@ -76,6 +76,16 @@ export enum Components {
   TR = 'TR',
   U = 'U',
   UL = 'UL',
+  // molecules
+
+  CONTAINER = 'CONTAINER',
+
+  CARD = 'CARD',
+  CARD_BODY = 'CARD_BODY',
+  CARD_FOOTER = 'CARD_FOOTER',
+  CARD_HEADER = 'CARD_HEADER',
+
+  INPUT_GROUP = 'INPUT_GROUP',
 }
 
 export type Component = keyof typeof Components;

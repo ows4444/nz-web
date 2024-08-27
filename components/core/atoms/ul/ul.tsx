@@ -10,7 +10,7 @@ export interface UlProps extends ComponentProps<'ul'> {
 }
 
 const UlStyled = styled.ul<UlProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.UL)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.UL,props)};
 `;
 
 const Ul: FC<UlProps> = (props) => <UlStyled {...props} />;

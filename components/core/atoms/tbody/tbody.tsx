@@ -10,7 +10,7 @@ export interface TBodyProps extends ComponentProps<'tbody'> {
 }
 
 const TBodyStyled = styled.tbody<TBodyProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.TBODY)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.TBODY,props)};
 `;
 
 const TBody: FC<TBodyProps> = (props) => <TBodyStyled {...props} />;

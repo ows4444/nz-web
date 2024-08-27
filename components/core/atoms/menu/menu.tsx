@@ -10,7 +10,7 @@ export interface MenuProps extends ComponentProps<'menu'> {
 }
 
 const MenuStyled = styled.menu<MenuProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.MENU)}
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.MENU,props)}
 `;
 
 const Menu: FC<MenuProps> = (props) => <MenuStyled {...props} />;

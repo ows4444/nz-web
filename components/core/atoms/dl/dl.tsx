@@ -10,7 +10,7 @@ export interface DLProps extends ComponentProps<'dl'> {
 }
 
 const DLStyled = styled.dl<DLProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.DL)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.DL,props)};
 `;
 
 const DL: FC<DLProps> = (props) => <DLStyled {...props} />;

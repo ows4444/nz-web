@@ -7,7 +7,7 @@ import { Theme } from '@styles/theme';
 export interface BRProps extends ComponentProps<'br'> {}
 
 const BRStyled = styled.br<BRProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.BR)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.BR,props)};
 `;
 
 const BR: FC<BRProps> = () => <BRStyled />;

@@ -10,7 +10,7 @@ export interface NavProps extends ComponentProps<'nav'> {
 }
 
 const NavStyled = styled.nav<NavProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.NAV)}
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.NAV,props)}
 `;
 
 const Nav: FC<NavProps> = (props) => <NavStyled {...props} />;

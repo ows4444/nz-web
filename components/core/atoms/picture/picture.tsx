@@ -10,7 +10,7 @@ export interface PictureProps extends ComponentProps<'picture'> {
 }
 
 const PictureStyled = styled.picture<PictureProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.PICTURE)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.PICTURE,props)};
 `;
 
 const Picture: FC<PictureProps> = (props) => <PictureStyled {...props} />;

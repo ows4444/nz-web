@@ -10,7 +10,7 @@ export interface H5Props extends ComponentProps<'h5'> {
 }
 
 const H5Styled = styled.h5<H5Props & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.H5)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.H5,props)};
 `;
 
 /**

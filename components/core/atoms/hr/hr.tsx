@@ -9,7 +9,7 @@ export interface HRProps extends ComponentProps<'hr'> {
 }
 
 const HRStyled = styled.hr<HRProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.HR)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.HR,props)};
 `;
 
 const HR: FC<HRProps> = () => <HRStyled />;

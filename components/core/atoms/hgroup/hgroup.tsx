@@ -11,7 +11,7 @@ export interface HGroupProps extends ComponentProps<'hgroup'> {
 }
 
 const HGroupStyled = styled.hgroup<HGroupProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.HGROUP)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.HGROUP,props)};
 `;
 
 const HGroup: FC<HGroupProps> = (props) => <HGroupStyled {...props} />;

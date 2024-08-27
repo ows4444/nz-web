@@ -9,10 +9,9 @@ import InputGroup from '@components/molecules/input-group/input-group';
 import CardHeader from '@components/molecules/card-header/card-header';
 import CardFooter from '@components/molecules/card-footer/card-footer';
 import CardBody from '@components/molecules/card-body/card-body';
-import FlexBox from '@components/atoms/flex-box/flex-box';
-import H2 from '@components/core/atoms/h2/h2';
 import Button from '@components/core/atoms/button/button';
 import Form from '@components/core/atoms/form/form';
+import H3 from '@components/core/atoms/h3/h3';
 
 type D = {
   message: string;
@@ -35,24 +34,18 @@ export function LoginForm() {
   const [state, action] = useFormState<D, FormData>(login, initialState);
 
   return (
-    <Form action={action}>
+    <Form action={action} id="login-form" name="login-form">
       <Card>
-        <CardHeader>
-          <FlexBox $justifyContent="center">
-            <H2 content={'Login'} />
-          </FlexBox>
+        <CardHeader $layout='flex'>
+          <H3 content="Login" />
         </CardHeader>
         <CardBody>
-          <FlexBox $gap="4px" $justifyContent="center" $direction="column" $alignItems="flex-end">
-            <InputGroup label="Email" name="email" type="email" />
-            <InputGroup label="Password" name="password" type="password" />
-            {state && state.error && <p>{state.error}</p>}
-          </FlexBox>
+          <InputGroup label="Email" name="email" type="email" />
+          <InputGroup label="Password" name="password" type="password" />
+          {state && state.error && <p>{state.error}</p>}
         </CardBody>
         <CardFooter>
-          <FlexBox $justifyContent="center">
-            <Button title={'Login'} />
-          </FlexBox>
+          <Button title={'Login'} />
         </CardFooter>
       </Card>
     </Form>

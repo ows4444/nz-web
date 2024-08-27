@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import Input from '@components/core/atoms/input/input';
 import Label from '@components/core/atoms/label/label';
 import Div from '@components/core/atoms/div/div';
+import Small from '@components/core/atoms/small/small';
+import { Components } from '@styles/theme/components';
 
 type InputType =
   | 'button'
@@ -37,15 +39,19 @@ export interface InputGroupProps extends ComponentProps<typeof Div> {
   name: string;
   feedBack?: string;
   type: InputType;
+  autoComplete?: 'on' | 'off' | 'type-of-value';
 }
 
-const InputGroupStyled = styled(Div)<InputGroupProps & { theme: Theme }>``;
+const InputGroupStyled = styled(Div)<InputGroupProps & { theme: Theme }>`
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.INPUT_GROUP,props)};
+`;
 
 const InputGroup: React.FC<InputGroupProps> = (props) => {
   return (
     <InputGroupStyled {...props}>
       <Label htmlFor={props.name} content={props.name} />
-      <Input type={props.type} />
+      <Input id={props.name} name={props.name} type={props.type} autoComplete={props.autoComplete || 'off'} />
+      {props.feedBack && <Small content={props.feedBack} />}
     </InputGroupStyled>
   );
 };

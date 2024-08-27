@@ -10,7 +10,7 @@ export interface PreProps extends ComponentProps<'pre'> {
 }
 
 const PreStyled = styled.pre<PreProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.PRE)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.PRE,props)};
 `;
 
 /**

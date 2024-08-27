@@ -10,7 +10,7 @@ export interface DDProps extends ComponentProps<'dd'> {
 }
 
 const DDStyled = styled.dd<DDProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.DD)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.DD,props)};
 `;
 
 const DD: FC<DDProps> = (props) => <DDStyled {...props} />;

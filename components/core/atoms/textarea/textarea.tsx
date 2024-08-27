@@ -10,7 +10,7 @@ export interface TextareaProps extends ComponentProps<'textarea'> {
 }
 
 const TextareaStyled = styled.textarea<TextareaProps & { theme: Theme }>`
-  ${({ theme }) => theme && theme.generateCSS(Components.TEXTAREA)};
+  ${({ theme ,...props }) => theme && theme.generateCSS(Components.TEXTAREA,props)};
 `;
 
 /**

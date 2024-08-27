@@ -19,7 +19,7 @@ export interface Theme {
   elements: Partial<Record<Component, Partial<Record<CSSProperty, string>>>>;
 
   // eslint-disable-next-line no-unused-vars
-  generateCSS: (element: Component) => string;
+  generateCSS: (element: Component, props: any) => string;
 }
 
 export class ThemeGenerator {
@@ -53,18 +53,42 @@ export class ThemeGenerator {
     return this;
   }
 
-  generateCSS(element: Component): string {
+  generateCSS(element: Component, props: any): string {
     const CurrentElement = this.elements[element] as Record<string, any>;
 
+    let css = '';
+
     if (CurrentElement) {
-      return Object.keys(CurrentElement).reduce(
+      css = Object.keys(CurrentElement).reduce(
         (acc: string, cssProperty: string) =>
           `${acc}${TransformName(cssProperty as CSSProperty)}: ${CurrentElement[cssProperty]};`,
-        '',
+        css,
       );
     }
+    const { $layout, $direction, $justifyContent, $alignItems, $wrap, $columns, $autoRows, $autoFlow, $rows } = props;
 
-    return '';
+    if ($layout === 'flex' || $layout === 'grid') {
+      if ($layout === 'flex') {
+        css += `
+          display: flex;
+          flex-direction: ${$direction || 'row'};
+          justify-content: ${$justifyContent || 'center'};
+          align-items: ${$alignItems || 'center'};
+          flex-wrap: ${$wrap || 'nowrap'};
+        `;
+      }
+      if ($layout === 'grid') {
+        css += `
+          display: grid;
+          grid-template-columns: repeat(${$columns || 1}, 1fr);
+          grid-template-rows: repeat(${$rows || 1}, 1fr);
+          grid-auto-rows: ${$autoRows || 'auto'};
+          grid-auto-flow: ${$autoFlow || 'row'};
+        `;
+      }
+    }
+
+    return css;
   }
 
   addTransitionSize(transitionSize: TransitionSize, value: string): ThemeGenerator {
@@ -108,7 +132,7 @@ export class ThemeGenerator {
   }
   public theme(): Theme {
     return {
-      generateCSS: (element) => this.generateCSS(element),
+      generateCSS: (element, props) => this.generateCSS(element, props),
       elements: this.elements,
       transition: this.transition,
       palette: this.palette,
