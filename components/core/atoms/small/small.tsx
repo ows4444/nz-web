@@ -10,7 +10,7 @@ export interface SmallProps extends ComponentProps<'small'> {
 }
 
 const SmallStyled = styled.small<SmallProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.SMALL,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.SMALL, props)};
 `;
 
 /**

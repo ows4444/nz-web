@@ -10,7 +10,7 @@ export interface SelectProps extends ComponentProps<'select'> {
 }
 
 const SelectStyled = styled.select<SelectProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.SELECT,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.SELECT, props)};
 `;
 
 const Select: FC<SelectProps> = (props) => <SelectStyled {...props} />;

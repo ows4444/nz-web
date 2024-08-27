@@ -9,7 +9,7 @@ import { Components } from '@styles/theme/components';
 export interface CaptionProps extends ComponentProps<'caption'> {}
 
 const CaptionStyled = styled.caption<CaptionProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.CAPTION,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.CAPTION, props)};
 `;
 
 const Caption: FC<CaptionProps> = (props) => <CaptionStyled {...props} />;

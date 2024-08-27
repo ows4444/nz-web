@@ -10,7 +10,7 @@ export interface EmbedProps extends ComponentProps<'embed'> {
 }
 
 const EmbedStyled = styled.embed<EmbedProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.EMBED,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.EMBED, props)};
 `;
 
 const Embed: FC<EmbedProps> = (props) => <EmbedStyled {...props} />;

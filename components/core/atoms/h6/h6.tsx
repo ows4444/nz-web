@@ -10,7 +10,7 @@ export interface H6Props extends ComponentProps<'h6'> {
 }
 
 const H6Styled = styled.h6<H6Props & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.H6,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.H6, props)};
 `;
 
 /**

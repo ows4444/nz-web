@@ -77,7 +77,6 @@ export const lightTheme = new ThemeGenerator()
   .addRadiusSize('xl', '32px')
   .addRadiusSize('xxl', '48px')
 
-
   .addElementStyle('P', 'fontSize', '1rem')
   .addElementStyle('H1', 'fontSize', '2rem')
   .addElementStyle('H2', 'fontSize', '1.5rem')
@@ -95,7 +94,7 @@ export const lightTheme = new ThemeGenerator()
   .addElementStyle('INPUT', 'padding', '4px 8px')
 
   .addElementStyle('LABEL', 'color', 'black')
-  .addElementStyle('LABEL', 'fontSize', '16px') 
+  .addElementStyle('LABEL', 'fontSize', '16px')
   .addElementStyle('LABEL', 'lineHeight', '1.5')
   .addElementStyle('LABEL', 'padding', '8px')
 
@@ -104,11 +103,10 @@ export const lightTheme = new ThemeGenerator()
 
   .addElementStyle('CARD_HEADER', 'padding', '2px 4px')
   .addElementStyle('CARD_HEADER', 'fontSize', '24px')
- 
-   
-  .addElementStyle('CARD_BODY', 'border', '0px 1px solid grey') 
+
+  .addElementStyle('CARD_BODY', 'border', '0px 1px solid grey')
   .addElementStyle('CARD_BODY', 'padding', '2px 4px')
- 
+
   .addElementStyle('CARD_FOOTER', 'padding', '2px 4px')
 
   .theme();

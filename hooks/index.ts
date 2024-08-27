@@ -1,14 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 
-export function useViewportSize({
-  xs = 320,
-  sm = 480,
-  md = 768,
-  lg = 992,
-  xl = 1200,
-  xxl = 1600,
-} = {}) {
+export function useViewportSize({ xs = 320, sm = 480, md = 768, lg = 992, xl = 1200, xxl = 1600 } = {}) {
   const [viewportSize, setViewportSize] = useState({
     width: 0,
     height: 0,
@@ -30,14 +23,14 @@ export function useViewportSize({
           width <= xs
             ? 'xs'
             : width <= sm
-            ? 'sm'
-            : width <= md
-            ? 'md'
-            : width <= lg
-            ? 'lg'
-            : width <= xl
-            ? 'xl'
-            : 'xxl',
+              ? 'sm'
+              : width <= md
+                ? 'md'
+                : width <= lg
+                  ? 'lg'
+                  : width <= xl
+                    ? 'xl'
+                    : 'xxl',
         orientation: width > height ? 'landscape' : 'portrait',
       });
     };

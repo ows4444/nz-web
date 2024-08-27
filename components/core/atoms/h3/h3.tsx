@@ -10,7 +10,7 @@ export interface H3Props extends ComponentProps<'h3'> {
 }
 
 const H3Styled = styled.h3<H3Props & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.H3,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.H3, props)};
 `;
 
 /**

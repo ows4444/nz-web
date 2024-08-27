@@ -7,7 +7,7 @@ const AMeta: Meta<typeof A> = {
   component: A,
   title: 'Core/A',
   tags: ['autodocs'],
-  argTypes: { 
+  argTypes: {
     title: {
       control: { type: 'text' },
       description: 'The title of the button',

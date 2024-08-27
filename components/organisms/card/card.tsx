@@ -10,7 +10,7 @@ import styled from 'styled-components';
 export interface CardProps extends DivProps {}
 
 const CardStyled = styled.div<CardProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.CARD,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.CARD, props)};
 `;
 
 const Card: React.FC<CardProps> = ({ children, ...props }: CardProps & FlexBoxProps) => (

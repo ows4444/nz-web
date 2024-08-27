@@ -10,7 +10,7 @@ export interface LiProps extends ComponentProps<'li'> {
 }
 
 const LiStyled = styled.li<LiProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.LI,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.LI, props)};
 `;
 
 /**

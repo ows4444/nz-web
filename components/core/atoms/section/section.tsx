@@ -10,7 +10,7 @@ export interface SectionProps extends ComponentProps<'section'> {
 }
 
 const SectionStyled = styled.section<SectionProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.SECTION,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.SECTION, props)};
 `;
 
 const Section: FC<SectionProps> = (props) => <SectionStyled {...props} />;

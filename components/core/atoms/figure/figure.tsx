@@ -10,7 +10,7 @@ export interface FigureProps extends ComponentProps<'figure'> {
 }
 
 const FigureStyled = styled.figure<FigureProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.FIGURE,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.FIGURE, props)};
 `;
 
 const Figure: FC<FigureProps> = (props) => <FigureStyled {...props} />;

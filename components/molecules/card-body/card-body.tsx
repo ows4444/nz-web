@@ -8,7 +8,7 @@ import { Components } from '@styles/theme/components';
 export interface CardBodyProps extends React.ComponentProps<'section'> {}
 
 const CardBodyStyled = styled(Section)<CardBodyProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.CARD_BODY,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.CARD_BODY, props)};
 `;
 
 const CardBody: React.FC<CardBodyProps> = (props) => <CardBodyStyled {...props} />;

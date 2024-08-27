@@ -10,7 +10,7 @@ export interface OptGroupProps extends ComponentProps<'optgroup'> {
 }
 
 const OptGroupStyled = styled.optgroup<OptGroupProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.OPTGROUP,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.OPTGROUP, props)};
 `;
 
 const OptGroup: FC<OptGroupProps> = (props) => <OptGroupStyled {...props} />;

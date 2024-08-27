@@ -10,7 +10,7 @@ export interface HeaderProps extends ComponentProps<'header'> {
 }
 
 const HeaderStyled = styled.header<HeaderProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.HEADER,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.HEADER, props)};
 `;
 
 const Header: FC<HeaderProps> = (props) => <HeaderStyled {...props} />;

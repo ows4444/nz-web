@@ -10,7 +10,7 @@ export interface DelProps extends ComponentProps<'del'> {
 }
 
 const DelStyled = styled.del<DelProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.DEL,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.DEL, props)};
 `;
 
 const DEL: FC<DelProps> = (props) => <DelStyled {...props} />;

@@ -8,9 +8,9 @@ export interface AsideProps extends ComponentProps<'aside'> {
   children?: ReactNode;
 }
 const AsideStyled = styled.aside<AsideProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.ASIDE,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.ASIDE, props)};
 `;
-const Aside: FC<AsideProps> = (props) => <AsideStyled {...props}/>; 
+const Aside: FC<AsideProps> = (props) => <AsideStyled {...props} />;
 
 /**
  * DONE

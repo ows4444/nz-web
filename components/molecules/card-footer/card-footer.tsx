@@ -8,7 +8,7 @@ import { Components } from '@styles/theme/components';
 export interface CardFooterProps extends React.ComponentProps<'footer'> {}
 
 const CardFooterStyled = styled(Footer)<CardFooterProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.CARD_FOOTER,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.CARD_FOOTER, props)};
 `;
 
 const CardFooter: React.FC<CardFooterProps> = ({ children, ...props }: CardFooterProps) => (

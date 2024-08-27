@@ -11,7 +11,7 @@ export interface DivProps extends ComponentProps<'div'> {
 }
 
 const DivStyled = styled.div<DivProps>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.DIV,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.DIV, props)};
 `;
 
 const Div: FC<DivProps> = (props) => <DivStyled {...props} />;

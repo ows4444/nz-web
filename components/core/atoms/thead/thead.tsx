@@ -10,7 +10,7 @@ export interface THeadProps extends ComponentProps<'thead'> {
 }
 
 const THeadStyled = styled.thead<THeadProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.THEAD,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.THEAD, props)};
 `;
 
 const THead: FC<THeadProps> = (props) => <THeadStyled {...props} />;

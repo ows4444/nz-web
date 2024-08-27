@@ -20,7 +20,7 @@
       "@app/*": ["app/*"],
       "@lib/*": ["lib/*"],
       "@server/*": ["server/*"],
-      "@forms/*": ["forms/*"],
+      "@forms/*": ["forms/*"]
     }
   },
   "include": ["next-env.d.ts", ".storybook", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

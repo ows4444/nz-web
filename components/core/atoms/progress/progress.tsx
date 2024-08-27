@@ -10,7 +10,7 @@ export interface ProgressProps extends ComponentProps<'progress'> {
 }
 
 const ProgressStyled = styled.progress<ProgressProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.PROGRESS,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.PROGRESS, props)};
 `;
 
 /**

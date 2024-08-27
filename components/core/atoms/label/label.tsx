@@ -10,7 +10,7 @@ export interface LabelProps extends ComponentProps<'label'> {
 }
 
 const LabelStyled = styled.label<LabelProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.LABEL,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.LABEL, props)};
 `;
 
 /**

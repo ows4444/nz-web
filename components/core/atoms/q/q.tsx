@@ -10,7 +10,7 @@ export interface QProps extends ComponentProps<'q'> {
 }
 
 const QStyled = styled.p<QProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.Q,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.Q, props)};
 `;
 
 /**

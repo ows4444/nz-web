@@ -11,7 +11,7 @@ export interface ContainerProps extends ComponentProps<'section'> {
 }
 
 const ContainerStyled = styled(Section)<ContainerProps & { theme: Theme }>`
-  ${({ theme ,...props }) => theme && theme.generateCSS(Components.CONTAINER,props)};
+  ${({ theme, ...props }) => theme && theme.generateCSS(Components.CONTAINER, props)};
 `;
 
 const Container: FC<ContainerProps> = (props) => <ContainerStyled {...props} />;
