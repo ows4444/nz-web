@@ -1,22 +1,17 @@
 'use client';
 
-import FlexBox, { FlexBoxProps } from '@components/atoms/flex-box/flex-box';
-import { DivProps } from '@components/core/atoms/div/div';
+import React, { ComponentProps } from 'react';
+import { LayoutProps } from '@components/types';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-import type React from 'next';
 import styled from 'styled-components';
 
-export interface CardProps extends DivProps {}
+type CardProps = LayoutProps<ComponentProps<'div'>> & {};
 
 const CardStyled = styled.div<CardProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme && theme.generateCSS(Components.CARD, props)};
 `;
 
-const Card: React.FC<CardProps> = ({ children, ...props }: CardProps & FlexBoxProps) => (
-  <FlexBox>
-    <CardStyled {...props}>{children}</CardStyled>
-  </FlexBox>
-);
+const Card: React.FC<CardProps> = (props) => <CardStyled {...props} />;
 
 export default Card;

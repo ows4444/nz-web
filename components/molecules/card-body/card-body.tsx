@@ -1,11 +1,13 @@
 'use client';
-import type React from 'next';
-import styled from 'styled-components';
-import { Theme } from '@styles/theme';
-import Section from '@components/core/atoms/section/section';
-import { Components } from '@styles/theme/components';
 
-export interface CardBodyProps extends React.ComponentProps<'section'> {}
+import React, { ComponentProps } from 'react';
+import { LayoutProps } from '@components/types';
+import { Theme } from '@styles/theme';
+import { Components } from '@styles/theme/components';
+import styled from 'styled-components';
+import Section from '@components/core/atoms/section/section';
+
+type CardBodyProps = LayoutProps<ComponentProps<'section'>> & {};
 
 const CardBodyStyled = styled(Section)<CardBodyProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme && theme.generateCSS(Components.CARD_BODY, props)};

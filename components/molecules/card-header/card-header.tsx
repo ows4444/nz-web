@@ -4,16 +4,9 @@ import styled from 'styled-components';
 import { Theme } from '@styles/theme';
 import Header from '@components/core/atoms/header/header';
 import { Components } from '@styles/theme/components';
-import { FlexBox, FlexBoxProps } from '@components/atoms/flex-box/flex-box';
-import { GridBox, GridBoxProps } from '@components/atoms/grid-box/grid-box';
+import { LayoutProps } from '@components/types';
 
-// Define discriminated union for LayoutProps
-type CardHeaderProps =
-  | (FlexBoxProps & { $layout: 'flex' } & Partial<Record<keyof GridBox, never>>)
-  | (GridBoxProps & { $layout: 'grid' } & Partial<Record<keyof FlexBox, never>>)
-  | ({ $layout?: undefined } & Partial<Record<keyof FlexBox, never>> &
-      Partial<Record<keyof GridBox, never>> &
-      ComponentProps<'header'>);
+type CardHeaderProps = LayoutProps<ComponentProps<'header'>> & {};
 
 // Styled component for CardHeader using styled-components
 const CardHeaderStyled = styled(Header)<CardHeaderProps & { theme: Theme }>`

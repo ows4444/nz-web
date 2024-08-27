@@ -100,6 +100,7 @@ export const lightTheme = new ThemeGenerator()
 
   .addElementStyle('CARD', 'border', '1px solid grey')
   .addElementStyle('CARD', 'padding', '4px 0')
+  .addElementStyle('CARD', 'width', '400px')
 
   .addElementStyle('CARD_HEADER', 'padding', '2px 4px')
   .addElementStyle('CARD_HEADER', 'fontSize', '24px')

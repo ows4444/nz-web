@@ -1,18 +1,17 @@
 'use client';
-import type React from 'next';
-import styled from 'styled-components';
+
+import React, { ComponentProps } from 'react';
+import { LayoutProps } from '@components/types';
 import { Theme } from '@styles/theme';
-import Footer from '@components/core/atoms/footer/footer';
 import { Components } from '@styles/theme/components';
+import styled from 'styled-components';
 
-export interface CardFooterProps extends React.ComponentProps<'footer'> {}
+type CardFooterProps = LayoutProps<ComponentProps<'footer'>> & {};
 
-const CardFooterStyled = styled(Footer)<CardFooterProps & { theme: Theme }>`
+const CardFooterStyled = styled.div<CardFooterProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme && theme.generateCSS(Components.CARD_FOOTER, props)};
 `;
 
-const CardFooter: React.FC<CardFooterProps> = ({ children, ...props }: CardFooterProps) => (
-  <CardFooterStyled {...props}>{children}</CardFooterStyled>
-);
+const CardFooter: React.FC<CardFooterProps> = (props) => <CardFooterStyled {...props} />;
 
 export default CardFooter;
