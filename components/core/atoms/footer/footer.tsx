@@ -10,7 +10,7 @@ export interface FooterProps extends ComponentProps<'footer'> {
 }
 
 const FooterStyled = styled.footer<FooterProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.FOOTER, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.FOOTER, props)};
 `;
 
 const Footer: FC<FooterProps> = (props) => <FooterStyled {...props} />;

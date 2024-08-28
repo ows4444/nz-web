@@ -9,7 +9,7 @@ export interface BlockquoteProps extends ComponentProps<'blockquote'> {
   children?: ReactNode;
 }
 const BlockquoteStyled = styled.blockquote<BlockquoteProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.BLOCKQUOTE, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.BLOCKQUOTE, props)};
 `;
 const Blockquote: FC<BlockquoteProps> = (props) => <BlockquoteStyled {...props} />;
 

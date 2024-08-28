@@ -10,7 +10,7 @@ export interface IProps extends ComponentProps<'i'> {
 }
 
 const IStyled = styled.i<IProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.I, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.I, props)};
 `;
 
 /**

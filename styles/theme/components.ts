@@ -79,6 +79,7 @@ export enum Components {
   // molecules
 
   CONTAINER = 'CONTAINER',
+  BOX = 'BOX',
 
   CARD = 'CARD',
   CARD_BODY = 'CARD_BODY',

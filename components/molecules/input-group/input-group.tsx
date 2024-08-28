@@ -43,7 +43,7 @@ export interface InputGroupProps extends ComponentProps<typeof Div> {
 }
 
 const InputGroupStyled = styled(Div)<InputGroupProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.INPUT_GROUP, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.INPUT_GROUP, props)};
 `;
 
 const InputGroup: React.FC<InputGroupProps> = (props) => {

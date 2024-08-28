@@ -10,7 +10,7 @@ export interface TRProps extends ComponentProps<'tr'> {
 }
 
 const TRStyled = styled.tr<TRProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.TR, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.TR, props)};
 `;
 
 const TR: FC<TRProps> = (props) => <TRStyled {...props} />;

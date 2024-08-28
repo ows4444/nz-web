@@ -10,7 +10,7 @@ export interface OptionProps extends ComponentProps<'option'> {
 }
 
 const OptionStyled = styled.option<OptionProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.OPTION, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.OPTION, props)};
 `;
 
 /**

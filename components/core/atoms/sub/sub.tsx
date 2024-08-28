@@ -10,7 +10,7 @@ export interface SubProps extends ComponentProps<'sub'> {
 }
 
 const SubStyled = styled.sub<SubProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.SUB, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.SUB, props)};
 `;
 
 /**

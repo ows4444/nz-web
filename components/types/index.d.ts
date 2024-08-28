@@ -1,7 +1,21 @@
-import { FlexBox, FlexBoxProps } from '@components/atoms/flex-box/flex-box';
-import { GridBox, GridBoxProps } from '@components/atoms/grid-box/grid-box';
+type FlexBoxLayout = {
+  $layout: 'flex';
+  $direction?: 'row' | 'column';
+  $justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
+  $gap?: string;
+  $alignItems?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
+  $wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
+};
 
-export type LayoutProps<T> =
-  | (FlexBoxProps & { $layout: 'flex' } & Partial<Record<keyof GridBox, never>>)
-  | (GridBoxProps & { $layout: 'grid' } & Partial<Record<keyof FlexBox, never>>)
-  | ({ $layout?: undefined } & Partial<Record<keyof FlexBox, never>> & Partial<Record<keyof GridBox, never>> & T);
+type GridBoxLayout = {
+  $layout: 'grid';
+  $columns?: number;
+  $rows?: number;
+  $gap?: string;
+  $autoRows?: 'auto' | 'minmax' | 'max-content' | 'min-content' | 'auto-fit' | 'auto-fill';
+  $autoFlow?: 'row' | 'column' | 'row dense' | 'column dense';
+};
+
+export type BoxLayout<T> = (FlexBoxLayout | GridBoxLayout) & T;
+
+export type Layout<T> = BoxLayout<T> | T;

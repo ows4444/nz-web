@@ -10,7 +10,7 @@ export interface ColgroupProps extends ComponentProps<'colgroup'> {
 }
 
 const ColgroupStyled = styled.colgroup<ColgroupProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.COLGROUP, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.COLGROUP, props)};
 `;
 
 const Colgroup: FC<ColgroupProps> = (props) => <ColgroupStyled {...props} />;

@@ -10,7 +10,7 @@ export interface MarkProps extends ComponentProps<'mark'> {
 }
 
 const MarkStyled = styled.mark<MarkProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.MARK, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.MARK, props)};
 `;
 
 const Mark: FC<MarkProps> = (props) => <MarkStyled {...props} />;

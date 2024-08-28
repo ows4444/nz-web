@@ -13,7 +13,7 @@ export interface FormProps extends ComponentProps<'form'> {
 }
 
 const FormStyled = styled.form<FormProps>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.FORM, props)}
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.FORM, props)}
 `;
 
 const Form: FC<FormProps> = (props) => <FormStyled {...props} />;

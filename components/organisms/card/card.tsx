@@ -9,7 +9,7 @@ import styled from 'styled-components';
 type CardProps = LayoutProps<ComponentProps<'div'>> & {};
 
 const CardStyled = styled.div<CardProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.CARD, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.CARD, props)};
 `;
 
 const Card: React.FC<CardProps> = (props) => <CardStyled {...props} />;

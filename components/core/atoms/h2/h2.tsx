@@ -10,7 +10,7 @@ export interface H2Props extends ComponentProps<'h2'> {
 }
 
 const H2Styled = styled.h2<H2Props & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.H2, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.H2, props)};
 `;
 
 /**

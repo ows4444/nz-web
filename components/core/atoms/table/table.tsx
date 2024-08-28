@@ -10,7 +10,7 @@ export interface TableProps extends ComponentProps<'table'> {
 }
 
 const TableStyled = styled.table<TableProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.TABLE, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.TABLE, props)};
 `;
 
 const Table: FC<TableProps> = (props) => <TableStyled {...props} />;

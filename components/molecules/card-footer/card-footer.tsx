@@ -9,7 +9,7 @@ import styled from 'styled-components';
 type CardFooterProps = LayoutProps<ComponentProps<'footer'>> & {};
 
 const CardFooterStyled = styled.div<CardFooterProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.CARD_FOOTER, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.CARD_FOOTER, props)};
 `;
 
 const CardFooter: React.FC<CardFooterProps> = (props) => <CardFooterStyled {...props} />;

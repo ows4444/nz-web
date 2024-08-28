@@ -10,7 +10,7 @@ export interface TDProps extends ComponentProps<'td'> {
 }
 
 const TDStyled = styled.td<TDProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.TD, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.TD, props)};
 `;
 
 const TD: FC<TDProps> = (props) => <TDStyled {...props} />;

@@ -10,7 +10,7 @@ type CardHeaderProps = LayoutProps<ComponentProps<'header'>> & {};
 
 // Styled component for CardHeader using styled-components
 const CardHeaderStyled = styled(Header)<CardHeaderProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.CARD_HEADER, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.CARD_HEADER, props)};
 `;
 
 const CardHeader: FC<CardHeaderProps> = (props) => <CardHeaderStyled {...props} />;

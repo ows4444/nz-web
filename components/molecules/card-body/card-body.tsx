@@ -10,7 +10,7 @@ import Section from '@components/core/atoms/section/section';
 type CardBodyProps = LayoutProps<ComponentProps<'section'>> & {};
 
 const CardBodyStyled = styled(Section)<CardBodyProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.CARD_BODY, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.CARD_BODY, props)};
 `;
 
 const CardBody: React.FC<CardBodyProps> = (props) => <CardBodyStyled {...props} />;

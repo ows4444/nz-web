@@ -10,7 +10,7 @@ export interface PProps extends ComponentProps<'p'> {
 }
 
 const PStyled = styled.p<PProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.P, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.P, props)};
 `;
 
 /**

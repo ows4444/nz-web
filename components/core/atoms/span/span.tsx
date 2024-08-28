@@ -10,7 +10,7 @@ export interface SpanProps extends ComponentProps<'span'> {
 }
 
 const SpanStyled = styled.span<SpanProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.SPAN, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.SPAN, props)};
 `;
 
 const Span: FC<SpanProps> = (props) => <SpanStyled {...props} />;

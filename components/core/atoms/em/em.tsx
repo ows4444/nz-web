@@ -10,7 +10,7 @@ export interface EMProps extends ComponentProps<'em'> {
 }
 
 const EMStyled = styled.em<EMProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.EM, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.EM, props)};
 `;
 
 const EM: FC<EMProps> = (props) => <EMStyled {...props} />;

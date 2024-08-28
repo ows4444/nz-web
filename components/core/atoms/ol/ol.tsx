@@ -10,7 +10,7 @@ export interface OlProps extends ComponentProps<'ol'> {
 }
 
 const OlStyled = styled.ol<OlProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.OL, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.OL, props)};
 `;
 
 const Ol: FC<OlProps> = (props) => <OlStyled {...props} />;

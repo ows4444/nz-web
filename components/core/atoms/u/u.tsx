@@ -10,7 +10,7 @@ export interface UProps extends ComponentProps<'u'> {
 }
 
 const UStyled = styled.u<UProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.U, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.U, props)};
 `;
 
 /**

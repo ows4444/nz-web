@@ -9,7 +9,7 @@ import { Components } from '@styles/theme/components';
 export interface CanvasProps extends ComponentProps<'canvas'> {}
 
 const CanvasStyled = styled.canvas<CanvasProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme && theme.generateCSS(Components.CANVAS, props)};
+  ${({ theme, ...props }) => theme?.generateCSS?.(Components.CANVAS, props)};
 `;
 
 const Canvas: FC<CanvasProps> = (props) => <CanvasStyled {...props} />;
