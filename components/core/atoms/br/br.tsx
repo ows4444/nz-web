@@ -12,6 +12,6 @@ const BRStyled = styled.br<BRProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.BR, props)};
 `;
 
-const BR: FC<BRProps> = () => <BRStyled />;
+const BR: FC<BRProps> = (props) => <BRStyled {...props} />;
 
 export default BR;

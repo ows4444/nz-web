@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-import { Layout } from '@components/types';
-type UProps = Layout<ComponentProps<'u'>> & {
+import { BasicLayout } from '@components/types';
+
+type UProps = BasicLayout<ComponentProps<'u'>> & {
   content: string;
 };
 

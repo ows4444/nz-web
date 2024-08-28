@@ -16,6 +16,22 @@ type GridBoxLayout = {
   $autoFlow?: 'row' | 'column' | 'row dense' | 'column dense';
 };
 
-export type BoxLayout<T> = (FlexBoxLayout | GridBoxLayout) & T;
+type TextLayout = {
+  $align?: 'left' | 'center' | 'right' | 'justify';
+  $color?: string;
+  $fontFamily?: string;
+  $fontSize?: string;
+  $fontStyle?: 'normal' | 'italic';
+  $fontWeight?: 'normal' | 'bold' | 'bolder' | 'lighter' | number;
+  $letterSpacing?: string;
+  $lineHeight?: string;
+  $textDecoration?: 'none' | 'underline' | 'overline' | 'line-through';
+  $textTransform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase';
+  $whiteSpace?: 'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap';
+};
 
-export type Layout<T> = BoxLayout<T> | T;
+export type LayoutProps = FlexBoxLayout & GridBoxLayout & TextLayout & { $layout: 'flex' | 'grid' };
+
+export type BoxLayout<T> = (FlexBoxLayout | GridBoxLayout) & T;
+export type BasicLayout<T> = TextLayout & T;
+export type Layout<T> = (BoxLayout<T> | BasicLayout<T>) & BasicLayout & T;

@@ -3,9 +3,7 @@ import { FontWeight, LineHight, RadiusSize, ShadowSize, Size, TransitionSize } f
 import { Gradient, Variant } from './variants';
 import { Component } from './components';
 import { CSSProperty, TransformName } from './cssProperties';
-
-export type factor = number;
-export type transparency = number;
+import { LayoutProps } from '@components/types';
 
 export interface Theme {
   palette: Partial<Record<Variant, Color>>;
@@ -65,12 +63,35 @@ export class ThemeGenerator {
         css,
       );
     }
-    const { $layout, $direction, $justifyContent, $alignItems, $wrap, $columns, $autoRows, $autoFlow, $rows } = props;
+    const {
+      $whiteSpace,
+      $align,
+      $color,
+      $fontFamily,
+      $fontSize,
+      $fontStyle,
+      $fontWeight,
+      $gap,
+      $letterSpacing,
+      $lineHeight,
+      $textDecoration,
+      $textTransform,
+      $direction,
+      $justifyContent,
+      $alignItems,
+      $wrap,
+      $columns,
+      $rows,
+      $autoRows,
+      $autoFlow,
+      $layout,
+    } = props as LayoutProps;
 
     if ($layout === 'flex' || $layout === 'grid') {
       if ($layout === 'flex') {
         css += `
           display: flex;
+          gap: ${$gap || '0'};
           flex-direction: ${$direction || 'row'};
           justify-content: ${$justifyContent || 'center'};
           align-items: ${$alignItems || 'center'};
@@ -80,6 +101,7 @@ export class ThemeGenerator {
       if ($layout === 'grid') {
         css += `
           display: grid;
+          gap: ${$gap || '0'};
           grid-template-columns: repeat(${$columns || 1}, 1fr);
           grid-template-rows: repeat(${$rows || 1}, 1fr);
           grid-auto-rows: ${$autoRows || 'auto'};
@@ -88,45 +110,57 @@ export class ThemeGenerator {
       }
     }
 
+    $align && (css += `align: ${$align};`);
+    $color && (css += `color: ${$color};`);
+    $fontFamily && (css += `font-family: ${$fontFamily};`);
+    $fontSize && (css += `font-size: ${$fontSize};`);
+    $fontStyle && (css += `font-style: ${$fontStyle};`);
+    $fontWeight && (css += `font-weight: ${$fontWeight};`);
+    $letterSpacing && (css += `letter-spacing: ${$letterSpacing};`);
+    $lineHeight && (css += `line-height: ${$lineHeight};`);
+    $textDecoration && (css += `text-decoration: ${$textDecoration};`);
+    $textTransform && (css += `text-transform: ${$textTransform};`);
+    $whiteSpace && (css += `white-space: ${$whiteSpace};`);
+
     return css;
   }
 
-  addTransitionSize(transitionSize: TransitionSize, value: string): ThemeGenerator {
+  addTransitionSize(transitionSize: TransitionSize, value: string): this {
     this.transition[transitionSize] = value;
     return this;
   }
 
-  addLineHight(lineHight: LineHight, value: string): ThemeGenerator {
+  addLineHight(lineHight: LineHight, value: string): this {
     this.lineHights[lineHight] = value;
     return this;
   }
 
-  addGradientStyles(gradient: Gradient, value: string): ThemeGenerator {
+  addGradientStyles(gradient: Gradient, value: string): this {
     this.gradients[gradient] = value;
     return this;
   }
 
-  addPaletteStyles(variant: Variant, color: Color): ThemeGenerator {
+  addPaletteStyles(variant: Variant, color: Color): this {
     this.palette[variant] = color;
     return this;
   }
 
-  addMediaSize(size: Size, value: string): ThemeGenerator {
+  addMediaSize(size: Size, value: string): this {
     this.mediaSizes[size] = value;
     return this;
   }
 
-  addRadiusSize(radiusSize: RadiusSize, value: string): ThemeGenerator {
+  addRadiusSize(radiusSize: RadiusSize, value: string): this {
     this.radiusSizes[radiusSize] = value;
     return this;
   }
 
-  addFontWeight(fontWeight: FontWeight, value: string): ThemeGenerator {
+  addFontWeight(fontWeight: FontWeight, value: string): this {
     this.fontSizes[fontWeight] = value;
     return this;
   }
 
-  addShadowSize(shadowSize: ShadowSize, value: string): ThemeGenerator {
+  addShadowSize(shadowSize: ShadowSize, value: string): this {
     this.shadowSizes[shadowSize] = value;
     return this;
   }

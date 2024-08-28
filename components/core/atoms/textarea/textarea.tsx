@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-import { Layout } from '@components/types';
-type TextareaProps = Layout<ComponentProps<'textarea'>> & {
+import { BasicLayout } from '@components/types';
+
+type TextareaProps = BasicLayout<ComponentProps<'textarea'>> & {
   content: string;
 };
 

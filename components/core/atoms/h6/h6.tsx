@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
+import { BasicLayout } from '@components/types';
 
-import { Layout } from '@components/types';
-type H6Props = Layout<ComponentProps<'h6'>> & {
+type H6Props = BasicLayout<ComponentProps<'h6'>> & {
   content: string;
 };
 
