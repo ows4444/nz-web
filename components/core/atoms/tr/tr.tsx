@@ -1,13 +1,11 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-
-export interface TRProps extends ComponentProps<'tr'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type TRProps = Layout<ComponentProps<'tr'>>;
 
 const TRStyled = styled.tr<TRProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.TR, props)};
@@ -15,7 +13,4 @@ const TRStyled = styled.tr<TRProps & { theme: Theme }>`
 
 const TR: FC<TRProps> = (props) => <TRStyled {...props} />;
 
-/**
- * DONE
- */
 export default TR;

@@ -14,7 +14,4 @@ const AStyled = styled.a<AProps & { theme: Theme }>`
 `;
 const A: FC<AProps> = (props) => <AStyled {...props}>{props.title}</AStyled>;
 
-/**
- * DONE
- */
 export default A;

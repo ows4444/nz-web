@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
+import { Layout } from '@components/types';
 
-export interface ColProps extends ComponentProps<'col'> {
-  children?: ReactNode;
-}
+type ColProps = Layout<ComponentProps<'col'>>;
 
 const ColStyled = styled.col<ColProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.COL, props)};
@@ -15,7 +14,4 @@ const ColStyled = styled.col<ColProps & { theme: Theme }>`
 
 const Col: FC<ColProps> = (props) => <ColStyled {...props} />;
 
-/**
- * DONE
- */
 export default Col;

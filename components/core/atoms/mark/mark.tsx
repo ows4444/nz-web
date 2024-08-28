@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface MarkProps extends ComponentProps<'mark'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type MarkProps = Layout<ComponentProps<'mark'>>;
 
 const MarkStyled = styled.mark<MarkProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.MARK, props)};
@@ -15,7 +14,4 @@ const MarkStyled = styled.mark<MarkProps & { theme: Theme }>`
 
 const Mark: FC<MarkProps> = (props) => <MarkStyled {...props} />;
 
-/**
- * DONE
- */
 export default Mark;

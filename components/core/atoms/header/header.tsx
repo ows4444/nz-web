@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { FC, ReactNode, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface HeaderProps extends ComponentProps<'header'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type HeaderProps = Layout<ComponentProps<'header'>>;
 
 const HeaderStyled = styled.header<HeaderProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.HEADER, props)};

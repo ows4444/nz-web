@@ -1,13 +1,11 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-
-export interface TBodyProps extends ComponentProps<'tbody'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type TBodyProps = Layout<ComponentProps<'tbody'>>;
 
 const TBodyStyled = styled.tbody<TBodyProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.TBODY, props)};
@@ -15,7 +13,4 @@ const TBodyStyled = styled.tbody<TBodyProps & { theme: Theme }>`
 
 const TBody: FC<TBodyProps> = (props) => <TBodyStyled {...props} />;
 
-/**
- * DONE
- */
 export default TBody;

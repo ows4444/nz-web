@@ -1,13 +1,11 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-
-export interface DfnProps extends ComponentProps<'dfn'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type DfnProps = Layout<ComponentProps<'dfn'>>;
 
 const DfnStyled = styled.dfn<DfnProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.DFN, props)};
@@ -15,7 +13,4 @@ const DfnStyled = styled.dfn<DfnProps & { theme: Theme }>`
 
 const Dfn: FC<DfnProps> = (props) => <DfnStyled {...props} />;
 
-/**
- * DONE
- */
 export default Dfn;

@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface MapProps extends ComponentProps<'map'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type MapProps = Layout<ComponentProps<'map'>>;
 
 const MapStyled = styled.map<MapProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.MAP, props)};
@@ -15,7 +14,4 @@ const MapStyled = styled.map<MapProps & { theme: Theme }>`
 
 const Map: FC<MapProps> = (props) => <MapStyled {...props} />;
 
-/**
- * DONE
- */
 export default Map;

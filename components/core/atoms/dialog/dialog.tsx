@@ -1,13 +1,11 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-
-export interface DialogProps extends ComponentProps<'dialog'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type DialogProps = Layout<ComponentProps<'dialog'>>;
 
 const DialogStyled = styled.dialog<DialogProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.DIALOG, props)};
@@ -15,7 +13,4 @@ const DialogStyled = styled.dialog<DialogProps & { theme: Theme }>`
 
 const Dialog: FC<DialogProps> = (props) => <DialogStyled {...props} />;
 
-/**
- * DONE
- */
 export default Dialog;

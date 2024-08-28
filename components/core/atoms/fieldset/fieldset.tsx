@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface FieldsetProps extends ComponentProps<'fieldset'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type FieldsetProps = Layout<ComponentProps<'fieldset'>>;
 
 const FieldsetStyled = styled.fieldset<FieldsetProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.FIELDSET, props)};
@@ -15,7 +14,4 @@ const FieldsetStyled = styled.fieldset<FieldsetProps & { theme: Theme }>`
 
 const Fieldset: FC<FieldsetProps> = (props) => <FieldsetStyled {...props} />;
 
-/**
- * DONE
- */
 export default Fieldset;

@@ -5,17 +5,15 @@ import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface SubProps extends ComponentProps<'sub'> {
+import { Layout } from '@components/types';
+type SubProps = Layout<ComponentProps<'sub'>> & {
   content: string;
-}
+};
 
 const SubStyled = styled.sub<SubProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.SUB, props)};
 `;
 
-/**
- * DONE
- */
 const Sub: FC<SubProps> = (props) => <SubStyled {...props}>{props.content}</SubStyled>;
 
 export default Sub;

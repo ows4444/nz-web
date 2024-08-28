@@ -5,17 +5,15 @@ import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface LabelProps extends ComponentProps<'label'> {
+import { Layout } from '@components/types';
+type LabelProps = Layout<ComponentProps<'label'>> & {
   content: string;
-}
+};
 
 const LabelStyled = styled.label<LabelProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.LABEL, props)};
 `;
 
-/**
- * DONE
- */
 const Label: FC<LabelProps> = (props) => <LabelStyled {...props}>{props.content}</LabelStyled>;
 
 export default Label;

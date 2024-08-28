@@ -1,13 +1,11 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-
-export interface TDProps extends ComponentProps<'td'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type TDProps = Layout<ComponentProps<'td'>>;
 
 const TDStyled = styled.td<TDProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.TD, props)};
@@ -15,7 +13,4 @@ const TDStyled = styled.td<TDProps & { theme: Theme }>`
 
 const TD: FC<TDProps> = (props) => <TDStyled {...props} />;
 
-/**
- * DONE
- */
 export default TD;

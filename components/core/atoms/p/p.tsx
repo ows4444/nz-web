@@ -5,17 +5,15 @@ import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface PProps extends ComponentProps<'p'> {
+import { Layout } from '@components/types';
+type PProps = Layout<ComponentProps<'p'>> & {
   content: string;
-}
+};
 
 const PStyled = styled.p<PProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.P, props)};
 `;
 
-/**
- * DONE
- */
 const P: FC<PProps> = (props) => <PStyled {...props}>{props.content}</PStyled>;
 
 export default P;

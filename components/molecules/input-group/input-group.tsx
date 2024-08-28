@@ -8,6 +8,7 @@ import Label from '@components/core/atoms/label/label';
 import Div from '@components/core/atoms/div/div';
 import Small from '@components/core/atoms/small/small';
 import { Components } from '@styles/theme/components';
+import { Layout } from '@components/types';
 
 type InputType =
   | 'button'
@@ -34,13 +35,13 @@ type InputType =
   | 'search'
   | 'hidden';
 
-export interface InputGroupProps extends ComponentProps<typeof Div> {
+type InputGroupProps = Layout<ComponentProps<'div'>> & {
   label: string;
   name: string;
   feedBack?: string;
   type: InputType;
   autoComplete?: 'on' | 'off' | 'type-of-value';
-}
+};
 
 const InputGroupStyled = styled(Div)<InputGroupProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.INPUT_GROUP, props)};

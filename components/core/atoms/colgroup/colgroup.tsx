@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
+import { Layout } from '@components/types';
 
-export interface ColgroupProps extends ComponentProps<'colgroup'> {
-  children?: ReactNode;
-}
+type ColgroupProps = Layout<ComponentProps<'colgroup'>>;
 
 const ColgroupStyled = styled.colgroup<ColgroupProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.COLGROUP, props)};
@@ -15,7 +14,4 @@ const ColgroupStyled = styled.colgroup<ColgroupProps & { theme: Theme }>`
 
 const Colgroup: FC<ColgroupProps> = (props) => <ColgroupStyled {...props} />;
 
-/**
- * DONE
- */
 export default Colgroup;

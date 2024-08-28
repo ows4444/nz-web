@@ -14,7 +14,4 @@ const ButtonStyled = styled.button<ButtonProps & { theme: Theme }>`
 `;
 const Button: FC<ButtonProps> = (props) => <ButtonStyled {...props}>{props.title}</ButtonStyled>;
 
-/**
- * DONE
- */
 export default Button;

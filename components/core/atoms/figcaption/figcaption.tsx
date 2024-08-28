@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface FigcaptionProps extends ComponentProps<'figcaption'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type FigcaptionProps = Layout<ComponentProps<'figcaption'>>;
 
 const FigcaptionStyled = styled.fieldset<FigcaptionProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.FIGCAPTION, props)};
@@ -15,7 +14,4 @@ const FigcaptionStyled = styled.fieldset<FigcaptionProps & { theme: Theme }>`
 
 const Figcaption: FC<FigcaptionProps> = (props) => <FigcaptionStyled {...props} />;
 
-/**
- * DONE
- */
 export default Figcaption;

@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface DTProps extends ComponentProps<'dt'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type DTProps = Layout<ComponentProps<'dt'>>;
 
 const DTStyled = styled.col<DTProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.DT, props)};
@@ -15,7 +14,4 @@ const DTStyled = styled.col<DTProps & { theme: Theme }>`
 
 const DT: FC<DTProps> = (props) => <DTStyled {...props} />;
 
-/**
- * DONE
- */
 export default DT;

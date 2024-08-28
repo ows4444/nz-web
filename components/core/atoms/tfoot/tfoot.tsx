@@ -1,13 +1,11 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-
-export interface TFootProps extends ComponentProps<'tfoot'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type TFootProps = Layout<ComponentProps<'tfoot'>>;
 
 const TFootStyled = styled.tfoot<TFootProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.TFOOT, props)};
@@ -15,7 +13,4 @@ const TFootStyled = styled.tfoot<TFootProps & { theme: Theme }>`
 
 const TFoot: FC<TFootProps> = (props) => <TFootStyled {...props} />;
 
-/**
- * DONE
- */
 export default TFoot;

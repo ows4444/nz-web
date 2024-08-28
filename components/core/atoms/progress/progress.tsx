@@ -5,17 +5,15 @@ import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface ProgressProps extends ComponentProps<'progress'> {
+import { Layout } from '@components/types';
+type ProgressProps = Layout<ComponentProps<'progress'>> & {
   content: string;
-}
+};
 
 const ProgressStyled = styled.progress<ProgressProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.PROGRESS, props)};
 `;
 
-/**
- * DONE
- */
 const Progress: FC<ProgressProps> = (props) => <ProgressStyled {...props}>{props.content}</ProgressStyled>;
 
 export default Progress;

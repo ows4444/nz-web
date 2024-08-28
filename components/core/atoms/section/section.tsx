@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { FC, ReactNode, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface SectionProps extends ComponentProps<'section'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type SectionProps = Layout<ComponentProps<'section'>>;
 
 const SectionStyled = styled.section<SectionProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.SECTION, props)};

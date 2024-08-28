@@ -5,8 +5,9 @@ import styled from 'styled-components';
 import type { ComponentProps, FC } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
+import { Layout } from '@components/types';
 
-export interface CanvasProps extends ComponentProps<'canvas'> {}
+type CanvasProps = Layout<ComponentProps<'canvas'>>;
 
 const CanvasStyled = styled.canvas<CanvasProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.CANVAS, props)};
@@ -14,7 +15,4 @@ const CanvasStyled = styled.canvas<CanvasProps & { theme: Theme }>`
 
 const Canvas: FC<CanvasProps> = (props) => <CanvasStyled {...props} />;
 
-/**
- * DONE
- */
 export default Canvas;

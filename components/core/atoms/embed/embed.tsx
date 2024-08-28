@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface EmbedProps extends ComponentProps<'embed'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type EmbedProps = Layout<ComponentProps<'embed'>>;
 
 const EmbedStyled = styled.embed<EmbedProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.EMBED, props)};
@@ -15,7 +14,4 @@ const EmbedStyled = styled.embed<EmbedProps & { theme: Theme }>`
 
 const Embed: FC<EmbedProps> = (props) => <EmbedStyled {...props} />;
 
-/**
- * DONE
- */
 export default Embed;

@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface NavProps extends ComponentProps<'nav'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type NavProps = Layout<ComponentProps<'nav'>>;
 
 const NavStyled = styled.nav<NavProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.NAV, props)}
@@ -15,7 +14,4 @@ const NavStyled = styled.nav<NavProps & { theme: Theme }>`
 
 const Nav: FC<NavProps> = (props) => <NavStyled {...props} />;
 
-/**
- * DONE
- */
 export default Nav;

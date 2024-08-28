@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface PictureProps extends ComponentProps<'picture'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type PictureProps = Layout<ComponentProps<'picture'>>;
 
 const PictureStyled = styled.picture<PictureProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.PICTURE, props)};
@@ -15,7 +14,4 @@ const PictureStyled = styled.picture<PictureProps & { theme: Theme }>`
 
 const Picture: FC<PictureProps> = (props) => <PictureStyled {...props} />;
 
-/**
- * DONE
- */
 export default Picture;

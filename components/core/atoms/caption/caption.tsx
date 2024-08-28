@@ -5,8 +5,9 @@ import styled from 'styled-components';
 import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
+import { Layout } from '@components/types';
 
-export interface CaptionProps extends ComponentProps<'caption'> {}
+type CaptionProps = Layout<ComponentProps<'caption'>>;
 
 const CaptionStyled = styled.caption<CaptionProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.CAPTION, props)};
@@ -14,7 +15,4 @@ const CaptionStyled = styled.caption<CaptionProps & { theme: Theme }>`
 
 const Caption: FC<CaptionProps> = (props) => <CaptionStyled {...props} />;
 
-/**
- * DONE
- */
 export default Caption;

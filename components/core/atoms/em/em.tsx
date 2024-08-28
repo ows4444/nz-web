@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface EMProps extends ComponentProps<'em'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type EMProps = Layout<ComponentProps<'em'>>;
 
 const EMStyled = styled.em<EMProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.EM, props)};
@@ -15,7 +14,4 @@ const EMStyled = styled.em<EMProps & { theme: Theme }>`
 
 const EM: FC<EMProps> = (props) => <EMStyled {...props} />;
 
-/**
- * DONE
- */
 export default EM;

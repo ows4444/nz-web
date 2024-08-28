@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-export interface TableProps extends ComponentProps<'table'> {
-  children?: ReactNode;
-}
+import { Layout } from '@components/types';
+type TableProps = Layout<ComponentProps<'table'>>;
 
 const TableStyled = styled.table<TableProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.TABLE, props)};
@@ -15,7 +14,4 @@ const TableStyled = styled.table<TableProps & { theme: Theme }>`
 
 const Table: FC<TableProps> = (props) => <TableStyled {...props} />;
 
-/**
- * DONE
- */
 export default Table;

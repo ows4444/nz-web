@@ -1,11 +1,12 @@
 'use client';
 
+import { Layout } from '@components/types';
 import { Theme } from '@styles/theme';
 import type React from 'next';
 import { ComponentProps } from 'react';
 import styled from 'styled-components';
 
-export interface RowProps extends ComponentProps<'section'> {}
+type RowProps = Layout<ComponentProps<'section'>>;
 
 const RowStyled = styled.section<RowProps & { theme: Theme }>`
   display: flex;

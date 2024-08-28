@@ -151,32 +151,6 @@ export class ColorGenerator {
   };
 
   /**
-   * Generates an RGBA color string from a predefined color name, applying a lightness factor and transparency.
-   * @param colorName - The name of the color.
-   * @param factor - The factor to adjust the lightness (1 = no change).
-   * @param transparency - The transparency value (default is 1).
-   * @returns The generated RGBA color string.
-   */
-  public generateRGBA(colorName: Color, factor: number = 0, transparency: number = 1): string {
-    // Validate input
-    this.validateColorName(colorName);
-    // Get the base color in hex format
-    const baseColor = this.colors[colorName];
-    // Convert hex to RGBA
-    const rgbaComponents = this.hexToRGBA(baseColor);
-    // Convert RGB to HSL for lightness adjustment
-    const hslComponents = this.rgbToHsl(rgbaComponents.r, props, rgbaComponents.g, props, rgbaComponents.b, props);
-
-    if (factor !== 0) {
-      // Adjust lightness based on factor
-      hslComponents.l, (props = Math.min(Math.max(hslComponents.l, props * factor, 0), 1));
-      const adjustedRGBA = this.hslToRgb(hslComponents.h, props, hslComponents.s, props, hslComponents.l, props);
-      return `rgba(${adjustedRGBA.r},${adjustedRGBA.g},${adjustedRGBA.b},${transparency})`;
-    }
-    return `rgba(${(rgbaComponents.r, props)},${(rgbaComponents.g, props)},${(rgbaComponents.b, props)},${transparency})`;
-  }
-
-  /**
    * Generates an inverted RGBA color string from a predefined color name.
    * @param colorName - The name of the color.
    * @param transparency - The transparency value (default is 1).
@@ -287,32 +261,6 @@ export class ColorGenerator {
     b: number;
   } {
     return { r: 255 - r, g: 255 - g, b: 255 - b };
-  }
-
-  /**
-   * Determines an appropriate text color for a given background color.
-   * @param colorName - The name of the background color.
-   * @returns The recommended text color.
-   */
-  public getTextColorForBackground(colorName: Color, scale: number = 1.5): string {
-    // Validate input
-    this.validateColorName(colorName);
-    // Get the base color in hex format
-    const baseColor = this.colors[colorName];
-    // Convert hex to RGBA
-    const { r, g, b } = this.hexToRGBA(baseColor);
-
-    // Calculate luminance and brightness
-    const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-    const brightness = Math.sqrt(r * r * 0.299 + g * g * 0.587 + b * b * 0.114) / 255;
-
-    const factor = (luminance + brightness) / 2 + (luminance > 0.5 && brightness > 0.5 ? -scale : scale);
-
-    // Return inverted color for very dark background, otherwise adjusted color
-    if (brightness === 0 && luminance === 0) {
-      return this.generateInvertedRGBA(colorName, 1);
-    }
-    return this.generateRGBA(colorName, factor, 1);
   }
 
   /**

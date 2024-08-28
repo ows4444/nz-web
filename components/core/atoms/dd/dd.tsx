@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import styled from 'styled-components';
-import type { ReactNode, FC, ComponentProps } from 'react';
+import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
+import { Layout } from '@components/types';
 
-export interface DDProps extends ComponentProps<'dd'> {
-  children?: ReactNode;
-}
+type DDProps = Layout<ComponentProps<'dd'>>;
 
 const DDStyled = styled.dd<DDProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.DD, props)};
@@ -15,7 +14,4 @@ const DDStyled = styled.dd<DDProps & { theme: Theme }>`
 
 const DD: FC<DDProps> = (props) => <DDStyled {...props} />;
 
-/**
- * DONE
- */
 export default DD;
