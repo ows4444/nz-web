@@ -1,36 +1,239 @@
-import { Color } from './colors';
-import { FontWeight, LineHight, RadiusSize, ShadowSize, Size, TransitionSize } from './sizes';
-import { Gradient, Variant } from './variants';
+import {
+  BorderRadius,
+  borderSize,
+  Color,
+  CSSProperties,
+  CSSProperty,
+  FontFamily,
+  FontWeight,
+  Gradient,
+  MarginPadding,
+  Props,
+  ThemeInterface,
+  ThemePaletteInterface,
+  ZIndex,
+} from '@components/types';
 import { Component } from './components';
-import { CSSProperty, TransformName } from './cssProperties';
-import { LayoutProps } from '@components/types';
 
-export interface Theme {
-  palette: Partial<Record<Variant, Color>>;
-  mediaSizes: Partial<Record<Size, string>>;
-  fontSizes: Partial<Record<FontWeight, string>>;
-  radiusSizes: Partial<Record<RadiusSize, string>>;
-  shadowSizes: Partial<Record<ShadowSize, string>>;
-  gradients: Partial<Record<Gradient, string>>;
-  lineHights: Partial<Record<LineHight, string>>;
-  transition: Partial<Record<TransitionSize, string>>;
-  elements: Partial<Record<Component, Partial<Record<CSSProperty, string>>>>;
+export class Theme implements ThemeInterface {
+  palate!: ThemePaletteInterface;
+  constructor() {
+    this.palate = {
+      borderRadius: {},
+      borderSizes: {},
+      colors: {},
+      fontFamilies: {},
+      fontSizes: {},
+      marginPadding: {},
+      zIndex: {},
+      gradients: {},
+      elements: {},
+    };
+  }
 
-  // eslint-disable-next-line no-unused-vars
-  generateCSS: (element: Component, props: any) => string;
-}
+  addFontSize(fontWeight: FontWeight, size: number): this {
+    this.palate.fontSizes[fontWeight] = size;
+    return this;
+  }
+  addFontFamily(fontFamily: FontFamily, value: string): this {
+    this.palate.fontFamilies[fontFamily] = value;
+    return this;
+  }
+  addColor(color: Color, value: string): this {
+    this.palate.colors[color] = value;
+    return this;
+  }
+  addBorderSize(borderSize: borderSize, value: string): this {
+    this.palate.borderSizes[borderSize] = value;
+    return this;
+  }
+  addBorderRadius(borderRadius: BorderRadius, value: string): this {
+    this.palate.borderRadius[borderRadius] = value;
+    return this;
+  }
+  addMarginPadding(marginPadding: MarginPadding, value: string): this {
+    this.palate.marginPadding[marginPadding] = value;
+    return this;
+  }
+  addZIndex(zIndex: ZIndex, value: 'auto' | number): this {
+    this.palate.zIndex[zIndex] = value;
+    return this;
+  }
+  addGradientStyles(gradient: Gradient, value: string): this {
+    this.palate.gradients[gradient] = value;
+    return this;
+  }
+  addElementStyles(component: Component, css: Partial<Record<CSSProperties, string>>): this {
+    this.palate.elements[component] = css;
+    return this;
+  }
 
-export class ThemeGenerator {
-  private palette: Partial<Record<Variant, Color>>;
-  private mediaSizes: Partial<Record<Size, string>>;
-  private fontSizes: Partial<Record<FontWeight, string>>;
-  private radiusSizes: Partial<Record<RadiusSize, string>>;
-  private shadowSizes: Partial<Record<ShadowSize, string>>;
-  private gradients: Partial<Record<Gradient, string>>;
-  private lineHights: Partial<Record<LineHight, string>>;
-  private transition: Partial<Record<TransitionSize, string>>;
-  private elements: Partial<Record<Component, Partial<Record<CSSProperty, string>>>>;
+  private pxToRem(px: number): string {
+    return `${px / 16}rem`;
+  }
+  private remToPx(rem: number): string {
+    return `${rem * 16}px`;
+  }
+  private getFontSize(fontWeight: FontWeight): number {
+    return this.palate.fontSizes[fontWeight] || 100;
+  }
+  private getFontFamily(fontFamily: FontFamily): string {
+    return this.palate.fontFamilies[fontFamily] || 'Sans-serif, Arial';
+  }
+  private getColor(color: Color): string {
+    return this.palate.colors[color] || 'black';
+  }
+  private getBorderSize(borderSize: borderSize): string {
+    return this.palate.borderSizes[borderSize] || '0';
+  }
+  private getBorderRadius(borderRadius: BorderRadius): string {
+    return this.palate.borderRadius[borderRadius] || '0';
+  }
+  private getMarginPadding(marginPadding: MarginPadding): string {
+    return this.palate.marginPadding[marginPadding] || '0';
+  }
+  private getZIndex(zIndex: ZIndex): 'auto' | number {
+    return this.palate.zIndex[zIndex] || 'auto';
+  }
+  private getGradientStyles(gradient: Gradient): string {
+    return this.palate.gradients[gradient] || '';
+  }
+  private getElementStyles(component: Component): CSSProperties {
+    return this.palate.elements[component] as CSSProperties;
+  }
+  private getCSSProperty(property: CSSProperty, value: string): string {
+    return `${property.replace(/([A-Z])/g, '-$1').toLowerCase()}: ${value};`;
+  }
+  generateCSS(component: Component, props: any): string {
+    const element = this.getElementStyles(component);
 
+    let css = '';
+    if (element) {
+      css = Object.keys(element).reduce(
+        (acc: string, cssProperty: any) =>
+          `${acc}${this.getCSSProperty(cssProperty as CSSProperty, element[cssProperty])}`,
+        css,
+      );
+    }
+    const {
+      $whiteSpace,
+      $align,
+      $color,
+      $fontFamily,
+      $fontSize,
+      $fontStyle,
+      $fontWeight,
+      $gap,
+      $letterSpacing,
+      $lineHeight,
+      $textDecoration,
+      $textTransform,
+      $direction,
+      $justifyContent,
+      $alignItems,
+      $wrap,
+      $columns,
+      $rows,
+      $autoRows,
+      $autoFlow,
+      $layout,
+      $order,
+      $flex,
+      $flexGrow,
+      $flexShrink,
+      $flexBasis,
+      $alignSelf,
+
+      $grid,
+      $gridAutoColumns,
+      $gridAutoFlow,
+      $gridAutoRows,
+      $gridTemplate,
+      $gridTemplateAreas,
+      $gridTemplateColumns,
+      $gridTemplateRows,
+
+      $gridArea,
+      $gridColumn,
+      $gridColumnEnd,
+      $gridColumnStart,
+      $gridRow,
+      $gridRowEnd,
+      $gridRowStart,
+      $margin,
+    } = props as Props;
+
+    if ($layout === 'flex' || $layout === 'flex-item' || $layout === 'grid' || $layout === 'grid-item') {
+      if ($layout === 'flex') {
+        css += `
+          display: flex;
+          ${$gap ? `gap: ${$gap};` : ''}
+          ${$direction ? `flex-direction: ${$direction};` : ''}
+          ${$justifyContent ? `justify-content: ${$justifyContent};` : ''}
+          ${$alignItems ? `align-items: ${$alignItems};` : ''}
+          ${$wrap ? `flex-wrap: ${$wrap};` : ''}
+          ${$order ? `order: ${$order};` : ''}
+          ${$flexGrow ? `flex-grow: ${$flexGrow};` : ''}
+          ${$flexShrink ? `flex-shrink: ${$flexShrink};` : ''}
+          ${$flexBasis ? `flex-basis: ${$flexBasis};` : ''}
+          ${$alignSelf ? `align-self: ${$alignSelf};` : ''}
+        `;
+      }
+      if ($layout === 'flex-item') {
+        css += `
+          ${$alignSelf ? `align-self: ${$alignSelf};` : ''}
+          ${$flex ? `flex: ${$flex};` : ''}
+          ${$order ? `order: ${$order};` : ''}
+        `;
+      }
+      if ($layout === 'grid') {
+        css += `
+          display: grid;
+          ${$gap ? `gap: ${$gap};` : ''}
+          ${$columns ? `grid-template-columns: repeat(${$columns}, 1fr);` : ''}
+          ${$rows ? `grid-template-rows: repeat(${$rows}, 1fr);` : ''}
+          ${$autoRows ? `grid-auto-rows: ${$autoRows};` : ''}
+          ${$autoFlow ? `grid-auto-flow: ${$autoFlow};` : ''}
+          ${$grid ? `grid: ${$grid};` : ''}
+          ${$gridAutoColumns ? `grid-auto-columns: ${$gridAutoColumns};` : ''}
+          ${$gridAutoFlow ? `grid-auto-flow: ${$gridAutoFlow};` : ''}
+          ${$gridAutoRows ? `grid-auto-rows: ${$gridAutoRows};` : ''}
+          ${$gridTemplate ? `grid-template: ${$gridTemplate};` : ''}
+          ${$gridTemplateAreas ? `grid-template-areas: ${$gridTemplateAreas};` : ''}
+          ${$gridTemplateColumns ? `grid-template-columns: ${$gridTemplateColumns};` : ''}
+          ${$gridTemplateRows ? `grid-template-rows: ${$gridTemplateRows};` : ''}
+        `;
+      }
+      if ($layout === 'grid-item') {
+        css += `
+          ${$gridArea ? `grid-area: ${$gridArea};` : ''}
+          ${$gridColumn ? `grid-column: ${$gridColumn};` : ''}
+          ${$gridColumnEnd ? `grid-column-end: ${$gridColumnEnd};` : ''}
+          ${$gridColumnStart ? `grid-column-start: ${$gridColumnStart};` : ''}
+          ${$gridRow ? `grid-row: ${$gridRow};` : ''}
+          ${$gridRowEnd ? `grid-row-end: ${$gridRowEnd};` : ''}
+          ${$gridRowStart ? `grid-row-start: ${$gridRowStart};` : ''}
+        `;
+      }
+    }
+
+    $align && (css += `align: ${$align};`);
+    $color && (css += `color: ${$color};`);
+    $fontFamily && (css += `font-family: ${$fontFamily};`);
+    $fontSize && (css += `font-size: ${$fontSize};`);
+    $fontStyle && (css += `font-style: ${$fontStyle};`);
+    $fontWeight && (css += `font-weight: ${$fontWeight};`);
+    $letterSpacing && (css += `letter-spacing: ${$letterSpacing};`);
+    $lineHeight && (css += `line-height: ${$lineHeight};`);
+    $textDecoration && (css += `text-decoration: ${$textDecoration};`);
+    $textTransform && (css += `text-transform: ${$textTransform};`);
+    $whiteSpace && (css += `white-space: ${$whiteSpace};`);
+    $margin && (css += `margin: ${this.getMarginPadding($margin)};`);
+
+    return css;
+  }
+
+  /*
   constructor() {
     this.elements = {};
     this.palette = {};
@@ -85,7 +288,7 @@ export class ThemeGenerator {
       $autoRows,
       $autoFlow,
       $layout,
-    } = props as LayoutProps;
+    } = props as Props;
 
     if ($layout === 'flex' || $layout === 'grid') {
       if ($layout === 'flex') {
@@ -177,5 +380,5 @@ export class ThemeGenerator {
       gradients: this.gradients,
       lineHights: this.lineHights,
     };
-  }
+  } */
 }

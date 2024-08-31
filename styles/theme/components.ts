@@ -1,6 +1,4 @@
 /* eslint-disable no-unused-vars */
-
-// All elements
 export enum Components {
   A = 'A',
   ADDRESS = 'ADDRESS',

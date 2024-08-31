@@ -34,15 +34,15 @@ export function LoginForm() {
   const [state, action] = useFormState<D, FormData>(login, initialState);
 
   return (
-    <Form action={action} id="login-form" name="login-form">
-      <Card>
+    <Form $margin="xxl" action={action} id="login-form" name="login-form">
+      <Card $layout="flex" $direction="column" $alignItems="center">
         <CardHeader>
           <H3 content="Login" />
         </CardHeader>
-        <CardBody>
-          <InputGroup label="Email" name="email" type="email" />
-          <InputGroup label="Password" name="password" type="password" />
-          {state && state.error && <p>{state.error}</p>}
+        <CardBody $margin="lg" $layout="grid" $columns="">
+          <InputGroup $margin="sm" $layout="grid" label="Email" name="email" type="email" />
+          <InputGroup $margin="sm" $layout="grid" label="Password" name="password" type="password" />
+          {state?.error && <p>{state.error}</p>}
         </CardBody>
         <CardFooter>
           <Button title={'Login'} />
