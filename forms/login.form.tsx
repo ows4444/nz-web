@@ -39,9 +39,9 @@ export function LoginForm() {
         <CardHeader>
           <H3 content="Login" />
         </CardHeader>
-        <CardBody $margin="lg" $layout="grid" $columns="">
-          <InputGroup $margin="sm" $layout="grid" label="Email" name="email" type="email" />
-          <InputGroup $margin="sm" $layout="grid" label="Password" name="password" type="password" />
+        <CardBody $margin="md" $layout="grid" $columns="">
+          <InputGroup $margin="xs" $layout="grid" label="Email" name="email" type="email" />
+          <InputGroup $margin="xs" $layout="grid" label="Password" name="password" type="password" />
           {state?.error && <p>{state.error}</p>}
         </CardBody>
         <CardFooter>

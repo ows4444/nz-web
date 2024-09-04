@@ -19,7 +19,6 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
   vertical-align: baseline;
 }
@@ -47,7 +46,6 @@ table {
 }
 body {
     font-family: 'Arial', sans-serif;  
-    font-size: 16px;
     margin: 0;
     padding: 0; 
 } 

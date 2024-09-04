@@ -131,62 +131,6 @@ export enum LineHightEnum {
 }
 export type LineHight = keyof typeof LineHightEnum;
 
-export enum CSSProperties {
-  width = 'width',
-  maxWidth = 'maxWidth',
-  minWidth = 'minWidth',
-
-  height = 'height',
-  maxHeight = 'maxHeight',
-  minHeight = 'minHeight',
-
-  padding = 'padding',
-  paddingTop = 'paddingTop',
-  paddingRight = 'paddingRight',
-  paddingBottom = 'paddingBottom',
-  paddingLeft = 'paddingLeft',
-
-  margin = 'margin',
-  marginTop = 'marginTop',
-  marginRight = 'marginRight',
-  marginBottom = 'marginBottom',
-  marginLeft = 'marginLeft',
-
-  border = 'border',
-  borderWidth = 'borderWidth',
-  borderColor = 'borderColor',
-  borderStyle = 'borderStyle',
-  borderTop = 'borderTop',
-  borderRight = 'borderRight',
-  borderBottom = 'borderBottom',
-  borderLeft = 'borderLeft',
-  borderRadius = 'borderRadius',
-
-  backgroundColor = 'backgroundColor',
-  color = 'color',
-  fontSize = 'fontSize',
-  fontWeight = 'fontWeight',
-  textAlign = 'textAlign',
-  boxShadow = 'boxShadow',
-  display = 'display',
-  position = 'position',
-  top = 'top',
-  right = 'right',
-  bottom = 'bottom',
-  left = 'left',
-  zIndex = 'zIndex',
-  overflow = 'overflow',
-  lineHeight = 'lineHeight',
-  flex = 'flex',
-  flexDirection = 'flexDirection',
-  justifyContent = 'justifyContent',
-  alignItems = 'alignItems',
-  transform = 'transform',
-  transition = 'transition',
-  opacity = 'opacity',
-}
-export type CSSProperty = keyof typeof CSSProperties;
-
 type TypographyWithBox = {
   $align?: 'left' | 'center' | 'right' | 'justify';
   $color?: string;
@@ -195,15 +139,15 @@ type TypographyWithBox = {
   $fontStyle?: 'normal' | 'italic' | 'oblique';
   $fontWeight?: FontWeight;
   $letterSpacing?: string;
-  $lineHeight?: string;
+  $lineHeight?: LineHight;
   $textDecoration?: 'none' | 'underline' | 'overline' | 'line-through';
   $textTransform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase';
   $whiteSpace?: 'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap';
   $textOverflow?: 'clip' | 'ellipsis';
-  $padding?: string;
+  $padding?: MarginPadding;
   $margin?: MarginPadding;
-  $border?: string;
-  $borderRadius?: string;
+  $border?: borderSize;
+  $borderRadius?: BorderRadius;
   $boxShadow?: string;
   $width?: string;
   $height?: string;
@@ -302,7 +246,7 @@ type PartialRecord<K extends keyof any, T> = {
   [P in K]?: T;
 };
 export interface ThemePaletteInterface {
-  fontSizes: PartialRecord<FontWeight, number>;
+  fontWeights: PartialRecord<FontWeight, number>;
   fontFamilies: PartialRecord<FontFamily, string>;
   colors: PartialRecord<Color, string>;
   borderSizes: PartialRecord<borderSize, string>;
@@ -310,12 +254,12 @@ export interface ThemePaletteInterface {
   marginPadding: PartialRecord<MarginPadding, string>;
   zIndex: PartialRecord<ZIndex, 'auto' | number>;
   gradients: PartialRecord<Gradient, string>;
-  elements: PartialRecord<Component, PartialRecord<CSSProperties>>;
+  elements: PartialRecord<Component, PartialRecord<TypographyWithBox>>;
 }
 
 export interface ThemeInterface {
   palate: ThemePaletteInterface;
-  addFontSize(fontWeight: FontWeight, size: number): this;
+  addFontWeight(fontWeight: FontWeight, size: number): this;
   addFontFamily(fontFamily: FontFamily, value: string): this;
   addColor(color: Color, value: string): this;
   addBorderSize(borderSize: borderSize, value: string): this;
@@ -323,7 +267,7 @@ export interface ThemeInterface {
   addMarginPadding(marginPadding: MarginPadding, value: string): this;
   addZIndex(zIndex: ZIndex, value: 'auto' | number): this;
   addGradientStyles(gradient: Gradient, value: string): this;
-  addElementStyles(component: Component, css: PartialRecord<CSSProperties>): this;
+  addElementStyles(component: Component, css: PartialRecord<TypographyWithBox>): this;
 
   generateCSS(component: Component, props: any): string;
 }

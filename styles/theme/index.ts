@@ -2,8 +2,6 @@ import {
   BorderRadius,
   borderSize,
   Color,
-  CSSProperties,
-  CSSProperty,
   FontFamily,
   FontWeight,
   Gradient,
@@ -11,6 +9,7 @@ import {
   Props,
   ThemeInterface,
   ThemePaletteInterface,
+  TypographyWithBox,
   ZIndex,
 } from '@components/types';
 import { Component } from './components';
@@ -23,7 +22,7 @@ export class Theme implements ThemeInterface {
       borderSizes: {},
       colors: {},
       fontFamilies: {},
-      fontSizes: {},
+      fontWeights: {},
       marginPadding: {},
       zIndex: {},
       gradients: {},
@@ -31,8 +30,8 @@ export class Theme implements ThemeInterface {
     };
   }
 
-  addFontSize(fontWeight: FontWeight, size: number): this {
-    this.palate.fontSizes[fontWeight] = size;
+  addFontWeight(fontWeight: FontWeight, size: number): this {
+    this.palate.fontWeights[fontWeight] = size;
     return this;
   }
   addFontFamily(fontFamily: FontFamily, value: string): this {
@@ -63,7 +62,7 @@ export class Theme implements ThemeInterface {
     this.palate.gradients[gradient] = value;
     return this;
   }
-  addElementStyles(component: Component, css: Partial<Record<CSSProperties, string>>): this {
+  addElementStyles(component: Component, css: Partial<TypographyWithBox>): this {
     this.palate.elements[component] = css;
     return this;
   }
@@ -75,45 +74,88 @@ export class Theme implements ThemeInterface {
     return `${rem * 16}px`;
   }
   private getFontSize(fontWeight: FontWeight): number {
-    return this.palate.fontSizes[fontWeight] || 100;
+    return this.palate.fontWeights[fontWeight] ?? 100;
   }
   private getFontFamily(fontFamily: FontFamily): string {
-    return this.palate.fontFamilies[fontFamily] || 'Sans-serif, Arial';
+    return this.palate.fontFamilies[fontFamily] ?? 'Sans-serif, Arial';
   }
   private getColor(color: Color): string {
-    return this.palate.colors[color] || 'black';
+    return this.palate.colors[color] ?? 'black';
   }
   private getBorderSize(borderSize: borderSize): string {
-    return this.palate.borderSizes[borderSize] || '0';
+    const color = this.palate.colors.border;
+
+    return (this.palate.borderSizes[borderSize] ?? '0') + ' ' + color;
   }
   private getBorderRadius(borderRadius: BorderRadius): string {
-    return this.palate.borderRadius[borderRadius] || '0';
+    return this.palate.borderRadius[borderRadius] ?? '0';
   }
   private getMarginPadding(marginPadding: MarginPadding): string {
-    return this.palate.marginPadding[marginPadding] || '0';
+    return this.palate.marginPadding[marginPadding] ?? '0';
   }
   private getZIndex(zIndex: ZIndex): 'auto' | number {
-    return this.palate.zIndex[zIndex] || 'auto';
+    return this.palate.zIndex[zIndex] ?? 'auto';
   }
   private getGradientStyles(gradient: Gradient): string {
-    return this.palate.gradients[gradient] || '';
+    return this.palate.gradients[gradient] ?? '';
   }
-  private getElementStyles(component: Component): CSSProperties {
-    return this.palate.elements[component] as CSSProperties;
+  private getElementStyles(component: Component): TypographyWithBox {
+    return this.palate.elements[component] as TypographyWithBox;
   }
-  private getCSSProperty(property: CSSProperty, value: string): string {
-    return `${property.replace(/([A-Z])/g, '-$1').toLowerCase()}: ${value};`;
-  }
+
   generateCSS(component: Component, props: any): string {
     const element = this.getElementStyles(component);
 
     let css = '';
     if (element) {
-      css = Object.keys(element).reduce(
-        (acc: string, cssProperty: any) =>
-          `${acc}${this.getCSSProperty(cssProperty as CSSProperty, element[cssProperty])}`,
-        css,
-      );
+      const {
+        $align,
+        $color,
+        $fontFamily,
+        $fontSize,
+        $fontStyle,
+        $fontWeight,
+        $letterSpacing,
+        $lineHeight,
+        $textDecoration,
+        $textTransform,
+        $whiteSpace,
+        $margin,
+        $border,
+        /**
+         *         // $textOverflow,
+        // $padding,
+        // $borderRadius,
+        // $boxShadow,
+        // $width,
+        // $height,
+        // $minWidth,
+        // $minHeight,
+        // $maxWidth,
+        // $maxHeight,
+        // $overflow,
+        // $position,
+        // $top,
+        // $right,
+        // $bottom,
+        // $left,
+        // $zIndex,
+         */
+      } = element;
+
+      $align && (css += `align: ${$align};`);
+      $color && (css += `color: ${$color};`);
+      $fontFamily && (css += `font-family: ${$fontFamily};`);
+      $fontSize && (css += `font-size: ${$fontSize};`);
+      $fontStyle && (css += `font-style: ${$fontStyle};`);
+      $fontWeight && (css += `font-weight: ${$fontWeight};`);
+      $letterSpacing && (css += `letter-spacing: ${$letterSpacing};`);
+      $lineHeight && (css += `line-height: ${$lineHeight};`);
+      $textDecoration && (css += `text-decoration: ${$textDecoration};`);
+      $textTransform && (css += `text-transform: ${$textTransform};`);
+      $whiteSpace && (css += `white-space: ${$whiteSpace};`);
+      $margin && (css += `margin: ${this.getMarginPadding($margin)};`);
+      $border && (css += `border: ${this.getBorderSize($border)};`);
     }
     const {
       $whiteSpace,
@@ -232,153 +274,4 @@ export class Theme implements ThemeInterface {
 
     return css;
   }
-
-  /*
-  constructor() {
-    this.elements = {};
-    this.palette = {};
-    this.mediaSizes = {};
-    this.fontSizes = {};
-    this.radiusSizes = {};
-    this.shadowSizes = {};
-    this.gradients = {};
-    this.lineHights = {};
-    this.transition = {};
-  }
-
-  addElementStyle(element: Component, cssProperty: CSSProperty, value: string): ThemeGenerator {
-    if (!this.elements[element]) {
-      this.elements[element] = {};
-    }
-    this.elements[element][cssProperty] = value;
-    return this;
-  }
-
-  generateCSS(element: Component, props: any): string {
-    const CurrentElement = this.elements[element] as Record<string, any>;
-
-    let css = '';
-
-    if (CurrentElement) {
-      css = Object.keys(CurrentElement).reduce(
-        (acc: string, cssProperty: string) =>
-          `${acc}${TransformName(cssProperty as CSSProperty)}: ${CurrentElement[cssProperty]};`,
-        css,
-      );
-    }
-    const {
-      $whiteSpace,
-      $align,
-      $color,
-      $fontFamily,
-      $fontSize,
-      $fontStyle,
-      $fontWeight,
-      $gap,
-      $letterSpacing,
-      $lineHeight,
-      $textDecoration,
-      $textTransform,
-      $direction,
-      $justifyContent,
-      $alignItems,
-      $wrap,
-      $columns,
-      $rows,
-      $autoRows,
-      $autoFlow,
-      $layout,
-    } = props as Props;
-
-    if ($layout === 'flex' || $layout === 'grid') {
-      if ($layout === 'flex') {
-        css += `
-          display: flex;
-          gap: ${$gap || '0'};
-          flex-direction: ${$direction || 'row'};
-          justify-content: ${$justifyContent || 'center'};
-          align-items: ${$alignItems || 'center'};
-          flex-wrap: ${$wrap || 'nowrap'};
-        `;
-      }
-      if ($layout === 'grid') {
-        css += `
-          display: grid;
-          gap: ${$gap || '0'};
-          grid-template-columns: repeat(${$columns || 1}, 1fr);
-          grid-template-rows: repeat(${$rows || 1}, 1fr);
-          grid-auto-rows: ${$autoRows || 'auto'};
-          grid-auto-flow: ${$autoFlow || 'row'};
-        `;
-      }
-    }
-
-    $align && (css += `align: ${$align};`);
-    $color && (css += `color: ${$color};`);
-    $fontFamily && (css += `font-family: ${$fontFamily};`);
-    $fontSize && (css += `font-size: ${$fontSize};`);
-    $fontStyle && (css += `font-style: ${$fontStyle};`);
-    $fontWeight && (css += `font-weight: ${$fontWeight};`);
-    $letterSpacing && (css += `letter-spacing: ${$letterSpacing};`);
-    $lineHeight && (css += `line-height: ${$lineHeight};`);
-    $textDecoration && (css += `text-decoration: ${$textDecoration};`);
-    $textTransform && (css += `text-transform: ${$textTransform};`);
-    $whiteSpace && (css += `white-space: ${$whiteSpace};`);
-
-    return css;
-  }
-
-  addTransitionSize(transitionSize: TransitionSize, value: string): this {
-    this.transition[transitionSize] = value;
-    return this;
-  }
-
-  addLineHight(lineHight: LineHight, value: string): this {
-    this.lineHights[lineHight] = value;
-    return this;
-  }
-
-  addGradientStyles(gradient: Gradient, value: string): this {
-    this.gradients[gradient] = value;
-    return this;
-  }
-
-  addPaletteStyles(variant: Variant, color: Color): this {
-    this.palette[variant] = color;
-    return this;
-  }
-
-  addMediaSize(size: Size, value: string): this {
-    this.mediaSizes[size] = value;
-    return this;
-  }
-
-  addRadiusSize(radiusSize: RadiusSize, value: string): this {
-    this.radiusSizes[radiusSize] = value;
-    return this;
-  }
-
-  addFontWeight(fontWeight: FontWeight, value: string): this {
-    this.fontSizes[fontWeight] = value;
-    return this;
-  }
-
-  addShadowSize(shadowSize: ShadowSize, value: string): this {
-    this.shadowSizes[shadowSize] = value;
-    return this;
-  }
-  public theme(): Theme {
-    return {
-      generateCSS: (element, props) => this.generateCSS(element, props),
-      elements: this.elements,
-      transition: this.transition,
-      palette: this.palette,
-      mediaSizes: this.mediaSizes,
-      fontSizes: this.fontSizes,
-      radiusSizes: this.radiusSizes,
-      shadowSizes: this.shadowSizes,
-      gradients: this.gradients,
-      lineHights: this.lineHights,
-    };
-  } */
 }
