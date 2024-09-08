@@ -84,7 +84,6 @@ export class Theme implements ThemeInterface {
   }
   private getBorderSize(borderSize: borderSize): string {
     const color = this.palate.colors.border;
-
     return (this.palate.borderSizes[borderSize] ?? '0') + ' ' + color;
   }
   private getBorderRadius(borderRadius: BorderRadius): string {
@@ -121,6 +120,7 @@ export class Theme implements ThemeInterface {
         $textTransform,
         $whiteSpace,
         $margin,
+        $padding,
         $border,
         /**
          *         // $textOverflow,
@@ -155,6 +155,7 @@ export class Theme implements ThemeInterface {
       $textTransform && (css += `text-transform: ${$textTransform};`);
       $whiteSpace && (css += `white-space: ${$whiteSpace};`);
       $margin && (css += `margin: ${this.getMarginPadding($margin)};`);
+      $padding && (css += `padding: ${this.getMarginPadding($padding)};`);
       $border && (css += `border: ${this.getBorderSize($border)};`);
     }
     const {
@@ -203,6 +204,9 @@ export class Theme implements ThemeInterface {
       $gridRowEnd,
       $gridRowStart,
       $margin,
+      $padding,
+
+      $border,
     } = props as Props;
 
     if ($layout === 'flex' || $layout === 'flex-item' || $layout === 'grid' || $layout === 'grid-item') {
@@ -271,6 +275,8 @@ export class Theme implements ThemeInterface {
     $textTransform && (css += `text-transform: ${$textTransform};`);
     $whiteSpace && (css += `white-space: ${$whiteSpace};`);
     $margin && (css += `margin: ${this.getMarginPadding($margin)};`);
+    $padding && (css += `padding: ${this.getMarginPadding($padding)};`);
+    $border && (css += `border: ${this.getBorderSize($border)};`);
 
     return css;
   }

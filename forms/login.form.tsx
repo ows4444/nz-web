@@ -35,7 +35,7 @@ export function LoginForm() {
 
   return (
     <Form $margin="xxl" action={action} id="login-form" name="login-form">
-      <Card $layout="flex" $direction="column" $alignItems="center">
+      <Card $layout="flex" $direction="column" $alignItems="center" $border="thin" $margin="sm" $padding="sm">
         <CardHeader>
           <H3 content="Login" />
         </CardHeader>
