@@ -20,10 +20,12 @@ export async function login(_prevState: {}, formData: FormData) {
     setAuthCookie(res);
     isGuest = false;
     return { message: 'Login Successful' };
-  } catch (error) {
+  } catch (error: any) {
     isGuest = true;
-    console.error('Login error:', error);
-    return { message: 'Login Error' };
+    return {
+      message: 'Login Error',
+      error: error.message === 'fetch failed' ? 'Network error' : error.message,
+    };
   } finally {
     if (!isGuest) redirect('/');
   }
@@ -41,7 +43,7 @@ const setAuthCookie = (response: Response) => {
       value: cookieValue,
       secure: secure,
       httpOnly: httpOnly,
-      // expires: new Date(jwtDecode(token).exp! * 1000),
+      // expires: new Date(jwtDecode(token).exp! * 1000), // Uncomment if you need token expiration
     });
   }
 };
