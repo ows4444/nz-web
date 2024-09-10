@@ -42,7 +42,7 @@ export function LoginForm() {
         <CardBody $margin="md" $layout="grid" $columns="">
           <InputGroup $margin="xs" $layout="grid" label="Email" name="email" type="email" />
           <InputGroup $margin="xs" $layout="grid" label="Password" name="password" type="password" />
-          {state?.error && <p>{state.error}</p>}
+          {state?.message && <p>{state.message}</p>}
         </CardBody>
         <CardFooter>
           <Button title={'Login'} />
