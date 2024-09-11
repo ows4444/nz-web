@@ -21,6 +21,17 @@ export const lightTheme = new Theme()
   .addMarginPadding('xs', '0.25rem')
   .addMarginPadding('xxs', '0.0625rem')
 
+  .addFontSize('xxxl', 64)
+  .addFontSize('xxl', 48)
+  .addFontSize('xl', 36)
+  .addFontSize('lg', 24)
+  .addFontSize('md', 16)
+  .addFontSize('sm', 14)
+  .addFontSize('xs', 12)
+  .addFontSize('xxs', 10)
+  .addFontSize('resBase', 16)
+  .addFontSize('resScale', 1)
+
   .addFontWeight('thin', 100)
   .addFontWeight('extraLight', 200)
   .addFontWeight('light', 300)
@@ -68,4 +79,74 @@ export const lightTheme = new Theme()
 
   .addElementStyles('BUTTON', {
     $border: 'thin',
+  })
+
+  .addElementStyles('H1', {
+    $fontFamily: 'primary',
+    $fontWeight: 'bold',
+    $fontSize: 'xxxl',
+    $marginBottom: 'lg',
+  })
+
+  .addElementStyles('H2', {
+    $fontFamily: 'primary',
+    $fontWeight: 'bold',
+    $fontSize: 'xxl',
+    $marginBottom: 'lg',
+  })
+
+  .addElementStyles('H3', {
+    $fontFamily: 'primary',
+    $fontWeight: 'bold',
+    $fontSize: 'xl',
+    $marginBottom: 'lg',
+  })
+
+  .addElementStyles('H4', {
+    $fontFamily: 'primary',
+    $fontWeight: 'bold',
+    $fontSize: 'lg',
+    $marginBottom: 'lg',
+  })
+
+  .addElementStyles('H5', {
+    $fontFamily: 'primary',
+    $fontWeight: 'bold',
+    $fontSize: 'md',
+    $marginBottom: 'lg',
+  })
+
+  .addElementStyles('H6', {
+    $fontFamily: 'primary',
+    $fontWeight: 'bold',
+    $fontSize: 'sm',
+    $marginBottom: 'lg',
+  })
+
+  .addElementStyles('P', {
+    $fontFamily: 'default',
+    $fontWeight: 'normal',
+    $fontSize: 'md',
+    $marginBottom: 'md',
+  })
+
+  .addElementStyles('A', {
+    $fontFamily: 'default',
+    $fontWeight: 'normal',
+    $fontSize: 'md',
+    $marginBottom: 'md',
+  })
+
+  .addElementStyles('SPAN', {
+    $fontFamily: 'default',
+    $fontWeight: 'normal',
+    $fontSize: 'md',
+    $marginBottom: 'md',
+  })
+
+  .addElementStyles('DIV', {
+    $fontFamily: 'default',
+    $fontWeight: 'normal',
+    $fontSize: 'md',
+    $marginBottom: 'md',
   });

@@ -3,6 +3,7 @@ import {
   borderSize,
   Color,
   FontFamily,
+  FontSize,
   FontWeight,
   Gradient,
   MarginPadding,
@@ -22,12 +23,17 @@ export class Theme implements ThemeInterface {
       borderSizes: {},
       colors: {},
       fontFamilies: {},
+      fontSizes: {},
       fontWeights: {},
       marginPadding: {},
       zIndex: {},
       gradients: {},
       elements: {},
     };
+  }
+  addFontSize(fontSize: FontSize, value: number): this {
+    this.palate.fontSizes[fontSize] = value;
+    return this;
   }
 
   addFontWeight(fontWeight: FontWeight, size: number): this {
@@ -73,8 +79,11 @@ export class Theme implements ThemeInterface {
   private remToPx(rem: number): string {
     return `${rem * 16}px`;
   }
-  private getFontSize(fontWeight: FontWeight): number {
+  private getFontWeight(fontWeight: FontWeight): number {
     return this.palate.fontWeights[fontWeight] ?? 100;
+  }
+  private getFontSize(fontSize: FontSize): number {
+    return this.palate.fontSizes[fontSize] ?? 16;
   }
   private getFontFamily(fontFamily: FontFamily): string {
     return this.palate.fontFamilies[fontFamily] ?? 'Sans-serif, Arial';
@@ -105,7 +114,7 @@ export class Theme implements ThemeInterface {
   generateCSS(component: Component, props: any): string {
     const element = this.getElementStyles(component);
 
-    let css = '';
+    const css: Record<string, string> = {};
     if (element) {
       const {
         $align,
@@ -122,6 +131,18 @@ export class Theme implements ThemeInterface {
         $margin,
         $padding,
         $border,
+        $borderTop,
+        $borderRight,
+        $borderBottom,
+        $borderLeft,
+        $paddingTop,
+        $paddingRight,
+        $paddingBottom,
+        $paddingLeft,
+        $marginTop,
+        $marginRight,
+        $marginBottom,
+        $marginLeft,
         /**
          *         // $textOverflow,
         // $padding,
@@ -143,20 +164,44 @@ export class Theme implements ThemeInterface {
          */
       } = element;
 
-      $align && (css += `align: ${$align};`);
-      $color && (css += `color: ${$color};`);
-      $fontFamily && (css += `font-family: ${$fontFamily};`);
-      $fontSize && (css += `font-size: ${$fontSize};`);
-      $fontStyle && (css += `font-style: ${$fontStyle};`);
-      $fontWeight && (css += `font-weight: ${$fontWeight};`);
-      $letterSpacing && (css += `letter-spacing: ${$letterSpacing};`);
-      $lineHeight && (css += `line-height: ${$lineHeight};`);
-      $textDecoration && (css += `text-decoration: ${$textDecoration};`);
-      $textTransform && (css += `text-transform: ${$textTransform};`);
-      $whiteSpace && (css += `white-space: ${$whiteSpace};`);
-      $margin && (css += `margin: ${this.getMarginPadding($margin)};`);
-      $padding && (css += `padding: ${this.getMarginPadding($padding)};`);
-      $border && (css += `border: ${this.getBorderSize($border)};`);
+      $align && (css['align'] = $align);
+      $color && (css['color'] = $color);
+      $fontFamily && (css['font-family'] = this.getFontFamily($fontFamily));
+      $fontSize && (css['font-size'] = this.pxToRem(this.getFontSize($fontSize)));
+      $fontStyle && (css['font-style'] = $fontStyle);
+      $fontWeight && (css['font-weight'] = `${this.getFontWeight($fontWeight)}`);
+      $letterSpacing && (css['letter-spacing'] = $letterSpacing);
+      $lineHeight && (css['line-height'] = $lineHeight);
+      $textDecoration && (css['text-decoration'] = $textDecoration);
+      $textTransform && (css['text-transform'] = $textTransform);
+      $whiteSpace && (css['white-space'] = $whiteSpace);
+
+      if ($margin) {
+        css['margin'] = this.getMarginPadding($margin);
+      } else {
+        $marginTop && (css['margin-top'] = this.getMarginPadding($marginTop));
+        $marginRight && (css['margin-right'] = this.getMarginPadding($marginRight));
+        $marginBottom && (css['margin-bottom'] = this.getMarginPadding($marginBottom));
+        $marginLeft && (css['margin-left'] = this.getMarginPadding($marginLeft));
+      }
+
+      if ($padding) {
+        css['padding'] = this.getMarginPadding($padding);
+      } else {
+        $paddingTop && (css['padding-top'] = this.getMarginPadding($paddingTop));
+        $paddingRight && (css['padding-right'] = this.getMarginPadding($paddingRight));
+        $paddingBottom && (css['padding-bottom'] = this.getMarginPadding($paddingBottom));
+        $paddingLeft && (css['padding-left'] = this.getMarginPadding($paddingLeft));
+      }
+
+      if ($border) {
+        css['border'] = this.getBorderSize($border);
+      } else {
+        $borderTop && (css['border-top'] = this.getBorderSize($borderTop));
+        $borderRight && (css['border-right'] = this.getBorderSize($borderRight));
+        $borderBottom && (css['border-bottom'] = this.getBorderSize($borderBottom));
+        $borderLeft && (css['border-left'] = this.getBorderSize($borderLeft));
+      }
     }
     const {
       $whiteSpace,
@@ -203,81 +248,114 @@ export class Theme implements ThemeInterface {
       $gridRow,
       $gridRowEnd,
       $gridRowStart,
-      $margin,
+
       $padding,
+      $paddingTop,
+      $paddingRight,
+      $paddingBottom,
+      $paddingLeft,
+
+      $margin,
+      $marginTop,
+      $marginRight,
+      $marginBottom,
+      $marginLeft,
 
       $border,
+      $borderTop,
+      $borderRight,
+      $borderBottom,
+      $borderLeft,
     } = props as Props;
 
     if ($layout === 'flex' || $layout === 'flex-item' || $layout === 'grid' || $layout === 'grid-item') {
       if ($layout === 'flex') {
-        css += `
-          display: flex;
-          ${$gap ? `gap: ${$gap};` : ''}
-          ${$direction ? `flex-direction: ${$direction};` : ''}
-          ${$justifyContent ? `justify-content: ${$justifyContent};` : ''}
-          ${$alignItems ? `align-items: ${$alignItems};` : ''}
-          ${$wrap ? `flex-wrap: ${$wrap};` : ''}
-          ${$order ? `order: ${$order};` : ''}
-          ${$flexGrow ? `flex-grow: ${$flexGrow};` : ''}
-          ${$flexShrink ? `flex-shrink: ${$flexShrink};` : ''}
-          ${$flexBasis ? `flex-basis: ${$flexBasis};` : ''}
-          ${$alignSelf ? `align-self: ${$alignSelf};` : ''}
-        `;
+        css['display'] = 'flex';
+
+        $gap && (css['gap'] = $gap);
+        $direction && (css['flex-direction'] = $direction);
+        $justifyContent && (css['justify-content'] = $justifyContent);
+        $alignItems && (css['align-items'] = $alignItems);
+        $wrap && (css['flex-wrap'] = $wrap);
+        $order && (css['order'] = $order);
+        $flexGrow && (css['flex-grow'] = $flexGrow);
+        $flexShrink && (css['flex-shrink'] = $flexShrink);
+        $flexBasis && (css['flex-basis'] = $flexBasis);
+        $alignSelf && (css['align-self'] = $alignSelf);
       }
       if ($layout === 'flex-item') {
-        css += `
-          ${$alignSelf ? `align-self: ${$alignSelf};` : ''}
-          ${$flex ? `flex: ${$flex};` : ''}
-          ${$order ? `order: ${$order};` : ''}
-        `;
+        $alignSelf && (css['align-self'] = $alignSelf);
+        $flex && (css['flex'] = $flex);
+        $order && (css['order'] = $order);
       }
       if ($layout === 'grid') {
-        css += `
-          display: grid;
-          ${$gap ? `gap: ${$gap};` : ''}
-          ${$columns ? `grid-template-columns: repeat(${$columns}, 1fr);` : ''}
-          ${$rows ? `grid-template-rows: repeat(${$rows}, 1fr);` : ''}
-          ${$autoRows ? `grid-auto-rows: ${$autoRows};` : ''}
-          ${$autoFlow ? `grid-auto-flow: ${$autoFlow};` : ''}
-          ${$grid ? `grid: ${$grid};` : ''}
-          ${$gridAutoColumns ? `grid-auto-columns: ${$gridAutoColumns};` : ''}
-          ${$gridAutoFlow ? `grid-auto-flow: ${$gridAutoFlow};` : ''}
-          ${$gridAutoRows ? `grid-auto-rows: ${$gridAutoRows};` : ''}
-          ${$gridTemplate ? `grid-template: ${$gridTemplate};` : ''}
-          ${$gridTemplateAreas ? `grid-template-areas: ${$gridTemplateAreas};` : ''}
-          ${$gridTemplateColumns ? `grid-template-columns: ${$gridTemplateColumns};` : ''}
-          ${$gridTemplateRows ? `grid-template-rows: ${$gridTemplateRows};` : ''}
-        `;
+        css['display'] = 'grid';
+        $gap && (css['gap'] = $gap);
+        $columns && (css['grid-template-columns'] = `repeat(${$columns}, 1fr)`);
+        $rows && (css['grid-template-rows'] = `repeat(${$rows}, 1fr)`);
+        $autoRows && (css['grid-auto-rows'] = $autoRows);
+        $autoFlow && (css['grid-auto-flow'] = $autoFlow);
+        $grid && (css['grid'] = $grid);
+        $gridAutoColumns && (css['grid-auto-columns'] = $gridAutoColumns);
+        $gridAutoFlow && (css['grid-auto-flow'] = $gridAutoFlow);
+        $gridAutoRows && (css['grid-auto-rows'] = $gridAutoRows);
+        $gridTemplate && (css['grid-template'] = $gridTemplate);
+        $gridTemplateAreas && (css['grid-template-areas'] = $gridTemplateAreas);
+        $gridTemplateColumns && (css['grid-template-columns'] = $gridTemplateColumns);
+        $gridTemplateRows && (css['grid-template-rows'] = $gridTemplateRows);
       }
       if ($layout === 'grid-item') {
-        css += `
-          ${$gridArea ? `grid-area: ${$gridArea};` : ''}
-          ${$gridColumn ? `grid-column: ${$gridColumn};` : ''}
-          ${$gridColumnEnd ? `grid-column-end: ${$gridColumnEnd};` : ''}
-          ${$gridColumnStart ? `grid-column-start: ${$gridColumnStart};` : ''}
-          ${$gridRow ? `grid-row: ${$gridRow};` : ''}
-          ${$gridRowEnd ? `grid-row-end: ${$gridRowEnd};` : ''}
-          ${$gridRowStart ? `grid-row-start: ${$gridRowStart};` : ''}
-        `;
+        $gridArea && (css['grid-area'] = $gridArea);
+        $gridColumn && (css['grid-column'] = $gridColumn);
+        $gridColumnEnd && (css['grid-column-end'] = $gridColumnEnd);
+        $gridColumnStart && (css['grid-column-start'] = $gridColumnStart);
+        $gridRow && (css['grid-row'] = $gridRow);
+        $gridRowEnd && (css['grid-row-end'] = $gridRowEnd);
+        $gridRowStart && (css['grid-row-start'] = $gridRowStart);
       }
     }
 
-    $align && (css += `align: ${$align};`);
-    $color && (css += `color: ${$color};`);
-    $fontFamily && (css += `font-family: ${$fontFamily};`);
-    $fontSize && (css += `font-size: ${$fontSize};`);
-    $fontStyle && (css += `font-style: ${$fontStyle};`);
-    $fontWeight && (css += `font-weight: ${$fontWeight};`);
-    $letterSpacing && (css += `letter-spacing: ${$letterSpacing};`);
-    $lineHeight && (css += `line-height: ${$lineHeight};`);
-    $textDecoration && (css += `text-decoration: ${$textDecoration};`);
-    $textTransform && (css += `text-transform: ${$textTransform};`);
-    $whiteSpace && (css += `white-space: ${$whiteSpace};`);
-    $margin && (css += `margin: ${this.getMarginPadding($margin)};`);
-    $padding && (css += `padding: ${this.getMarginPadding($padding)};`);
-    $border && (css += `border: ${this.getBorderSize($border)};`);
+    $align && (css['align'] = $align);
+    $color && (css['color'] = $color);
+    $fontFamily && (css['font-family'] = this.getFontFamily($fontFamily));
+    $fontSize && (css['font-size'] = this.pxToRem(this.getFontSize($fontSize)));
+    $fontStyle && (css['font-style'] = $fontStyle);
+    $fontWeight && (css['font-weight'] = `${this.getFontWeight($fontWeight)}`);
+    $letterSpacing && (css['letter-spacing'] = $letterSpacing);
+    $lineHeight && (css['line-height'] = $lineHeight);
+    $textDecoration && (css['text-decoration'] = $textDecoration);
+    $textTransform && (css['text-transform'] = $textTransform);
+    $whiteSpace && (css['white-space'] = $whiteSpace);
 
-    return css;
+    if ($margin) {
+      css['margin'] = this.getMarginPadding($margin);
+    } else {
+      $marginTop && (css['margin-top'] = this.getMarginPadding($marginTop));
+      $marginRight && (css['margin-right'] = this.getMarginPadding($marginRight));
+      $marginBottom && (css['margin-bottom'] = this.getMarginPadding($marginBottom));
+      $marginLeft && (css['margin-left'] = this.getMarginPadding($marginLeft));
+    }
+
+    if ($padding) {
+      css['padding'] = this.getMarginPadding($padding);
+    } else {
+      $paddingTop && (css['padding-top'] = this.getMarginPadding($paddingTop));
+      $paddingRight && (css['padding-right'] = this.getMarginPadding($paddingRight));
+      $paddingBottom && (css['padding-bottom'] = this.getMarginPadding($paddingBottom));
+      $paddingLeft && (css['padding-left'] = this.getMarginPadding($paddingLeft));
+    }
+
+    if ($border) {
+      css['border'] = this.getBorderSize($border);
+    } else {
+      $borderTop && (css['border-top'] = this.getBorderSize($borderTop));
+      $borderRight && (css['border-right'] = this.getBorderSize($borderRight));
+      $borderBottom && (css['border-bottom'] = this.getBorderSize($borderBottom));
+      $borderLeft && (css['border-left'] = this.getBorderSize($borderLeft));
+    }
+
+    return Object.entries(css).reduce((acc, [key, value]) => {
+      return `${acc}${key}: ${value};\n`;
+    }, '');
   }
 }

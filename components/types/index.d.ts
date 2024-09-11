@@ -122,6 +122,20 @@ export enum FontWeightEnum {
 }
 export type FontWeight = keyof typeof FontWeightEnum;
 
+export enum FontSizeEnum {
+  xxs = 'xxs',
+  xs = 'xs',
+  sm = 'sm',
+  md = 'md',
+  lg = 'lg',
+  xl = 'xl',
+  xxl = 'xxl',
+  xxxl = 'xxxl',
+  resBase = 'resBase',
+  resScale = 'resScale',
+}
+export type FontSize = keyof typeof FontSizeEnum;
+
 export enum LineHightEnum {
   tight = 'tight',
   normal = 'normal',
@@ -134,8 +148,8 @@ export type LineHight = keyof typeof LineHightEnum;
 type TypographyWithBox = {
   $align?: 'left' | 'center' | 'right' | 'justify';
   $color?: string;
-  $fontFamily?: string;
-  $fontSize?: string;
+  $fontFamily?: FontFamily;
+  $fontSize?: FontSize;
   $fontStyle?: 'normal' | 'italic' | 'oblique';
   $fontWeight?: FontWeight;
   $letterSpacing?: string;
@@ -145,8 +159,20 @@ type TypographyWithBox = {
   $whiteSpace?: 'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap';
   $textOverflow?: 'clip' | 'ellipsis';
   $padding?: MarginPadding;
+  $paddingTop?: MarginPadding;
+  $paddingRight?: MarginPadding;
+  $paddingBottom?: MarginPadding;
+  $paddingLeft?: MarginPadding;
   $margin?: MarginPadding;
+  $marginTop?: MarginPadding;
+  $marginRight?: MarginPadding;
+  $marginBottom?: MarginPadding;
+  $marginLeft?: MarginPadding;
   $border?: borderSize;
+  $borderTop?: borderSize;
+  $borderRight?: borderSize;
+  $borderBottom?: borderSize;
+  $borderLeft?: borderSize;
   $borderRadius?: BorderRadius;
   $boxShadow?: string;
   $width?: string;
@@ -248,6 +274,7 @@ type PartialRecord<K extends keyof any, T> = {
 export interface ThemePaletteInterface {
   fontWeights: PartialRecord<FontWeight, number>;
   fontFamilies: PartialRecord<FontFamily, string>;
+  fontSizes: PartialRecord<FontSize, number>;
   colors: PartialRecord<Color, string>;
   borderSizes: PartialRecord<borderSize, string>;
   borderRadius: PartialRecord<BorderRadius, string>;
@@ -261,6 +288,7 @@ export interface ThemeInterface {
   palate: ThemePaletteInterface;
   addFontWeight(fontWeight: FontWeight, size: number): this;
   addFontFamily(fontFamily: FontFamily, value: string): this;
+  addFontSize(fontSize: FontSize, value: number): this;
   addColor(color: Color, value: string): this;
   addBorderSize(borderSize: borderSize, value: string): this;
   addBorderRadius(borderRadius: BorderRadius, value: string): this;

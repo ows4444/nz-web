@@ -40,8 +40,8 @@ export function LoginForm() {
           <H3 content="Login" />
         </CardHeader>
         <CardBody $margin="md" $layout="grid" $columns="">
-          <InputGroup $margin="xs" $layout="grid" label="Email" name="email" type="email" />
-          <InputGroup $margin="xs" $layout="grid" label="Password" name="password" type="password" />
+          <InputGroup $margin="xs" $layout="grid" label="Email" name="email" type="email" autoComplete="on" />
+          <InputGroup $margin="xs" $layout="grid" label="Password" name="password" type="password" autoComplete="on" />
           {state?.message && <p>{state.message}</p>}
         </CardBody>
         <CardFooter>

@@ -6,14 +6,12 @@ import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 import { BasicLayout } from '@components/types';
 
-type LiProps = BasicLayout<ComponentProps<'li'>> & {
-  content: string;
-};
+type LiProps = BasicLayout<ComponentProps<'li'>>;
 
 const LiStyled = styled.li<LiProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.LI, props)};
 `;
 
-const Li: FC<LiProps> = (props) => <LiStyled {...props}>{props.content}</LiStyled>;
+const Li: FC<LiProps> = (props) => <LiStyled {...props}>{props.children}</LiStyled>;
 
 export default Li;
