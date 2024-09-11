@@ -143,13 +143,18 @@ export class Theme implements ThemeInterface {
         $marginRight,
         $marginBottom,
         $marginLeft,
+
+        $backgroundColor,
+        $listStyle,
+
+        $width,
+        $height,
         /**
          *         // $textOverflow,
         // $padding,
         // $borderRadius,
         // $boxShadow,
-        // $width,
-        // $height,
+
         // $minWidth,
         // $minHeight,
         // $maxWidth,
@@ -175,6 +180,16 @@ export class Theme implements ThemeInterface {
       $textDecoration && (css['text-decoration'] = $textDecoration);
       $textTransform && (css['text-transform'] = $textTransform);
       $whiteSpace && (css['white-space'] = $whiteSpace);
+      $backgroundColor && (css['background-color'] = this.getColor($backgroundColor));
+      $color && (css['color'] = this.getColor($color));
+      $listStyle && (css['list-style'] = $listStyle);
+
+      if ($width) {
+        css['width'] = $width;
+      }
+      if ($height) {
+        css['height'] = $height;
+      }
 
       if ($margin) {
         css['margin'] = this.getMarginPadding($margin);
@@ -207,6 +222,7 @@ export class Theme implements ThemeInterface {
       $whiteSpace,
       $align,
       $color,
+      $backgroundColor,
       $fontFamily,
       $fontSize,
       $fontStyle,
@@ -225,6 +241,7 @@ export class Theme implements ThemeInterface {
       $autoRows,
       $autoFlow,
       $layout,
+      $layoutItem,
       $order,
       $flex,
       $flexGrow,
@@ -261,14 +278,32 @@ export class Theme implements ThemeInterface {
       $marginBottom,
       $marginLeft,
 
+      $listStyle,
+
       $border,
       $borderTop,
       $borderRight,
       $borderBottom,
       $borderLeft,
+      $width,
+      $height,
+      $float,
+      $clear,
     } = props as Props;
 
-    if ($layout === 'flex' || $layout === 'flex-item' || $layout === 'grid' || $layout === 'grid-item') {
+    if (
+      $layout === 'flex' ||
+      $layoutItem === 'flex-item' ||
+      $layout === 'grid' ||
+      $layoutItem === 'grid-item' ||
+      $layout === 'block'
+    ) {
+      if ($layout === 'block') {
+        css['display'] = 'block';
+        $float && (css['float'] = $float);
+        $clear && (css['clear'] = $clear);
+      }
+
       if ($layout === 'flex') {
         css['display'] = 'flex';
 
@@ -283,7 +318,7 @@ export class Theme implements ThemeInterface {
         $flexBasis && (css['flex-basis'] = $flexBasis);
         $alignSelf && (css['align-self'] = $alignSelf);
       }
-      if ($layout === 'flex-item') {
+      if ($layoutItem === 'flex-item') {
         $alignSelf && (css['align-self'] = $alignSelf);
         $flex && (css['flex'] = $flex);
         $order && (css['order'] = $order);
@@ -300,11 +335,16 @@ export class Theme implements ThemeInterface {
         $gridAutoFlow && (css['grid-auto-flow'] = $gridAutoFlow);
         $gridAutoRows && (css['grid-auto-rows'] = $gridAutoRows);
         $gridTemplate && (css['grid-template'] = $gridTemplate);
-        $gridTemplateAreas && (css['grid-template-areas'] = $gridTemplateAreas);
+
+        $gridTemplateAreas &&
+          Array.isArray($gridTemplateAreas) &&
+          (css['grid-template-areas'] = Array.from($gridTemplateAreas)
+            .map((x) => `"${x}"`)
+            .join(' '));
         $gridTemplateColumns && (css['grid-template-columns'] = $gridTemplateColumns);
         $gridTemplateRows && (css['grid-template-rows'] = $gridTemplateRows);
       }
-      if ($layout === 'grid-item') {
+      if ($layoutItem === 'grid-item') {
         $gridArea && (css['grid-area'] = $gridArea);
         $gridColumn && (css['grid-column'] = $gridColumn);
         $gridColumnEnd && (css['grid-column-end'] = $gridColumnEnd);
@@ -314,9 +354,17 @@ export class Theme implements ThemeInterface {
         $gridRowStart && (css['grid-row-start'] = $gridRowStart);
       }
     }
+    if ($width) {
+      css['width'] = $width;
+    }
+    if ($height) {
+      css['height'] = $height;
+    }
 
     $align && (css['align'] = $align);
-    $color && (css['color'] = $color);
+    $backgroundColor && (css['background-color'] = this.getColor($backgroundColor));
+    $color && (css['color'] = this.getColor($color));
+    $listStyle && (css['list-style'] = $listStyle);
     $fontFamily && (css['font-family'] = this.getFontFamily($fontFamily));
     $fontSize && (css['font-size'] = this.pxToRem(this.getFontSize($fontSize)));
     $fontStyle && (css['font-style'] = $fontStyle);

@@ -48,6 +48,7 @@ body {
     font-family: 'Arial', sans-serif;  
     margin: 0;
     padding: 0; 
+    overflow: hidden;
 } 
 .theme-${({ name }) => name} {
     padding: 50px 5px;

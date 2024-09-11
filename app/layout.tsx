@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function Layout(props: any) {
   return (
     <html lang="en">
-      <body className={inter.className} {...props}>
+      <body className={inter.className}>
         <StyledComponentProvider>{props.children}</StyledComponentProvider>
       </body>
     </html>

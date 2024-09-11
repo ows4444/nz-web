@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
+import { Layout } from '@components/types';
 
-interface AProps extends ComponentProps<'a'> {
+type AProps = Layout<ComponentProps<'a'>> & {
   title: string;
-}
+};
 
 const AStyled = styled.a<AProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.A, props)}

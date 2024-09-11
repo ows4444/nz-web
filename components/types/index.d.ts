@@ -21,6 +21,13 @@ export enum ZIndexEnum {
 }
 export type ZIndex = keyof typeof ZIndexEnum;
 
+type BuildArray<Length extends number, Acc extends number[] = []> = Acc['length'] extends Length
+  ? Acc
+  : BuildArray<Length, [...Acc, Acc['length']]>;
+type NumericRange<From extends number, To extends number> = Exclude<BuildArray<To>[number], BuildArray<From>[number]>;
+type LargeRange = `${1 | 10 | 100 | 1000 | 10000}` | `${number}`;
+type Length = `${LargeRange}${'px' | 'em' | 'rem'}` | `${NumericRange<0, 101>}${'vh' | 'vw' | '%'}`;
+
 export enum borderSizeEnum {
   thin = 'thin',
   extraLight = 'extraLight',
@@ -147,12 +154,28 @@ export type LineHight = keyof typeof LineHightEnum;
 
 type TypographyWithBox = {
   $align?: 'left' | 'center' | 'right' | 'justify';
-  $color?: string;
   $fontFamily?: FontFamily;
   $fontSize?: FontSize;
   $fontStyle?: 'normal' | 'italic' | 'oblique';
   $fontWeight?: FontWeight;
   $letterSpacing?: string;
+  $listStyle?:
+    | 'none'
+    | 'disc'
+    | 'circle'
+    | 'square'
+    | 'decimal'
+    | 'decimal-leading-zero'
+    | 'lower-roman'
+    | 'upper-roman'
+    | 'lower-greek'
+    | 'lower-latin'
+    | 'upper-latin'
+    | 'armenian'
+    | 'georgian'
+    | 'lower-alpha'
+    | 'upper-alpha'
+    | 'none';
   $lineHeight?: LineHight;
   $textDecoration?: 'none' | 'underline' | 'overline' | 'line-through';
   $textTransform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase';
@@ -175,12 +198,15 @@ type TypographyWithBox = {
   $borderLeft?: borderSize;
   $borderRadius?: BorderRadius;
   $boxShadow?: string;
-  $width?: string;
-  $height?: string;
-  $minWidth?: string;
-  $minHeight?: string;
-  $maxWidth?: string;
-  $maxHeight?: string;
+
+  $backgroundColor?: Color;
+  $color?: Color;
+  $width?: Length;
+  $height?: Length;
+  $minWidth?: Length;
+  $minHeight?: Length;
+  $maxWidth?: Length;
+  $maxHeight?: Length;
   $overflow?: 'visible' | 'hidden' | 'scroll' | 'auto';
   $position?: 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
   $top?: string;
@@ -206,6 +232,12 @@ type FlexBoxLayout = TypographyWithBox & {
   $alignSelf?: 'auto' | 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
 };
 
+type BlockBoxLayout = TypographyWithBox & {
+  $layout: 'block';
+  $float?: 'left' | 'right' | 'none';
+  $clear?: 'left' | 'right' | 'both' | 'none';
+};
+
 type GridBoxLayout = TypographyWithBox & {
   $layout: 'grid';
   $columns?: string;
@@ -222,13 +254,13 @@ type GridBoxLayout = TypographyWithBox & {
   $gridAutoFlow?: string;
   $gridAutoRows?: string;
   $gridTemplate?: string;
-  $gridTemplateAreas?: string;
+  $gridTemplateAreas?: Array<string>;
   $gridTemplateColumns?: string;
   $gridTemplateRows?: string;
 };
 
 type FlexBoxItemLayout = TypographyWithBox & {
-  $layout: 'flex-item';
+  $layoutItem: 'flex-item';
   $flex?: string;
   $order?: number;
   $flexGrow?: number;
@@ -238,7 +270,7 @@ type FlexBoxItemLayout = TypographyWithBox & {
 };
 
 type GridBoxItemLayout = TypographyWithBox & {
-  $layout: 'grid-item';
+  $layoutItem: 'grid-item';
   $gridArea?: string;
   $gridColumn?: string;
   $gridColumnEnd?: string;
@@ -253,20 +285,25 @@ export type Props = GridBoxItemLayout & FlexBoxItemLayout & GridBoxLayout & Flex
 export type LayoutProps<T = {}> = T &
   (
     | (Omit<GridBoxLayout, '$layout'> & { $layout?: 'grid' })
-    | (Omit<GridBoxItemLayout, '$layout'> & { $layout?: 'grid-item' })
     | (Omit<FlexBoxLayout, '$layout'> & { $layout?: 'flex' })
-    | (Omit<FlexBoxItemLayout, '$layout'> & { $layout?: 'flex-item' })
+    | (Omit<BlockBoxLayout, '$layout'> & { $layout?: 'block' })
+  ) &
+  (
+    | (Omit<GridBoxItemLayout, '$layoutItem'> & { $layoutItem?: 'grid-item' })
+    | (Omit<FlexBoxItemLayout, '$layoutItem'> & { $layoutItem?: 'flex-item' })
   );
-//| DisplayType
 
 export type Layout<T = {}> = LayoutProps<T>;
-export type BoxLayout<T> = Omit<FlexBoxLayout | GridBoxLayout, '$layout'> & {
-  $layout?: 'grid' | 'flex';
-} & T;
-export type ItemLayout<T> = Omit<FlexBoxItemLayout | GridBoxItemLayout, '$layout'> & {
-  $layout?: 'grid-item' | 'flex-item';
-} & T;
-export type BasicLayout<T> = TypographyWithBox /*  & DisplayType */ & T;
+export type BoxLayout<T = {}> = T &
+  ((Omit<GridBoxLayout, '$layout'> & { $layout?: 'grid' }) | (Omit<FlexBoxLayout, '$layout'> & { $layout?: 'flex' }));
+
+export type ItemLayout<T = {}> = T &
+  (
+    | (Omit<FlexBoxItemLayout, '$layoutItem'> & { $layoutItem?: 'flex-item' })
+    | (Omit<GridBoxItemLayout, '$layoutItem'> & { $layoutItem?: 'grid-item' })
+  );
+
+export type BasicLayout<T> = TypographyWithBox & T;
 
 type PartialRecord<K extends keyof any, T> = {
   [P in K]?: T;
