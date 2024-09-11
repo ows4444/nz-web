@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 import { BoxLayout } from '@components/types';
-import Div from '@components/core/atoms/div/div';
+import { Div } from '@components/core/atoms';
 
 type BoxProps = BoxLayout<ComponentProps<'div'>>;
 

@@ -9,9 +9,7 @@ import InputGroup from '@components/molecules/input-group/input-group';
 import CardHeader from '@components/molecules/card-header/card-header';
 import CardFooter from '@components/molecules/card-footer/card-footer';
 import CardBody from '@components/molecules/card-body/card-body';
-import Button from '@components/core/atoms/button/button';
-import Form from '@components/core/atoms/form/form';
-import H3 from '@components/core/atoms/h3/h3';
+import { Button, Form, H3 } from '@components/core/atoms';
 
 type D = {
   message: string;

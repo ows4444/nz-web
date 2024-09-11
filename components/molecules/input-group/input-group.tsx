@@ -3,10 +3,7 @@
 import { Theme } from '@styles/theme';
 import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
-import Input from '@components/core/atoms/input/input';
-import Label from '@components/core/atoms/label/label';
-import Div from '@components/core/atoms/div/div';
-import Small from '@components/core/atoms/small/small';
+import { Input, Label, Div, Small } from '@components/core/atoms';
 import { Components } from '@styles/theme/components';
 import { BoxLayout } from '@components/types';
 

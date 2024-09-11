@@ -5,7 +5,7 @@ import { Layout } from '@components/types';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 import styled from 'styled-components';
-import Section from '@components/core/atoms/section/section';
+import { Section } from '@components/core/atoms';
 
 type CardBodyProps = Layout<ComponentProps<'section'>>;
 
