@@ -101,168 +101,34 @@ export class Theme implements ThemeInterface {
     return this.palate.elements[component] as Layout;
   }
 
-  generateCSS(component: Component, props: any): string {
-    const element = this.getElementStyles(component);
+  removeDefaultStyles(css: Record<string, string> = {}): Record<string, string> {
+    if (!css) return css;
 
-    const css: Record<string, string> = {};
-    if (element) {
-      const {
-        //$align,
-        $color,
-        $fontFamily,
-        $fontSize,
-        $fontStyle,
-        $fontWeight,
-        $letterSpacing,
-        $lineHeight,
-        $textDecoration,
-        $textTransform,
-        //$whiteSpace,
-
-        $padding,
-        $paddingX,
-        $paddingY,
-        $border,
-        $borderTop,
-        $borderRight,
-        $borderBottom,
-        $borderLeft,
-        $paddingTop,
-        $paddingRight,
-        $paddingBottom,
-        $paddingLeft,
-        $margin,
-        $marginX,
-        $marginY,
-        $marginTop,
-        $marginRight,
-        $marginBottom,
-        $marginLeft,
-
-        $backgroundColor,
-        //$listStyle,
-
-        $width,
-        $height,
-        /**
-         *         // $textOverflow,
-        // $padding,
-        // $borderRadius,
-        // $boxShadow,
-
-        // $minWidth,
-        // $minHeight,
-        // $maxWidth,
-        // $maxHeight,
-        // $overflow,
-        // $position,
-        // $top,
-        // $right,
-        // $bottom,
-        // $left,
-        // $zIndex,
-         */
-      } = element;
-
-      // $align && (css['align'] = $align);
-      $color && (css['color'] = this.getColor($color));
-      $fontFamily && (css['font-family'] = this.getFontFamily($fontFamily));
-      $fontSize && (css['font-size'] = this.pxToRem(this.getFontSize($fontSize)));
-      $fontStyle && (css['font-style'] = $fontStyle);
-      $fontWeight && (css['font-weight'] = `${this.getFontWeight($fontWeight)}`);
-      $letterSpacing && (css['letter-spacing'] = $letterSpacing);
-      $lineHeight && (css['line-height'] = $lineHeight);
-      $textDecoration && (css['text-decoration'] = $textDecoration);
-      $textTransform && (css['text-transform'] = $textTransform);
-      //$whiteSpace && (css['white-space'] = $whiteSpace);
-      $backgroundColor && (css['background-color'] = this.getColor($backgroundColor));
-      // $listStyle && (css['list-style'] = $listStyle);
-
-      if ($width) {
-        css['width'] = $width;
-      }
-      if ($height) {
-        css['height'] = $height;
-      }
-
-      if ($margin) {
-        css['margin'] = Array.isArray($margin) ? $margin.join(' ') : $margin;
-      } else {
-        css['margin'] = `${$marginY || 0} ${$marginX || 0}`;
-        $marginTop && (css['margin-top'] = $marginTop);
-        $marginRight && (css['margin-right'] = $marginRight);
-        $marginBottom && (css['margin-bottom'] = $marginBottom);
-        $marginLeft && (css['margin-left'] = $marginLeft);
-      }
-
-      if ($padding) {
-        css['padding'] = Array.isArray($padding) ? $padding.join(' ') : $padding;
-      } else {
-        css['padding'] = `${$paddingY || 0} ${$paddingX || 0}`;
-        $paddingTop && (css['padding-top'] = $paddingTop);
-        $paddingRight && (css['padding-right'] = $paddingRight);
-        $paddingBottom && (css['padding-bottom'] = $paddingBottom);
-        $paddingLeft && (css['padding-left'] = $paddingLeft);
-      }
-
-      if ($border) {
-        css['border'] = Array.isArray($border) ? $border.join(' ') : $border;
-      } else {
-        $borderTop && (css['border-top'] = $borderTop);
-        $borderRight && (css['border-right'] = $borderRight);
-        $borderBottom && (css['border-bottom'] = $borderBottom);
-        $borderLeft && (css['border-left'] = $borderLeft);
-      }
+    if (css['margin'] === '0 0') {
+      delete css['margin'];
     }
+
+    if (css['padding'] === '0 0') {
+      delete css['padding'];
+    }
+    return css;
+  }
+
+  generateStyle(props: Props, css: Record<string, string> = {}): Record<string, string> {
+    if (!props || Object.keys(props).length === 0) return css;
+
     const {
-      // $whiteSpace,
       //$align,
       $color,
-      $backgroundColor,
       $fontFamily,
       $fontSize,
       $fontStyle,
       $fontWeight,
-      $gap,
       $letterSpacing,
       $lineHeight,
       $textDecoration,
       $textTransform,
-      $direction,
-      $justifyContent,
-      $alignItems,
-      $wrap,
-      $columns,
-      $rows,
-      $autoRows,
-      $autoFlow,
-      $layout,
-      $layoutItem,
-      $order,
-      $flex,
-      $flexGrow,
-      $flexShrink,
-      $flexBasis,
-      $alignSelf,
-
-      $grid,
-      $gridAutoColumns,
-      $gridAutoFlow,
-      $gridAutoRows,
-      $gridTemplate,
-      $gridTemplateAreas,
-      $gridTemplateColumns,
-      $gridTemplateRows,
-
-      $gridArea,
-      $gridColumn,
-      $gridColumnEnd,
-      $gridColumnStart,
-      $gridRow,
-      $gridRowEnd,
-      $gridRowStart,
-
-      // $listStyle,
+      //$whiteSpace,
 
       $padding,
       $paddingX,
@@ -284,11 +150,68 @@ export class Theme implements ThemeInterface {
       $marginBottom,
       $marginLeft,
 
+      $backgroundColor,
+
+      $grid,
+      $gridAutoColumns,
+      $gridAutoFlow,
+      $gridAutoRows,
+      $gridTemplate,
+      $gridTemplateAreas,
+      $gridTemplateColumns,
+      $gridTemplateRows,
+
+      $gridArea,
+      $gridColumn,
+      $gridColumnEnd,
+      $gridColumnStart,
+      $gridRow,
+      $gridRowEnd,
+      $gridRowStart,
+      //$listStyle,
+
       $width,
       $height,
+
+      $gap,
+      $direction,
+      $justifyContent,
+      $alignItems,
+      $wrap,
+      $columns,
+      $rows,
+      $autoRows,
+      $autoFlow,
+      $layout,
+      $layoutItem,
+      $order,
+      $flex,
+      $flexGrow,
+      $flexShrink,
+      $flexBasis,
+      $alignSelf,
+
       $float,
       $clear,
-    } = props as Props;
+      /**
+       *         // $textOverflow,
+      // $padding,
+      // $borderRadius,
+      // $boxShadow,
+
+      // $minWidth,
+      // $minHeight,
+      // $maxWidth,
+      // $maxHeight,
+      // $overflow,
+      // $position,
+      // $top,
+      // $right,
+      // $bottom,
+      // $left,
+      // $zIndex,
+       */
+    } = props;
 
     if (
       $layout === 'flex' ||
@@ -353,17 +276,9 @@ export class Theme implements ThemeInterface {
         $gridRowStart && (css['grid-row-start'] = $gridRowStart);
       }
     }
-    if ($width) {
-      css['width'] = $width;
-    }
-    if ($height) {
-      css['height'] = $height;
-    }
 
     // $align && (css['align'] = $align);
-    $backgroundColor && (css['background-color'] = this.getColor($backgroundColor));
     $color && (css['color'] = this.getColor($color));
-    // $listStyle && (css['list-style'] = $listStyle);
     $fontFamily && (css['font-family'] = this.getFontFamily($fontFamily));
     $fontSize && (css['font-size'] = this.pxToRem(this.getFontSize($fontSize)));
     $fontStyle && (css['font-style'] = $fontStyle);
@@ -372,7 +287,16 @@ export class Theme implements ThemeInterface {
     $lineHeight && (css['line-height'] = $lineHeight);
     $textDecoration && (css['text-decoration'] = $textDecoration);
     $textTransform && (css['text-transform'] = $textTransform);
-    // $whiteSpace && (css['white-space'] = $whiteSpace);
+    //$whiteSpace && (css['white-space'] = $whiteSpace);
+    $backgroundColor && (css['background-color'] = this.getColor($backgroundColor));
+    // $listStyle && (css['list-style'] = $listStyle);
+
+    if ($width) {
+      css['width'] = $width;
+    }
+    if ($height) {
+      css['height'] = $height;
+    }
 
     if ($margin) {
       css['margin'] = Array.isArray($margin) ? $margin.join(' ') : $margin;
@@ -403,7 +327,82 @@ export class Theme implements ThemeInterface {
       $borderLeft && (css['border-left'] = $borderLeft);
     }
 
+    return this.removeDefaultStyles(css);
+  }
+
+  jsonToCSS(json: Record<string, string>): string | undefined {
+    if (!json || Object.keys(json).length < 1) return;
+    return `{${Object.entries(json).reduce((acc, [key, value]) => {
+      return `${acc}${key}:${value};`;
+    }, '')}}`;
+  }
+
+  generateCSS(component: Component, props: any): string {
+    const element = this.getElementStyles(component);
+    const css: Record<string, string> = {};
+
+    Object.assign(css, this.generateStyle(element, css));
+
+    Object.assign(css, this.generateStyle(props, css));
+
+    const Hover = this.jsonToCSS(this.generateStyle(Object.assign(element?.$hover || {}, props?.$hover)));
+
+    const Focus = this.jsonToCSS(this.generateStyle(Object.assign(element?.$focus || {}, props?.$focus)));
+
+    const XS = this.jsonToCSS(this.generateStyle(Object.assign(element?.$xs || {}, props?.$xs)));
+
+    const SM = this.jsonToCSS(this.generateStyle(Object.assign(element?.$sm || {}, props?.$sm)));
+
+    const MD = this.jsonToCSS(this.generateStyle(Object.assign(element?.$md || {}, props?.$md)));
+
+    const LG = this.jsonToCSS(this.generateStyle(Object.assign(element?.$lg || {}, props?.$lg)));
+
+    const XL = this.jsonToCSS(this.generateStyle(Object.assign(element?.$xl || {}, props?.$xl)));
+
+    const XXL = this.jsonToCSS(this.generateStyle(Object.assign(element?.$xxl || {}, props?.$xxl)));
+
+    const XXXL = this.jsonToCSS(this.generateStyle(Object.assign(element?.$xxxl || {}, props?.$xxxl)));
+
+    if (Hover) {
+      css['&:hover'] = Hover;
+    }
+
+    if (Focus) {
+      css['&:focus'] = Focus;
+    }
+
+    if (XS) {
+      css[`@media(max-width: ${this.palate.mediaSizes['xs']}px)`] = XS;
+    }
+
+    if (SM) {
+      css[`@media(max-width: ${this.palate.mediaSizes['sm']}px)`] = SM;
+    }
+
+    if (MD) {
+      css[`@media(max-width: ${this.palate.mediaSizes['md']}px)`] = MD;
+    }
+
+    if (LG) {
+      css[`@media(max-width: ${this.palate.mediaSizes['lg']}px)`] = LG;
+    }
+
+    if (XL) {
+      css[`@media(max-width: ${this.palate.mediaSizes['xl']}px)`] = XL;
+    }
+
+    if (XXL) {
+      css[`@media(max-width: ${this.palate.mediaSizes['xxl']}px)`] = XXL;
+    }
+
+    if (XXXL) {
+      css[`@media(max-width: ${this.palate.mediaSizes['xxxl']}px)`] = XXXL;
+    }
+
     return Object.entries(css).reduce((acc, [key, value]) => {
+      if (key.startsWith('&:') || key.startsWith('@media')) {
+        return `${acc}${key} ${value}\n`;
+      }
       return `${acc}${key}: ${value};\n`;
     }, '');
   }

@@ -190,27 +190,6 @@ type BlockLayoutProperties = Omit<BlockLayout, '$layout'>;
 type FlexItemLayoutProperties = Omit<FlexItemLayout, '$layoutItem'>;
 type GridItemLayoutProperties = Omit<GridItemLayout, '$layoutItem'>;
 
-export type Props = PositionLayout &
-  ColorLayout &
-  SizeLayout &
-  OverflowLayout &
-  SpacingLayout &
-  BorderLayout &
-  BackgroundLayout &
-  ShadowLayout &
-  TypographyLayout &
-  VisibilityLayout &
-  CursorLayout &
-  FlexLayoutProperties &
-  GridLayoutProperties &
-  BlockLayoutProperties &
-  FlexItemLayoutProperties &
-  GridItemLayoutProperties &
-  StyleLayout & {
-    $layout?: 'flex' | 'grid' | 'block';
-    $layoutItem?: 'flex-item' | 'grid-item';
-  };
-
 type LayoutFor<T extends 'flex' | 'grid' | 'block'> = T extends 'flex'
   ? FlexLayoutProperties & { $layout: 'flex' }
   : T extends 'grid'
@@ -225,8 +204,7 @@ type LayoutItemFor<T extends 'flex-item' | 'grid-item'> = T extends 'flex-item'
     ? GridItemLayoutProperties & { $layoutItem: 'grid-item' }
     : never;
 
-export type Layout<T = {}> = T &
-  ColorLayout &
+export type BasicLayout = ColorLayout &
   PositionLayout &
   SizeLayout &
   OverflowLayout &
@@ -247,6 +225,46 @@ export type Layout<T = {}> = T &
     | (Omit<FlexItemLayout, '$layoutItem'> & { $layoutItem?: 'flex-item' })
     | (Omit<GridItemLayout, '$layoutItem'> & { $layoutItem?: 'grid-item' })
   );
+
+export type SelectorLayout = {
+  $hover?: BasicLayout;
+  $focus?: BasicLayout;
+};
+
+export type MediaLayout = {
+  $xs?: BasicLayout & SelectorLayout;
+  $sm?: BasicLayout & SelectorLayout;
+  $md?: BasicLayout & SelectorLayout;
+  $lg?: BasicLayout & SelectorLayout;
+  $xl?: BasicLayout & SelectorLayout;
+  $xxl?: BasicLayout & SelectorLayout;
+  $xxxl?: BasicLayout & SelectorLayout;
+};
+
+export type Layout<T = {}> = T & BasicLayout & MediaLayout & SelectorLayout;
+
+export type Props = PositionLayout &
+  MediaLayout &
+  SelectorLayout &
+  ColorLayout &
+  SizeLayout &
+  OverflowLayout &
+  SpacingLayout &
+  BorderLayout &
+  BackgroundLayout &
+  ShadowLayout &
+  TypographyLayout &
+  VisibilityLayout &
+  CursorLayout &
+  FlexLayoutProperties &
+  GridLayoutProperties &
+  BlockLayoutProperties &
+  FlexItemLayoutProperties &
+  GridItemLayoutProperties &
+  StyleLayout & {
+    $layout?: 'flex' | 'grid' | 'block';
+    $layoutItem?: 'flex-item' | 'grid-item';
+  };
 
 export interface ThemePalette {
   mediaSizes: Partial<MediaSize, number>;

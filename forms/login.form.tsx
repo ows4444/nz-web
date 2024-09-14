@@ -32,10 +32,11 @@ export function LoginForm() {
   return (
     <Form $margin="10px" action={action} id="login-form" name="login-form">
       <Card
+        $sm={{ $hover: { $layout: 'grid' } }}
         $layout="flex"
         $direction="column"
         $alignItems="center"
-        $border="2px solid #123456"
+        $border="2px solid #a23456"
         $margin="8px"
         $padding="8px"
       >
