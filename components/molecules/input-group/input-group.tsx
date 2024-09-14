@@ -5,9 +5,9 @@ import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
 import { Input, Label, Div, Small } from '@components/core/atoms';
 import { Components } from '@styles/theme/components';
-import { BoxLayout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 
-type InputGroupProps = BoxLayout<ComponentProps<'div'>> & {
+type InputGroupProps = Layout<ComponentProps<'div'>> & {
   label: string;
   name: string;
   feedBack?: string;

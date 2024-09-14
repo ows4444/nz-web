@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-import { BasicLayout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 
-type InsProps = BasicLayout<ComponentProps<'ins'>> & {
+type InsProps = Layout<ComponentProps<'ins'>> & {
   content: string;
 };
 

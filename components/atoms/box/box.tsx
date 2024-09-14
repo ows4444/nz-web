@@ -3,10 +3,10 @@ import React, { FC, ComponentProps } from 'react';
 import styled from 'styled-components';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-import { BoxLayout } from '@components/types';
 import { Div } from '@components/core/atoms';
+import { Layout } from '@styles/theme/types';
 
-type BoxProps = BoxLayout<ComponentProps<'div'>>;
+type BoxProps = Layout<ComponentProps<'div'>>;
 
 const BoxStyled = styled(Div)<BoxProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.BOX, props)};

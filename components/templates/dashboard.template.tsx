@@ -45,7 +45,7 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = ({ children, ...prop
     </Header>
     <Nav $layoutItem="grid-item" $gridArea="Nav">
       <Ul $listStyle="none" $layout="flex" $alignItems="center" $padding="10px">
-        <Li $marginRight="md">
+        <Li $marginRight="10px">
           <A
             href="/dashboard"
             title="Dashboard"
@@ -55,17 +55,17 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = ({ children, ...prop
             $paddingY="24px"
           />
         </Li>
-        <Li $marginRight="md">
+        <Li $marginRight="10px">
           <A href="#news" title="News" $layout="block" $textDecoration="none" $paddingX="16px" $paddingY="24px" />
         </Li>
-        <Li $marginRight="md">
+        <Li $marginRight="10px">
           <A href="#contact" title="Contact" $layout="block" $textDecoration="none" $paddingX="16px" $paddingY="24px" />
         </Li>
-        <Li $marginRight="md">
+        <Li $marginRight="10px">
           <A href="#about" title="About" $layout="block" $textDecoration="none" $paddingX="16px" $paddingY="24px" />
         </Li>
 
-        <Li $marginRight="md">
+        <Li $marginRight="10px">
           <A
             href="#services"
             title="Services"
@@ -102,7 +102,7 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = ({ children, ...prop
           </Div>
         </Li>
 
-        <Li className="dropdown" $marginRight="md">
+        <Li className="dropdown" $marginRight="10px">
           <A href="#more" title="More" $layout="block" $textDecoration="none" $paddingY="24px" />
           <Div className="dropdown-content">
             <A href="#more1" title="More 1" $layout="block" $textDecoration="none" $paddingX="16px" $paddingY="24px" />
@@ -111,7 +111,7 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = ({ children, ...prop
           </Div>
         </Li>
 
-        <Li $marginRight="md">
+        <Li $marginRight="10px">
           <Input type="text" placeholder="Search..." />
         </Li>
       </Ul>

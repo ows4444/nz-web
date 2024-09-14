@@ -108,6 +108,10 @@ export type OverflowLayout = {
   $overflow?: 'visible' | 'hidden' | 'scroll' | 'auto';
 };
 
+export type StyleLayout = {
+  $listStyle?: 'none' | 'disc' | 'circle' | 'square';
+};
+
 export type SpacingLayout = {
   $margin?: LengthWithDirection;
   $marginX?: Length;
@@ -203,7 +207,8 @@ export type Props = PositionLayout &
   GridLayoutProperties &
   BlockLayoutProperties &
   FlexItemLayoutProperties &
-  GridItemLayoutProperties & {
+  GridItemLayoutProperties &
+  StyleLayout & {
     $layout?: 'flex' | 'grid' | 'block';
     $layoutItem?: 'flex-item' | 'grid-item';
   };
@@ -234,6 +239,7 @@ export type Layout<T = {}> = T &
   TypographyLayout &
   VisibilityLayout &
   CursorLayout &
+  StyleLayout &
   (
     | (Omit<FlexLayout, '$layout'> & { $layout?: 'flex' })
     | (Omit<GridLayout, '$layout'> & { $layout?: 'grid' })

@@ -5,8 +5,8 @@ import { Container } from '@components/atoms';
 export default async function NotFount() {
   return (
     <Container
-      $margin="xxl"
-      $padding="xxl"
+      $margin="10px"
+      $padding="10px"
       $layout="flex"
       $direction="column"
       $justifyContent="center"

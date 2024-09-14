@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import type { ComponentProps, FC } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-import { BoxLayout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 
-type ButtonProps = BoxLayout<ComponentProps<'button'>> & {
+type ButtonProps = Layout<ComponentProps<'button'>> & {
   title: string;
 };
 

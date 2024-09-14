@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import type { FC, ComponentProps } from 'react';
 import { Components } from '@styles/theme/components';
 import { Theme } from '@styles/theme';
-import { BasicLayout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 
-type BProps = BasicLayout<ComponentProps<'b'>> & {
+type BProps = Layout<ComponentProps<'b'>> & {
   content: string;
 };
 const BStyled = styled.b<BProps & { theme: Theme }>`
