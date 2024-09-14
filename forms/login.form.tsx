@@ -30,9 +30,24 @@ export function LoginForm() {
   const [state, action] = useFormState<D, FormData>(login, initialState);
 
   return (
-    <Form $margin="10px" action={action} id="login-form" name="login-form">
+    <Form
+      $margin="10px"
+      action={action}
+      id="login-form"
+      name="login-form"
+      $layout="grid"
+      $xs={{
+        $padding: '10px',
+        $backgroundColor: 'darkYellow',
+      }}
+      $sm={{
+        $padding: '10px',
+        $backgroundColor: 'darkBlue',
+      }}
+      $md={{ $padding: '10px', $backgroundColor: 'darkGreen' }}
+      $lg={{ $padding: '10px', $backgroundColor: 'darkRed' }}
+    >
       <Card
-        $sm={{ $hover: { $layout: 'grid' } }}
         $layout="flex"
         $direction="column"
         $alignItems="center"

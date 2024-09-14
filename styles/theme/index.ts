@@ -111,6 +111,13 @@ export class Theme implements ThemeInterface {
     if (css['padding'] === '0 0') {
       delete css['padding'];
     }
+    if (css['&:focus'] === '') {
+      delete css['&:focus'];
+    }
+    if (css['&:hover'] === '') {
+      delete css['&:hover'];
+    }
+
     return css;
   }
 
@@ -211,6 +218,9 @@ export class Theme implements ThemeInterface {
       // $left,
       // $zIndex,
        */
+
+      $hover,
+      $focus,
     } = props;
 
     if (
@@ -327,83 +337,49 @@ export class Theme implements ThemeInterface {
       $borderLeft && (css['border-left'] = $borderLeft);
     }
 
+    css['&:hover'] = this.jsonToCSS(this.generateStyle(Object.assign($hover || {})));
+    css['&:focus'] = this.jsonToCSS(this.generateStyle(Object.assign($focus || {})));
+
     return this.removeDefaultStyles(css);
   }
 
-  jsonToCSS(json: Record<string, string>): string | undefined {
-    if (!json || Object.keys(json).length < 1) return;
+  jsonToCSS(json: Record<string, string>): string {
+    if (!json || Object.keys(json).length < 1) return '';
     return `{${Object.entries(json).reduce((acc, [key, value]) => {
+      if (key.startsWith('&:') || key.startsWith('@media')) {
+        return `${acc}${key} ${value}`;
+      }
       return `${acc}${key}:${value};`;
     }, '')}}`;
+  }
+
+  CssStringify(css: Record<string, string>): string {
+    return Object.entries(css).reduce((acc, [key, value]) => {
+      if (key.startsWith('&:') || key.startsWith('@media')) {
+        return `${acc}${key} ${value}`;
+      }
+      return `${acc}${key}:${value};`;
+    }, '');
   }
 
   generateCSS(component: Component, props: any): string {
     const element = this.getElementStyles(component);
     const css: Record<string, string> = {};
+    const data = Object.assign(element || {}, props);
+    Object.assign(css, this.generateStyle(data, css));
 
-    Object.assign(css, this.generateStyle(element, css));
+    const mediaCss = Object.keys(this.palate.mediaSizes).reduce((css: Record<string, string>, mediaSize: string) => {
+      const key = `$${mediaSize}`;
 
-    Object.assign(css, this.generateStyle(props, css));
-
-    const Hover = this.jsonToCSS(this.generateStyle(Object.assign(element?.$hover || {}, props?.$hover)));
-
-    const Focus = this.jsonToCSS(this.generateStyle(Object.assign(element?.$focus || {}, props?.$focus)));
-
-    const XS = this.jsonToCSS(this.generateStyle(Object.assign(element?.$xs || {}, props?.$xs)));
-
-    const SM = this.jsonToCSS(this.generateStyle(Object.assign(element?.$sm || {}, props?.$sm)));
-
-    const MD = this.jsonToCSS(this.generateStyle(Object.assign(element?.$md || {}, props?.$md)));
-
-    const LG = this.jsonToCSS(this.generateStyle(Object.assign(element?.$lg || {}, props?.$lg)));
-
-    const XL = this.jsonToCSS(this.generateStyle(Object.assign(element?.$xl || {}, props?.$xl)));
-
-    const XXL = this.jsonToCSS(this.generateStyle(Object.assign(element?.$xxl || {}, props?.$xxl)));
-
-    const XXXL = this.jsonToCSS(this.generateStyle(Object.assign(element?.$xxxl || {}, props?.$xxxl)));
-
-    if (Hover) {
-      css['&:hover'] = Hover;
-    }
-
-    if (Focus) {
-      css['&:focus'] = Focus;
-    }
-
-    if (XS) {
-      css[`@media(max-width: ${this.palate.mediaSizes['xs']}px)`] = XS;
-    }
-
-    if (SM) {
-      css[`@media(max-width: ${this.palate.mediaSizes['sm']}px)`] = SM;
-    }
-
-    if (MD) {
-      css[`@media(max-width: ${this.palate.mediaSizes['md']}px)`] = MD;
-    }
-
-    if (LG) {
-      css[`@media(max-width: ${this.palate.mediaSizes['lg']}px)`] = LG;
-    }
-
-    if (XL) {
-      css[`@media(max-width: ${this.palate.mediaSizes['xl']}px)`] = XL;
-    }
-
-    if (XXL) {
-      css[`@media(max-width: ${this.palate.mediaSizes['xxl']}px)`] = XXL;
-    }
-
-    if (XXXL) {
-      css[`@media(max-width: ${this.palate.mediaSizes['xxxl']}px)`] = XXXL;
-    }
-
-    return Object.entries(css).reduce((acc, [key, value]) => {
-      if (key.startsWith('&:') || key.startsWith('@media')) {
-        return `${acc}${key} ${value}\n`;
+      if (data[key]) {
+        css[`@media(min-width: ${this.palate.mediaSizes[mediaSize]}px)`] = this.jsonToCSS(
+          this.generateStyle(data[key]),
+        );
       }
-      return `${acc}${key}: ${value};\n`;
-    }, '');
+
+      return css;
+    }, {});
+
+    return [css, mediaCss].map(this.CssStringify).join(' ');
   }
 }
