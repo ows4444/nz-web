@@ -1,7 +1,7 @@
 'use client';
 
 import Container from '@components/atoms/container/container';
-import { Layout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 import { Theme } from '@styles/theme';
 import type React from 'next';
 import { ComponentProps } from 'react';

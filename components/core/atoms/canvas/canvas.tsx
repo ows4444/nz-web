@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import type { ComponentProps, FC } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-import { Layout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 
 type CanvasProps = Layout<ComponentProps<'canvas'>>;
 

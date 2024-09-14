@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Theme } from '@styles/theme';
 import { Header } from '@components/core/atoms';
 import { Components } from '@styles/theme/components';
-import { Layout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 
 type CardHeaderProps = Layout<ComponentProps<'header'>>;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { H1, H2 } from '@components/core/atoms';
-import Container from '@components/atoms/container/container';
+import { Container } from '@components/atoms';
 
 export default async function NotFount() {
   return (

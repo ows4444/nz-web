@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import type { FC, ComponentProps } from 'react';
 import { Components } from '@styles/theme/components';
 import { Theme } from '@styles/theme';
-import { Layout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 
 type BRProps = Layout<ComponentProps<'br'>>;
 

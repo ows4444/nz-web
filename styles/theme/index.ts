@@ -1,24 +1,14 @@
-import {
-  BorderRadius,
-  borderSize,
-  Color,
-  FontFamily,
-  FontSize,
-  FontWeight,
-  Gradient,
-  MarginPadding,
-  Props,
-  ThemeInterface,
-  ThemePaletteInterface,
-  TypographyWithBox,
-  ZIndex,
-} from '@components/types';
 import { Component } from './components';
+import { Layout, Props, ThemeInterface, ThemePalette } from '@styles/theme/types';
+import { Color, Gradient, MediaSize, ZIndex } from './types/common';
+import { FontFamily, FontSize, FontWeight } from './types/font';
+import { BorderRadius, borderSize } from './types/border';
 
 export class Theme implements ThemeInterface {
-  palate!: ThemePaletteInterface;
+  palate!: ThemePalette;
   constructor() {
     this.palate = {
+      mediaSizes: {},
       borderRadius: {},
       borderSizes: {},
       colors: {},
@@ -30,6 +20,11 @@ export class Theme implements ThemeInterface {
       gradients: {},
       elements: {},
     };
+  }
+
+  addMediaSize(mediaSize: MediaSize, value: number): this {
+    this.palate.mediaSizes[mediaSize] = value;
+    return this;
   }
   addFontSize(fontSize: FontSize, value: number): this {
     this.palate.fontSizes[fontSize] = value;
@@ -56,10 +51,7 @@ export class Theme implements ThemeInterface {
     this.palate.borderRadius[borderRadius] = value;
     return this;
   }
-  addMarginPadding(marginPadding: MarginPadding, value: string): this {
-    this.palate.marginPadding[marginPadding] = value;
-    return this;
-  }
+
   addZIndex(zIndex: ZIndex, value: 'auto' | number): this {
     this.palate.zIndex[zIndex] = value;
     return this;
@@ -68,7 +60,7 @@ export class Theme implements ThemeInterface {
     this.palate.gradients[gradient] = value;
     return this;
   }
-  addElementStyles(component: Component, css: Partial<TypographyWithBox>): this {
+  addElementStyles(component: Component, css: Partial<Layout>): this {
     this.palate.elements[component] = css;
     return this;
   }
@@ -98,17 +90,15 @@ export class Theme implements ThemeInterface {
   private getBorderRadius(borderRadius: BorderRadius): string {
     return this.palate.borderRadius[borderRadius] ?? '0';
   }
-  private getMarginPadding(marginPadding: MarginPadding): string {
-    return this.palate.marginPadding[marginPadding] ?? '0';
-  }
+
   private getZIndex(zIndex: ZIndex): 'auto' | number {
     return this.palate.zIndex[zIndex] ?? 'auto';
   }
   private getGradientStyles(gradient: Gradient): string {
     return this.palate.gradients[gradient] ?? '';
   }
-  private getElementStyles(component: Component): TypographyWithBox {
-    return this.palate.elements[component] as TypographyWithBox;
+  private getElementStyles(component: Component): Layout {
+    return this.palate.elements[component] as Layout;
   }
 
   generateCSS(component: Component, props: any): string {
@@ -117,8 +107,8 @@ export class Theme implements ThemeInterface {
     const css: Record<string, string> = {};
     if (element) {
       const {
-        $align,
-        $color,
+        //$align,
+        //$color,
         $fontFamily,
         $fontSize,
         $fontStyle,
@@ -127,7 +117,7 @@ export class Theme implements ThemeInterface {
         $lineHeight,
         $textDecoration,
         $textTransform,
-        $whiteSpace,
+        //$whiteSpace,
 
         $padding,
         $paddingX,
@@ -152,7 +142,7 @@ export class Theme implements ThemeInterface {
         $marginLeft,
 
         $backgroundColor,
-        $listStyle,
+        //$listStyle,
 
         $width,
         $height,
@@ -176,8 +166,8 @@ export class Theme implements ThemeInterface {
          */
       } = element;
 
-      $align && (css['align'] = $align);
-      $color && (css['color'] = $color);
+      // $align && (css['align'] = $align);
+      // $color && (css['color'] = $color);
       $fontFamily && (css['font-family'] = this.getFontFamily($fontFamily));
       $fontSize && (css['font-size'] = this.pxToRem(this.getFontSize($fontSize)));
       $fontStyle && (css['font-style'] = $fontStyle);
@@ -186,10 +176,10 @@ export class Theme implements ThemeInterface {
       $lineHeight && (css['line-height'] = $lineHeight);
       $textDecoration && (css['text-decoration'] = $textDecoration);
       $textTransform && (css['text-transform'] = $textTransform);
-      $whiteSpace && (css['white-space'] = $whiteSpace);
-      $backgroundColor && (css['background-color'] = this.getColor($backgroundColor));
-      $color && (css['color'] = this.getColor($color));
-      $listStyle && (css['list-style'] = $listStyle);
+      //$whiteSpace && (css['white-space'] = $whiteSpace);
+      $backgroundColor && (css['background-color'] = $backgroundColor);
+      // $color && (css['color'] = this.getColor($color));
+      //$listStyle && (css['list-style'] = $listStyle);
 
       if ($width) {
         css['width'] = $width;
@@ -199,54 +189,54 @@ export class Theme implements ThemeInterface {
       }
 
       if ($margin) {
-        css['margin'] = this.getMarginPadding($margin);
+        css['margin'] = typeof $margin === 'object' ? $margin.reduce((p, c) => `${p} ${c}`, '') : $margin;
       } else if ($marginX && $marginY) {
-        css['margin'] = `${this.getMarginPadding($marginY)} ${this.getMarginPadding($marginX)}`;
+        css['margin'] = `${$marginY} ${$marginX}`;
       }
       if ($marginX) {
-        css['margin'] = `0 ${this.getMarginPadding($marginX)}`;
+        css['margin'] = `0 ${$marginX}`;
       } else if ($marginY) {
-        css['margin'] = `${this.getMarginPadding($marginY)} 0`;
+        css['margin'] = `${$marginY} 0`;
       } else {
-        $marginTop && (css['margin-top'] = this.getMarginPadding($marginTop));
-        $marginRight && (css['margin-right'] = this.getMarginPadding($marginRight));
-        $marginBottom && (css['margin-bottom'] = this.getMarginPadding($marginBottom));
-        $marginLeft && (css['margin-left'] = this.getMarginPadding($marginLeft));
+        $marginTop && (css['margin-top'] = $marginTop);
+        $marginRight && (css['margin-right'] = $marginRight);
+        $marginBottom && (css['margin-bottom'] = $marginBottom);
+        $marginLeft && (css['margin-left'] = $marginLeft);
       }
 
       if ($padding) {
-        css['padding'] = this.getMarginPadding($padding);
+        css['padding'] = typeof $padding === 'object' ? $padding.reduce((p, c) => `${p} ${c}`, '') : $padding;
       } else if ($paddingX && $paddingY) {
-        css['padding'] = `${this.getMarginPadding($paddingY)} ${this.getMarginPadding($paddingX)}`;
+        css['padding'] = `${$paddingY} ${$paddingX}`;
       } else if ($paddingX) {
-        css['padding'] = `0 ${this.getMarginPadding($paddingX)}`;
+        css['padding'] = `0 ${$paddingX}`;
       } else if ($paddingY) {
-        css['padding'] = `${this.getMarginPadding($paddingY)} 0`;
+        css['padding'] = `${$paddingY} 0`;
       } else {
-        $paddingTop && (css['padding-top'] = this.getMarginPadding($paddingTop));
-        $paddingRight && (css['padding-right'] = this.getMarginPadding($paddingRight));
-        $paddingBottom && (css['padding-bottom'] = this.getMarginPadding($paddingBottom));
-        $paddingLeft && (css['padding-left'] = this.getMarginPadding($paddingLeft));
+        $paddingTop && (css['padding-top'] = $paddingTop);
+        $paddingRight && (css['padding-right'] = $paddingRight);
+        $paddingBottom && (css['padding-bottom'] = $paddingBottom);
+        $paddingLeft && (css['padding-left'] = $paddingLeft);
       }
 
       if ($border) {
-        css['border'] = this.getBorderSize($border);
+        css['border'] = typeof $border === 'object' ? $border.reduce((p, c) => `${p} ${c}`, '') : $border;
       } else if ($borderX && $borderY) {
-        css['border'] = `${this.getBorderSize($borderY)} ${this.getBorderSize($borderX)}`;
+        css['border'] = `${$borderY} ${$borderX}`;
       } else if ($borderX) {
-        css['border'] = `0 ${this.getBorderSize($borderX)}`;
+        css['border'] = `0 ${$borderX}`;
       } else if ($borderY) {
-        css['border'] = `${this.getBorderSize($borderY)} 0`;
+        css['border'] = `${$borderY} 0`;
       } else {
-        $borderTop && (css['border-top'] = this.getBorderSize($borderTop));
-        $borderRight && (css['border-right'] = this.getBorderSize($borderRight));
-        $borderBottom && (css['border-bottom'] = this.getBorderSize($borderBottom));
-        $borderLeft && (css['border-left'] = this.getBorderSize($borderLeft));
+        $borderTop && (css['border-top'] = $borderTop);
+        $borderRight && (css['border-right'] = $borderRight);
+        $borderBottom && (css['border-bottom'] = $borderBottom);
+        $borderLeft && (css['border-left'] = $borderLeft);
       }
     }
     const {
-      $whiteSpace,
-      $align,
+      // $whiteSpace,
+      //$align,
       $color,
       $backgroundColor,
       $fontFamily,
@@ -292,7 +282,7 @@ export class Theme implements ThemeInterface {
       $gridRowEnd,
       $gridRowStart,
 
-      $listStyle,
+      // $listStyle,
 
       $padding,
       $paddingX,
@@ -343,16 +333,16 @@ export class Theme implements ThemeInterface {
         $justifyContent && (css['justify-content'] = $justifyContent);
         $alignItems && (css['align-items'] = $alignItems);
         $wrap && (css['flex-wrap'] = $wrap);
-        $order && (css['order'] = $order);
-        $flexGrow && (css['flex-grow'] = $flexGrow);
-        $flexShrink && (css['flex-shrink'] = $flexShrink);
+        $order && (css['order'] = `${$order}`);
+        $flexGrow && (css['flex-grow'] = `${$flexGrow}`);
+        $flexShrink && (css['flex-shrink'] = `${$flexShrink}`);
         $flexBasis && (css['flex-basis'] = $flexBasis);
         $alignSelf && (css['align-self'] = $alignSelf);
       }
       if ($layoutItem === 'flex-item') {
         $alignSelf && (css['align-self'] = $alignSelf);
         $flex && (css['flex'] = $flex);
-        $order && (css['order'] = $order);
+        $order && (css['order'] = `${$order}`);
       }
       if ($layout === 'grid') {
         css['display'] = 'grid';
@@ -392,10 +382,10 @@ export class Theme implements ThemeInterface {
       css['height'] = $height;
     }
 
-    $align && (css['align'] = $align);
-    $backgroundColor && (css['background-color'] = this.getColor($backgroundColor));
+    // $align && (css['align'] = $align);
+    $backgroundColor && (css['background-color'] = $backgroundColor);
     $color && (css['color'] = this.getColor($color));
-    $listStyle && (css['list-style'] = $listStyle);
+    // $listStyle && (css['list-style'] = $listStyle);
     $fontFamily && (css['font-family'] = this.getFontFamily($fontFamily));
     $fontSize && (css['font-size'] = this.pxToRem(this.getFontSize($fontSize)));
     $fontStyle && (css['font-style'] = $fontStyle);
@@ -404,52 +394,52 @@ export class Theme implements ThemeInterface {
     $lineHeight && (css['line-height'] = $lineHeight);
     $textDecoration && (css['text-decoration'] = $textDecoration);
     $textTransform && (css['text-transform'] = $textTransform);
-    $whiteSpace && (css['white-space'] = $whiteSpace);
+    // $whiteSpace && (css['white-space'] = $whiteSpace);
 
     if ($margin) {
-      css['margin'] = this.getMarginPadding($margin);
+      css['margin'] = typeof $margin === 'object' ? $margin.reduce((p, c) => `${p} ${c}`, '') : $margin;
     } else if ($marginX && $marginY) {
-      css['margin'] = `${this.getMarginPadding($marginY)} ${this.getMarginPadding($marginX)}`;
+      css['margin'] = `${$marginY} ${$marginX}`;
     }
     if ($marginX) {
-      css['margin'] = `0 ${this.getMarginPadding($marginX)}`;
+      css['margin'] = `0 ${$marginX}`;
     } else if ($marginY) {
-      css['margin'] = `${this.getMarginPadding($marginY)} 0`;
+      css['margin'] = `${$marginY} 0`;
     } else {
-      $marginTop && (css['margin-top'] = this.getMarginPadding($marginTop));
-      $marginRight && (css['margin-right'] = this.getMarginPadding($marginRight));
-      $marginBottom && (css['margin-bottom'] = this.getMarginPadding($marginBottom));
-      $marginLeft && (css['margin-left'] = this.getMarginPadding($marginLeft));
+      $marginTop && (css['margin-top'] = $marginTop);
+      $marginRight && (css['margin-right'] = $marginRight);
+      $marginBottom && (css['margin-bottom'] = $marginBottom);
+      $marginLeft && (css['margin-left'] = $marginLeft);
     }
 
     if ($padding) {
-      css['padding'] = this.getMarginPadding($padding);
+      css['padding'] = typeof $padding === 'object' ? $padding.reduce((p, c) => `${p} ${c}`, '') : $padding;
     } else if ($paddingX && $paddingY) {
-      css['padding'] = `${this.getMarginPadding($paddingY)} ${this.getMarginPadding($paddingX)}`;
+      css['padding'] = `${$paddingY} ${$paddingX}`;
     } else if ($paddingX) {
-      css['padding'] = `0 ${this.getMarginPadding($paddingX)}`;
+      css['padding'] = `0 ${$paddingX}`;
     } else if ($paddingY) {
-      css['padding'] = `${this.getMarginPadding($paddingY)} 0`;
+      css['padding'] = `${$paddingY} 0`;
     } else {
-      $paddingTop && (css['padding-top'] = this.getMarginPadding($paddingTop));
-      $paddingRight && (css['padding-right'] = this.getMarginPadding($paddingRight));
-      $paddingBottom && (css['padding-bottom'] = this.getMarginPadding($paddingBottom));
-      $paddingLeft && (css['padding-left'] = this.getMarginPadding($paddingLeft));
+      $paddingTop && (css['padding-top'] = $paddingTop);
+      $paddingRight && (css['padding-right'] = $paddingRight);
+      $paddingBottom && (css['padding-bottom'] = $paddingBottom);
+      $paddingLeft && (css['padding-left'] = $paddingLeft);
     }
 
     if ($border) {
-      css['border'] = this.getBorderSize($border);
+      css['border'] = typeof $border === 'object' ? $border.reduce((p, c) => `${p} ${c}`, '') : $border;
     } else if ($borderX && $borderY) {
-      css['border'] = `${this.getBorderSize($borderY)} ${this.getBorderSize($borderX)}`;
+      css['border'] = `${$borderY} ${$borderX}`;
     } else if ($borderX) {
-      css['border'] = `0 ${this.getBorderSize($borderX)}`;
+      css['border'] = `0 ${$borderX}`;
     } else if ($borderY) {
-      css['border'] = `${this.getBorderSize($borderY)} 0`;
+      css['border'] = `${$borderY} 0`;
     } else {
-      $borderTop && (css['border-top'] = this.getBorderSize($borderTop));
-      $borderRight && (css['border-right'] = this.getBorderSize($borderRight));
-      $borderBottom && (css['border-bottom'] = this.getBorderSize($borderBottom));
-      $borderLeft && (css['border-left'] = this.getBorderSize($borderLeft));
+      $borderTop && (css['border-top'] = $borderTop);
+      $borderRight && (css['border-right'] = $borderRight);
+      $borderBottom && (css['border-bottom'] = $borderBottom);
+      $borderLeft && (css['border-left'] = $borderLeft);
     }
 
     return Object.entries(css).reduce((acc, [key, value]) => {

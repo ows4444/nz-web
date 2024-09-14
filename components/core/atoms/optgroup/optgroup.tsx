@@ -5,7 +5,7 @@ import type { FC, ComponentProps } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 
-import { Layout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 type OptGroupProps = Layout<ComponentProps<'optgroup'>>;
 
 const OptGroupStyled = styled.optgroup<OptGroupProps & { theme: Theme }>`

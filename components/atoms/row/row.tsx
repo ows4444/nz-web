@@ -1,6 +1,6 @@
 'use client';
 
-import { Layout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 import { Theme } from '@styles/theme';
 import type React from 'next';
 import { ComponentProps } from 'react';

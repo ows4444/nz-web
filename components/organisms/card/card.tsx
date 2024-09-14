@@ -1,7 +1,7 @@
 'use client';
 
 import React, { ComponentProps } from 'react';
-import { Layout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 import styled from 'styled-components';

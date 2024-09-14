@@ -44,12 +44,20 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-body {
-    font-family: 'Arial', sans-serif;  
-    margin: 0;
-    padding: 0; 
-    overflow: hidden;
-} 
+
+
+${({ theme }) => ` 
+    body {
+      font-family: 'Arial', sans-serif;  
+      margin: 0;
+      padding: 0; 
+      overflow: hidden;
+      background-color: ${theme.palate.colors['white']};
+      color: ${theme.palate.colors['black']};
+  } 
+  `}
+
+
 .theme-${({ name }) => name} {
     padding: 50px 5px;
     border: 1px solid black;

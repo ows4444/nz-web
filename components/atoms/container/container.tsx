@@ -3,7 +3,7 @@ import React, { FC, ComponentProps } from 'react';
 import styled from 'styled-components';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-import { Layout } from '@components/types';
+import { Layout } from '@styles/theme/types';
 import { Section } from '@components/core/atoms';
 
 type ContainerProps = Layout<ComponentProps<'div'>>;
