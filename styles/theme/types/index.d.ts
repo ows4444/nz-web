@@ -137,7 +137,7 @@ export type BorderLayout = {
   $borderBottom?: BorderLength;
   $borderLeft?: BorderLength;
   $borderRadius?: Length;
-  $borderColor?: string;
+  $borderColor?: Color;
   $borderStyle?: 'solid' | 'dashed' | 'dotted' | 'double' | 'none';
 };
 

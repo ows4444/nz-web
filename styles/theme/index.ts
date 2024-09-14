@@ -140,6 +140,7 @@ export class Theme implements ThemeInterface {
       $padding,
       $paddingX,
       $paddingY,
+      $borderColor,
       $border,
       $borderTop,
       $borderRight,
@@ -331,6 +332,7 @@ export class Theme implements ThemeInterface {
     if ($border) {
       css['border'] = Array.isArray($border) ? $border.join(' ') : $border;
     } else {
+      $borderColor && (css['border-color'] = this.getColor($borderColor));
       $borderTop && (css['border-top'] = $borderTop);
       $borderRight && (css['border-right'] = $borderRight);
       $borderBottom && (css['border-bottom'] = $borderBottom);

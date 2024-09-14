@@ -8,9 +8,7 @@ type LargeRange = `${1 | 10 | 100 | 1000 | 10000}` | `${number}`;
 export type Length = `${LargeRange}${'px' | 'em' | 'rem'}` | `${NumericRange<0, 101>}${'vh' | 'vw' | '%'}`;
 
 // like 1px solid #000
-export type BorderLength =
-  | `${LargeRange}${'px' | 'em' | 'rem'} ${'solid' | 'dashed' | 'dotted'}`
-  | `${LargeRange}${'px' | 'em' | 'rem'} ${'solid' | 'dashed' | 'dotted'} ${string}`;
+export type BorderLength = `${LargeRange}${'px' | 'em' | 'rem'} ${'solid' | 'dashed' | 'dotted'}`;
 
 type WithDirection<T> = T | [T, T] | [T, T, T] | [T, T, T, T];
 
