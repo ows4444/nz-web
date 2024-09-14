@@ -108,7 +108,7 @@ export class Theme implements ThemeInterface {
     if (element) {
       const {
         //$align,
-        //$color,
+        $color,
         $fontFamily,
         $fontSize,
         $fontStyle,
@@ -123,8 +123,6 @@ export class Theme implements ThemeInterface {
         $paddingX,
         $paddingY,
         $border,
-        $borderX,
-        $borderY,
         $borderTop,
         $borderRight,
         $borderBottom,
@@ -167,7 +165,7 @@ export class Theme implements ThemeInterface {
       } = element;
 
       // $align && (css['align'] = $align);
-      // $color && (css['color'] = $color);
+      $color && (css['color'] = this.getColor($color));
       $fontFamily && (css['font-family'] = this.getFontFamily($fontFamily));
       $fontSize && (css['font-size'] = this.pxToRem(this.getFontSize($fontSize)));
       $fontStyle && (css['font-style'] = $fontStyle);
@@ -177,9 +175,8 @@ export class Theme implements ThemeInterface {
       $textDecoration && (css['text-decoration'] = $textDecoration);
       $textTransform && (css['text-transform'] = $textTransform);
       //$whiteSpace && (css['white-space'] = $whiteSpace);
-      $backgroundColor && (css['background-color'] = $backgroundColor);
-      // $color && (css['color'] = this.getColor($color));
-      //$listStyle && (css['list-style'] = $listStyle);
+      $backgroundColor && (css['background-color'] = this.getColor($backgroundColor));
+      // $listStyle && (css['list-style'] = $listStyle);
 
       if ($width) {
         css['width'] = $width;
@@ -189,15 +186,9 @@ export class Theme implements ThemeInterface {
       }
 
       if ($margin) {
-        css['margin'] = typeof $margin === 'object' ? $margin.reduce((p, c) => `${p} ${c}`, '') : $margin;
-      } else if ($marginX && $marginY) {
-        css['margin'] = `${$marginY} ${$marginX}`;
-      }
-      if ($marginX) {
-        css['margin'] = `0 ${$marginX}`;
-      } else if ($marginY) {
-        css['margin'] = `${$marginY} 0`;
+        css['margin'] = Array.isArray($margin) ? $margin.join(' ') : $margin;
       } else {
+        css['margin'] = `${$marginY || 0} ${$marginX || 0}`;
         $marginTop && (css['margin-top'] = $marginTop);
         $marginRight && (css['margin-right'] = $marginRight);
         $marginBottom && (css['margin-bottom'] = $marginBottom);
@@ -205,14 +196,9 @@ export class Theme implements ThemeInterface {
       }
 
       if ($padding) {
-        css['padding'] = typeof $padding === 'object' ? $padding.reduce((p, c) => `${p} ${c}`, '') : $padding;
-      } else if ($paddingX && $paddingY) {
-        css['padding'] = `${$paddingY} ${$paddingX}`;
-      } else if ($paddingX) {
-        css['padding'] = `0 ${$paddingX}`;
-      } else if ($paddingY) {
-        css['padding'] = `${$paddingY} 0`;
+        css['padding'] = Array.isArray($padding) ? $padding.join(' ') : $padding;
       } else {
+        css['padding'] = `${$paddingY || 0} ${$paddingX || 0}`;
         $paddingTop && (css['padding-top'] = $paddingTop);
         $paddingRight && (css['padding-right'] = $paddingRight);
         $paddingBottom && (css['padding-bottom'] = $paddingBottom);
@@ -220,13 +206,7 @@ export class Theme implements ThemeInterface {
       }
 
       if ($border) {
-        css['border'] = typeof $border === 'object' ? $border.reduce((p, c) => `${p} ${c}`, '') : $border;
-      } else if ($borderX && $borderY) {
-        css['border'] = `${$borderY} ${$borderX}`;
-      } else if ($borderX) {
-        css['border'] = `0 ${$borderX}`;
-      } else if ($borderY) {
-        css['border'] = `${$borderY} 0`;
+        css['border'] = Array.isArray($border) ? $border.join(' ') : $border;
       } else {
         $borderTop && (css['border-top'] = $borderTop);
         $borderRight && (css['border-right'] = $borderRight);
@@ -288,8 +268,6 @@ export class Theme implements ThemeInterface {
       $paddingX,
       $paddingY,
       $border,
-      $borderX,
-      $borderY,
       $borderTop,
       $borderRight,
       $borderBottom,
@@ -383,7 +361,7 @@ export class Theme implements ThemeInterface {
     }
 
     // $align && (css['align'] = $align);
-    $backgroundColor && (css['background-color'] = $backgroundColor);
+    $backgroundColor && (css['background-color'] = this.getColor($backgroundColor));
     $color && (css['color'] = this.getColor($color));
     // $listStyle && (css['list-style'] = $listStyle);
     $fontFamily && (css['font-family'] = this.getFontFamily($fontFamily));
@@ -397,15 +375,9 @@ export class Theme implements ThemeInterface {
     // $whiteSpace && (css['white-space'] = $whiteSpace);
 
     if ($margin) {
-      css['margin'] = typeof $margin === 'object' ? $margin.reduce((p, c) => `${p} ${c}`, '') : $margin;
-    } else if ($marginX && $marginY) {
-      css['margin'] = `${$marginY} ${$marginX}`;
-    }
-    if ($marginX) {
-      css['margin'] = `0 ${$marginX}`;
-    } else if ($marginY) {
-      css['margin'] = `${$marginY} 0`;
+      css['margin'] = Array.isArray($margin) ? $margin.join(' ') : $margin;
     } else {
+      css['margin'] = `${$marginY || 0} ${$marginX || 0}`;
       $marginTop && (css['margin-top'] = $marginTop);
       $marginRight && (css['margin-right'] = $marginRight);
       $marginBottom && (css['margin-bottom'] = $marginBottom);
@@ -413,14 +385,9 @@ export class Theme implements ThemeInterface {
     }
 
     if ($padding) {
-      css['padding'] = typeof $padding === 'object' ? $padding.reduce((p, c) => `${p} ${c}`, '') : $padding;
-    } else if ($paddingX && $paddingY) {
-      css['padding'] = `${$paddingY} ${$paddingX}`;
-    } else if ($paddingX) {
-      css['padding'] = `0 ${$paddingX}`;
-    } else if ($paddingY) {
-      css['padding'] = `${$paddingY} 0`;
+      css['padding'] = Array.isArray($padding) ? $padding.join(' ') : $padding;
     } else {
+      css['padding'] = `${$paddingY || 0} ${$paddingX || 0}`;
       $paddingTop && (css['padding-top'] = $paddingTop);
       $paddingRight && (css['padding-right'] = $paddingRight);
       $paddingBottom && (css['padding-bottom'] = $paddingBottom);
@@ -428,13 +395,7 @@ export class Theme implements ThemeInterface {
     }
 
     if ($border) {
-      css['border'] = typeof $border === 'object' ? $border.reduce((p, c) => `${p} ${c}`, '') : $border;
-    } else if ($borderX && $borderY) {
-      css['border'] = `${$borderY} ${$borderX}`;
-    } else if ($borderX) {
-      css['border'] = `0 ${$borderX}`;
-    } else if ($borderY) {
-      css['border'] = `${$borderY} 0`;
+      css['border'] = Array.isArray($border) ? $border.join(' ') : $border;
     } else {
       $borderTop && (css['border-top'] = $borderTop);
       $borderRight && (css['border-right'] = $borderRight);

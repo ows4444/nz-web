@@ -132,8 +132,6 @@ export type SpacingLayout = {
 
 export type BorderLayout = {
   $border?: BorderLengthWithDirection;
-  $borderX?: BorderLength;
-  $borderY?: BorderLength;
   $borderTop?: BorderLength;
   $borderRight?: BorderLength;
   $borderBottom?: BorderLength;

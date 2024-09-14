@@ -38,7 +38,7 @@ const PublicTemplate: React.FC<PublicTemplateProps> = ({ children, ...props }: P
       $layout="flex"
       $alignItems="center"
       $justifyContent="center"
-      $backgroundColor="background"
+      $backgroundColor="backgroundDark"
       $color="black"
     >
       <H1 content="Nizaami" />
