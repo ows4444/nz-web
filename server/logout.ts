@@ -1,15 +1,13 @@
 'use server';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { ResponseState } from '../app/login/login.response';
 import { API_URL } from 'constants/api';
 
-export default async function logout(_prevState: Record<string, any>): Promise<ResponseState> {
+export default async function logout(_prevState: Record<string, any>): Promise<any> {
   let isGuest = true;
   try {
     const cookie = cookies().get('connect.sid');
     if (!cookie) {
-      isGuest = true;
       return { message: 'Logout Error' };
     }
     const res = await fetch(`${API_URL}/auth/logout`, {
@@ -26,7 +24,6 @@ export default async function logout(_prevState: Record<string, any>): Promise<R
     isGuest = false;
     return { message: 'Logout Successful' };
   } catch (error) {
-    isGuest = true;
     console.error('Login error:', error);
     return { message: 'Login Error' };
   } finally {

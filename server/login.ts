@@ -21,7 +21,6 @@ export async function login(_prevState: {}, formData: FormData) {
     isGuest = false;
     return { message: 'Login Successful' };
   } catch (error: any) {
-    isGuest = true;
     return {
       message: 'Login Error',
       error: error.message === 'fetch failed' ? 'Network error' : error.message,

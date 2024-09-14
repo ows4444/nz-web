@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import type { ComponentProps, FC } from 'react';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
+import { BoxLayout } from '@components/types';
 
-interface ButtonProps extends ComponentProps<'button'> {
+type ButtonProps = BoxLayout<ComponentProps<'button'>> & {
   title: string;
-}
+};
 
 const ButtonStyled = styled.button<ButtonProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.BUTTON, props)}

@@ -43,7 +43,7 @@ export function LoginForm() {
           {state?.message && <p>{state.message}</p>}
         </CardBody>
         <CardFooter>
-          <Button title={'Login'} />
+          <Button title={'Login'} $paddingX="lg" $paddingY="xs" />
         </CardFooter>
       </Card>
     </Form>

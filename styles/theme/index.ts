@@ -128,9 +128,13 @@ export class Theme implements ThemeInterface {
         $textDecoration,
         $textTransform,
         $whiteSpace,
-        $margin,
+
         $padding,
+        $paddingX,
+        $paddingY,
         $border,
+        $borderX,
+        $borderY,
         $borderTop,
         $borderRight,
         $borderBottom,
@@ -139,6 +143,9 @@ export class Theme implements ThemeInterface {
         $paddingRight,
         $paddingBottom,
         $paddingLeft,
+        $margin,
+        $marginX,
+        $marginY,
         $marginTop,
         $marginRight,
         $marginBottom,
@@ -193,6 +200,13 @@ export class Theme implements ThemeInterface {
 
       if ($margin) {
         css['margin'] = this.getMarginPadding($margin);
+      } else if ($marginX && $marginY) {
+        css['margin'] = `${this.getMarginPadding($marginY)} ${this.getMarginPadding($marginX)}`;
+      }
+      if ($marginX) {
+        css['margin'] = `0 ${this.getMarginPadding($marginX)}`;
+      } else if ($marginY) {
+        css['margin'] = `${this.getMarginPadding($marginY)} 0`;
       } else {
         $marginTop && (css['margin-top'] = this.getMarginPadding($marginTop));
         $marginRight && (css['margin-right'] = this.getMarginPadding($marginRight));
@@ -202,6 +216,12 @@ export class Theme implements ThemeInterface {
 
       if ($padding) {
         css['padding'] = this.getMarginPadding($padding);
+      } else if ($paddingX && $paddingY) {
+        css['padding'] = `${this.getMarginPadding($paddingY)} ${this.getMarginPadding($paddingX)}`;
+      } else if ($paddingX) {
+        css['padding'] = `0 ${this.getMarginPadding($paddingX)}`;
+      } else if ($paddingY) {
+        css['padding'] = `${this.getMarginPadding($paddingY)} 0`;
       } else {
         $paddingTop && (css['padding-top'] = this.getMarginPadding($paddingTop));
         $paddingRight && (css['padding-right'] = this.getMarginPadding($paddingRight));
@@ -211,6 +231,12 @@ export class Theme implements ThemeInterface {
 
       if ($border) {
         css['border'] = this.getBorderSize($border);
+      } else if ($borderX && $borderY) {
+        css['border'] = `${this.getBorderSize($borderY)} ${this.getBorderSize($borderX)}`;
+      } else if ($borderX) {
+        css['border'] = `0 ${this.getBorderSize($borderX)}`;
+      } else if ($borderY) {
+        css['border'] = `${this.getBorderSize($borderY)} 0`;
       } else {
         $borderTop && (css['border-top'] = this.getBorderSize($borderTop));
         $borderRight && (css['border-right'] = this.getBorderSize($borderRight));
@@ -266,25 +292,30 @@ export class Theme implements ThemeInterface {
       $gridRowEnd,
       $gridRowStart,
 
+      $listStyle,
+
       $padding,
+      $paddingX,
+      $paddingY,
+      $border,
+      $borderX,
+      $borderY,
+      $borderTop,
+      $borderRight,
+      $borderBottom,
+      $borderLeft,
       $paddingTop,
       $paddingRight,
       $paddingBottom,
       $paddingLeft,
-
       $margin,
+      $marginX,
+      $marginY,
       $marginTop,
       $marginRight,
       $marginBottom,
       $marginLeft,
 
-      $listStyle,
-
-      $border,
-      $borderTop,
-      $borderRight,
-      $borderBottom,
-      $borderLeft,
       $width,
       $height,
       $float,
@@ -377,6 +408,13 @@ export class Theme implements ThemeInterface {
 
     if ($margin) {
       css['margin'] = this.getMarginPadding($margin);
+    } else if ($marginX && $marginY) {
+      css['margin'] = `${this.getMarginPadding($marginY)} ${this.getMarginPadding($marginX)}`;
+    }
+    if ($marginX) {
+      css['margin'] = `0 ${this.getMarginPadding($marginX)}`;
+    } else if ($marginY) {
+      css['margin'] = `${this.getMarginPadding($marginY)} 0`;
     } else {
       $marginTop && (css['margin-top'] = this.getMarginPadding($marginTop));
       $marginRight && (css['margin-right'] = this.getMarginPadding($marginRight));
@@ -386,6 +424,12 @@ export class Theme implements ThemeInterface {
 
     if ($padding) {
       css['padding'] = this.getMarginPadding($padding);
+    } else if ($paddingX && $paddingY) {
+      css['padding'] = `${this.getMarginPadding($paddingY)} ${this.getMarginPadding($paddingX)}`;
+    } else if ($paddingX) {
+      css['padding'] = `0 ${this.getMarginPadding($paddingX)}`;
+    } else if ($paddingY) {
+      css['padding'] = `${this.getMarginPadding($paddingY)} 0`;
     } else {
       $paddingTop && (css['padding-top'] = this.getMarginPadding($paddingTop));
       $paddingRight && (css['padding-right'] = this.getMarginPadding($paddingRight));
@@ -395,6 +439,12 @@ export class Theme implements ThemeInterface {
 
     if ($border) {
       css['border'] = this.getBorderSize($border);
+    } else if ($borderX && $borderY) {
+      css['border'] = `${this.getBorderSize($borderY)} ${this.getBorderSize($borderX)}`;
+    } else if ($borderX) {
+      css['border'] = `0 ${this.getBorderSize($borderX)}`;
+    } else if ($borderY) {
+      css['border'] = `${this.getBorderSize($borderY)} 0`;
     } else {
       $borderTop && (css['border-top'] = this.getBorderSize($borderTop));
       $borderRight && (css['border-right'] = this.getBorderSize($borderRight));
