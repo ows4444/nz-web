@@ -1,6 +1,24 @@
 import dynamic from 'next/dynamic';
+import { ComponentType, createElement } from 'react';
 
-const components = {
+type Components = {
+  [key: string]: ComponentType<any>;
+};
+
+type component = {
+  name: string;
+  children?: ChildComponent[];
+  [key: string]: any;
+};
+
+type ChildComponent = {
+  key: any;
+  name: string;
+  children?: ChildComponent[];
+  [key: string]: any;
+};
+
+export const components: Components = {
   // Core Start
   // Atoms
 
@@ -101,4 +119,11 @@ const components = {
   // components End
 };
 
-export default components;
+export default function generateComponents({ name, children, ...props }: component): any {
+  const propsData: any = { ...props };
+  if (children) {
+    propsData['children'] = children.map((child) => generateComponents(child));
+  }
+
+  return createElement(components[name], propsData);
+}
