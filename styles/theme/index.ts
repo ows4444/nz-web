@@ -87,9 +87,6 @@ export class Theme implements ThemeInterface {
     const color = this.palate.colors.border;
     return (this.palate.borderSizes[borderSize] ?? '0') + ' ' + color;
   }
-  private getBorderRadius(borderRadius: BorderRadius): string {
-    return this.palate.borderRadius[borderRadius] ?? '0';
-  }
 
   private getZIndex(zIndex: ZIndex): 'auto' | number {
     return this.palate.zIndex[zIndex] ?? 'auto';
@@ -101,7 +98,7 @@ export class Theme implements ThemeInterface {
     return this.palate.elements[component] as Layout;
   }
 
-  removeDefaultStyles(css: Record<string, string> = {}): Record<string, string> {
+  removeDefaultStyles(css: Record<string, string> = {}): Partial<Record<string, string>> {
     if (!css) return css;
 
     if (css['margin'] === '0 0') {
@@ -150,6 +147,7 @@ export class Theme implements ThemeInterface {
       $paddingRight,
       $paddingBottom,
       $paddingLeft,
+      $borderRadius,
       $margin,
       $marginX,
       $marginY,
@@ -220,7 +218,12 @@ export class Theme implements ThemeInterface {
       // $zIndex,
        */
 
+      $active,
       $hover,
+      $focusVisible,
+      $focusWithin,
+      $visited,
+      $target,
       $focus,
     } = props;
 
@@ -333,14 +336,20 @@ export class Theme implements ThemeInterface {
       css['border'] = Array.isArray($border) ? $border.join(' ') : $border;
     } else {
       $borderColor && (css['border-color'] = this.getColor($borderColor));
+      $borderRadius && (css['border-radius'] = Array.isArray($borderRadius) ? $borderRadius.join(' ') : $borderRadius);
       $borderTop && (css['border-top'] = $borderTop);
       $borderRight && (css['border-right'] = $borderRight);
       $borderBottom && (css['border-bottom'] = $borderBottom);
       $borderLeft && (css['border-left'] = $borderLeft);
     }
 
-    css['&:hover'] = this.jsonToCSS(this.generateStyle(Object.assign($hover || {})));
-    css['&:focus'] = this.jsonToCSS(this.generateStyle(Object.assign($focus || {})));
+    css['&:hover'] = this.jsonToCSS(this.generateStyle(Object.assign($hover ?? {})));
+    css['&:focus'] = this.jsonToCSS(this.generateStyle(Object.assign($focus ?? {})));
+    css['&:active'] = this.jsonToCSS(this.generateStyle(Object.assign($active ?? {})));
+    css['&:focus-visible'] = this.jsonToCSS(this.generateStyle(Object.assign($focusVisible ?? {})));
+    css['&:focus-within'] = this.jsonToCSS(this.generateStyle(Object.assign($focusWithin ?? {})));
+    css['&:visited'] = this.jsonToCSS(this.generateStyle(Object.assign($visited ?? {})));
+    css['&:target'] = this.jsonToCSS(this.generateStyle(Object.assign($target ?? {})));
 
     return this.removeDefaultStyles(css);
   }

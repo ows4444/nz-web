@@ -122,6 +122,13 @@ export const lightTheme = new Theme()
     $border: '1px solid',
   })
 
+  .addElementStyles('INPUT', {
+    $height: '2rem',
+    $width: '10rem',
+    $borderRadius: '0.5rem',
+    $paddingLeft: '0.5rem',
+  })
+
   .addElementStyles('H1', {
     $fontFamily: 'primary',
     $fontWeight: 'bold',

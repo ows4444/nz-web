@@ -136,7 +136,7 @@ export type BorderLayout = {
   $borderRight?: BorderLength;
   $borderBottom?: BorderLength;
   $borderLeft?: BorderLength;
-  $borderRadius?: Length;
+  $borderRadius?: LengthWithDirection;
   $borderColor?: Color;
   $borderStyle?: 'solid' | 'dashed' | 'dotted' | 'double' | 'none';
 };
@@ -227,8 +227,13 @@ export type BasicLayout = ColorLayout &
   );
 
 export type SelectorLayout = {
+  $active?: BasicLayout;
   $hover?: BasicLayout;
   $focus?: BasicLayout;
+  $focusVisible?: BasicLayout;
+  $focusWithin?: BasicLayout;
+  $visited?: BasicLayout;
+  $target?: BasicLayout;
 };
 
 export type MediaLayout = {

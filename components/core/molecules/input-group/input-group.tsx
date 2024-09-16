@@ -32,7 +32,13 @@ const InputGroup: React.FC<InputGroupProps> = ({ $layout, ...props }) => {
   return (
     <InputGroupStyled $layout={$layout} {...props}>
       <Label $layoutItem={layoutValue} htmlFor={props.name} content={props.label} />
-      <Input id={props.name} name={props.name} type={props.type} autoComplete={props.autoComplete ?? 'off'} />
+      <Input
+        $borderRadius={'10px'}
+        id={props.name}
+        name={props.name}
+        type={props.type}
+        autoComplete={props.autoComplete ?? 'off'}
+      />
       {props.feedBack && <Small content={props.feedBack} />}
     </InputGroupStyled>
   );
