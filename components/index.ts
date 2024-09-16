@@ -5,17 +5,17 @@ type Components = {
   [key: string]: ComponentType<any>;
 };
 
-type component = {
+export type component = {
   name: string;
   children?: ChildComponent[];
-  [key: string]: any;
+  props?: Record<string, any>;
 };
 
 type ChildComponent = {
   key: any;
   name: string;
   children?: ChildComponent[];
-  [key: string]: any;
+  props?: Record<string, any>;
 };
 
 export const components: Components = {
@@ -119,11 +119,30 @@ export const components: Components = {
   // components End
 };
 
-export default function generateComponents({ name, children, ...props }: component): any {
-  const propsData: any = { ...props };
-  if (children) {
+// Recursive function to generate components
+export default function generateComponents(
+  { name, children, props, key = undefined }: component & { key?: any },
+  // eslint-disable-next-line no-unused-vars
+  params: { action?: (payload: FormData) => void; state?: object } = {},
+): any {
+  // Ensure the component exists in the components map
+  const Component = components[name];
+  if (!Component) {
+    console.warn(`Component ${name} not found`);
+    return null;
+  }
+
+  const propsData = { ...props };
+
+  if (key) {
+    propsData['key'] = key;
+  }
+
+  // Recursively render child components if any
+  if (children?.length) {
     propsData['children'] = children.map((child) => generateComponents(child));
   }
 
-  return createElement(components[name], propsData);
+  // Render the component with its props and children
+  return createElement(Component, propsData);
 }
