@@ -9,7 +9,15 @@ export default async function Page() {
 
   return (
     <PublicTemplate>
-      <DynamicForm formSchema={formSchema} />
+      <DynamicForm
+        formSchema={formSchema}
+        router={{
+          current: '/login',
+          next: '/dashboard',
+        }}
+        href={'http://localhost:4000/api/auth/login'}
+        method={'POST'}
+      />
     </PublicTemplate>
   );
 }

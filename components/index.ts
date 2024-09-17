@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { ComponentType, createElement } from 'react';
+import { ComponentType } from 'react';
 
 type Components = {
   [key: string]: ComponentType<any>;
@@ -8,10 +8,11 @@ type Components = {
 export type component = {
   name: string;
   children?: ChildComponent[];
+  action?: any;
   props?: Record<string, any>;
 };
 
-type ChildComponent = {
+export type ChildComponent = {
   key: any;
   name: string;
   children?: ChildComponent[];
@@ -118,31 +119,3 @@ export const components: Components = {
 
   // components End
 };
-
-// Recursive function to generate components
-export default function generateComponents(
-  { name, children, props, key = undefined }: component & { key?: any },
-  // eslint-disable-next-line no-unused-vars
-  params: { action?: (payload: FormData) => void; state?: object } = {},
-): any {
-  // Ensure the component exists in the components map
-  const Component = components[name];
-  if (!Component) {
-    console.warn(`Component ${name} not found`);
-    return null;
-  }
-
-  const propsData = { ...props };
-
-  if (key) {
-    propsData['key'] = key;
-  }
-
-  // Recursively render child components if any
-  if (children?.length) {
-    propsData['children'] = children.map((child) => generateComponents(child));
-  }
-
-  // Render the component with its props and children
-  return createElement(Component, propsData);
-}

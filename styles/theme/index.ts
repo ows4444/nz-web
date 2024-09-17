@@ -98,7 +98,7 @@ export class Theme implements ThemeInterface {
     return this.palate.elements[component] as Layout;
   }
 
-  removeDefaultStyles(css: Record<string, string> = {}): Partial<Record<string, string>> {
+  removeDefaultStyles(css: Record<string, string> = {}): Record<string, string> {
     if (!css) return css;
 
     if (css['margin'] === '0 0') {

@@ -4,11 +4,11 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { API_URL } from 'constants/api';
 
-export async function login(_prevState: {}, formData: FormData) {
+export async function login(_prevState: { url?: string; method?: 'POST' }, formData: FormData) {
   let isGuest = true;
   try {
-    const res = await fetch(`${API_URL}/auth/login`, {
-      method: 'POST',
+    const res = await fetch(`${API_URL}/${_prevState.url}`, {
+      method: _prevState.method,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(Object.fromEntries(formData)),
     });
@@ -19,9 +19,10 @@ export async function login(_prevState: {}, formData: FormData) {
 
     setAuthCookie(res);
     isGuest = false;
-    return { message: 'Login Successful' };
+    return { ..._prevState, message: 'Login Successful' };
   } catch (error: any) {
     return {
+      ..._prevState,
       message: 'Login Error',
       error: error.message === 'fetch failed' ? 'Network error' : error.message,
     };
