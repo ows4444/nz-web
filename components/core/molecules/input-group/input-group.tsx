@@ -1,7 +1,7 @@
 'use client';
 
 import { Theme } from '@styles/theme';
-import React, { ComponentProps } from 'react';
+import React, { ComponentProps, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Input, Label, Div, Small } from '@components/core/atoms';
 import { Components } from '@styles/theme/components';
@@ -13,13 +13,17 @@ type InputGroupProps = Layout<ComponentProps<'div'>> & {
   feedBack?: string;
   autoComplete?: 'on' | 'off' | 'type-of-value';
   type: 'text' | 'email' | 'password' | 'number';
+  $value?: string;
 };
 
 const InputGroupStyled = styled(Div)<InputGroupProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.INPUT_GROUP, props)};
 `;
 
-const InputGroup: React.FC<InputGroupProps> = ({ $layout, ...props }) => {
+const InputGroup: React.FC<InputGroupProps> = ({ $layout, $value = '', ...props }) => {
+  const [valueData, setValue] = useState($value);
+  const [feedBackData, setFeedBackValue] = useState(props.feedBack);
+
   let layoutValue: 'grid-item' | 'flex-item' | undefined;
   if ($layout === 'grid') {
     layoutValue = 'grid-item';
@@ -29,6 +33,10 @@ const InputGroup: React.FC<InputGroupProps> = ({ $layout, ...props }) => {
     layoutValue = undefined;
   }
 
+  useEffect(() => {
+    setFeedBackValue('This is a feedback message' + valueData);
+  }, [valueData, feedBackData]);
+
   return (
     <InputGroupStyled $layout={$layout} {...props}>
       <Label $layoutItem={layoutValue} htmlFor={props.name} content={props.label} />
@@ -37,9 +45,11 @@ const InputGroup: React.FC<InputGroupProps> = ({ $layout, ...props }) => {
         id={props.name}
         name={props.name}
         type={props.type}
+        value={valueData}
         autoComplete={props.autoComplete ?? 'off'}
+        onChange={(e) => setValue(e.target.value)}
       />
-      {props.feedBack && <Small content={props.feedBack} />}
+      {feedBackData && <Small content={feedBackData} />}
     </InputGroupStyled>
   );
 };
