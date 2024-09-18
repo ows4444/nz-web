@@ -1,14 +1,16 @@
+import { Props } from '@styles/theme/types';
+
 export type ChildComponent = {
 	key: any;
 	name: string;
 	children?: ChildComponent[];
-	props?: Record<string, any>;
+	props?: Props & Record<string, any>;
 };
 export type component = {
 	name: string;
 	children?: ChildComponent[];
 	action?: any;
-	props?: Record<string, any>;
+	props?: Props & Record<string, any>;
 };
 
 export type ComponentResponse = {
