@@ -2,7 +2,8 @@
 
 import { createElement, useEffect, useState } from 'react';
 
-import { ChildComponent, component, components } from '@components/index';
+import { ChildComponent, component } from '@app/types';
+import { components } from '@components/index';
 
 export function GenerateComponents({ name, children, props, action }: component): any {
 	const [mounted, setMounted] = useState(false);

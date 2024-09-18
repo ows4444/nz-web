@@ -5,20 +5,6 @@ type Components = {
 	[key: string]: ComponentType<any>;
 };
 
-export type component = {
-	name: string;
-	children?: ChildComponent[];
-	action?: any;
-	props?: Record<string, any>;
-};
-
-export type ChildComponent = {
-	key: any;
-	name: string;
-	children?: ChildComponent[];
-	props?: Record<string, any>;
-};
-
 export const components: Components = {
 	// Core Start
 	// Atoms

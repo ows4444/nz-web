@@ -2,21 +2,13 @@ import React from 'react';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { component } from '@components/index';
+import { ComponentResponse } from '@app/types';
 
 import { GenerateComponents } from './generate-component';
 
-interface DynamicFormProps {
-	formSchema: component;
-	router: { current: string; next: string };
-	href: string;
-	method: 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH';
-}
-
-export function DynamicForm({ formSchema, href, method, router }: Readonly<DynamicFormProps>) {
+export function DynamicForm({ component, submit: { href, method }, router }: Readonly<ComponentResponse>) {
 	async function action(formData?: FormData) {
 		'use server';
-
 		let isSuccessful = false;
 		let error = '';
 		try {
@@ -39,7 +31,7 @@ export function DynamicForm({ formSchema, href, method, router }: Readonly<Dynam
 			redirect(isSuccessful ? router.next : router.current + '?error=' + error);
 		}
 	}
-	return <GenerateComponents action={action} {...formSchema} />;
+	return <GenerateComponents action={action} {...component} />;
 }
 
 const setAuthCookie = (response: Response) => {
