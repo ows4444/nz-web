@@ -1,15 +1,17 @@
 'use client';
-import React, { FC, ComponentProps } from 'react';
+
+import React, { ComponentProps, FC } from 'react';
 import styled from 'styled-components';
+
+import { Section } from '@components/core/atoms';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 import { Layout } from '@styles/theme/types';
-import { Section } from '@components/core/atoms';
 
 type ContainerProps = Layout<ComponentProps<'div'>>;
 
 const ContainerStyled = styled(Section)<ContainerProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme?.generateCSS?.(Components.CONTAINER, props)};
+	${({ theme, ...props }) => theme?.generateCSS?.(Components.CONTAINER, props)};
 `;
 
 const Container: FC<ContainerProps> = (props) => <ContainerStyled {...props} />;

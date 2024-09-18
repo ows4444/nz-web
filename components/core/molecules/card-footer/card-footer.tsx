@@ -1,16 +1,17 @@
 'use client';
 
 import React, { ComponentProps } from 'react';
-import { Layout } from '@styles/theme/types';
+import styled from 'styled-components';
+
+import { Footer } from '@components/core/atoms';
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
-import styled from 'styled-components';
-import { Footer } from '@components/core/atoms';
+import { Layout } from '@styles/theme/types';
 
 type CardFooterProps = Layout<ComponentProps<'footer'>>;
 
 const CardFooterStyled = styled(Footer)<CardFooterProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme?.generateCSS?.(Components.CARD_FOOTER, props)};
+	${({ theme, ...props }) => theme?.generateCSS?.(Components.CARD_FOOTER, props)};
 `;
 
 const CardFooter: React.FC<CardFooterProps> = (props) => <CardFooterStyled {...props} />;

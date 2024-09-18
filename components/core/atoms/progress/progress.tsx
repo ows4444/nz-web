@@ -1,17 +1,19 @@
 'use client';
+
 import React from 'react';
+import type { ComponentProps, FC } from 'react';
 import styled from 'styled-components';
-import type { FC, ComponentProps } from 'react';
+
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 import { Layout } from '@styles/theme/types';
 
 type ProgressProps = Layout<ComponentProps<'progress'>> & {
-  content: string;
+	content: string;
 };
 
 const ProgressStyled = styled.progress<ProgressProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme?.generateCSS?.(Components.PROGRESS, props)};
+	${({ theme, ...props }) => theme?.generateCSS?.(Components.PROGRESS, props)};
 `;
 
 const Progress: FC<ProgressProps> = (props) => <ProgressStyled {...props}>{props.content}</ProgressStyled>;

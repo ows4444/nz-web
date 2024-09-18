@@ -1,17 +1,19 @@
 'use client';
+
 import React from 'react';
+import type { ComponentProps, FC } from 'react';
 import styled from 'styled-components';
-import type { FC, ComponentProps } from 'react';
+
 import { Theme } from '@styles/theme';
 import { Components } from '@styles/theme/components';
 import { Layout } from '@styles/theme/types';
 
 type InsProps = Layout<ComponentProps<'ins'>> & {
-  content: string;
+	content: string;
 };
 
 const InsStyled = styled.ins<InsProps & { theme: Theme }>`
-  ${({ theme, ...props }) => theme?.generateCSS?.(Components.INS, props)};
+	${({ theme, ...props }) => theme?.generateCSS?.(Components.INS, props)};
 `;
 
 const Ins: FC<InsProps> = (props) => <InsStyled {...props}>{props.content}</InsStyled>;

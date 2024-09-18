@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 type BuildArray<Length extends number, Acc extends number[] = []> = Acc['length'] extends Length
-  ? Acc
-  : BuildArray<Length, [...Acc, Acc['length']]>;
+	? Acc
+	: BuildArray<Length, [...Acc, Acc['length']]>;
 type NumericRange<From extends number, To extends number> = Exclude<BuildArray<To>[number], BuildArray<From>[number]>;
 type LargeRange = `${1 | 10 | 100 | 1000 | 10000}` | `${number}`;
 
