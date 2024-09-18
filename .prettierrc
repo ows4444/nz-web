@@ -1,5 +1,34 @@
 {
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 120
+	"singleQuote": true,
+	"semi": true,
+	"printWidth": 120,
+	"useTabs": true,
+	"tabWidth": 2,
+	"trailingComma": "none",
+	"endOfLine": "auto",
+	"arrowParens": "always",
+	"quoteProps": "as-needed",
+	"bracketSpacing": true,
+	"jsxBracketSameLine": false,
+	"htmlWhitespaceSensitivity": "ignore",
+	"importOrder": [
+		"^(react/(.*)$)|^(react$)|^(react-(.*)$)",
+		"^(next/(.*)$)|^(next$)|^(next-(.*)$)",
+		"^styled-components",
+		"",
+		"^@tanstack/(.*)$",
+		"^@reduxjs/(.*)$",
+		"",
+		"^@app/(.*)$",
+		"^@components/(.*)$",
+		"^@forms/(.*)$",
+		"^@providers/(.*)$",
+		"^@styles/(.*)$",
+		"^@store/(.*)$",
+		"",
+		"^[./]"
+	],
+	"plugins": [
+		"@ianvs/prettier-plugin-sort-imports"
+	]
 }

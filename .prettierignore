@@ -1,2 +1,5 @@
 .prettierrc
 .eslintrc
+
+package.json
+package-lock.json
