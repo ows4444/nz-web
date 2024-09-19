@@ -31,28 +31,59 @@ export async function GET() {
 							props: { $margin: '10px', $layout: 'grid' },
 							children: [
 								{
-									key: 'INPUT_GROUP',
-									name: 'INPUT_GROUP',
-									props: {
-										name: 'email',
-										$margin: '8px',
-										$layout: 'grid',
-										label: 'Email',
-										type: 'email',
-										autoComplete: 'on'
-									}
-								},
-								{
 									key: 'INPUT_GROUP1',
 									name: 'INPUT_GROUP',
 									props: {
-										name: 'password',
-										$margin: '8px',
-										$layout: 'grid',
-										label: 'Password',
-										type: 'password',
-										autoComplete: 'on'
-									}
+										$layout: 'grid'
+									},
+									children: [
+										{
+											key: 'LABEL2',
+											name: 'LABEL',
+											props: {
+												name: 'email',
+												$margin: '2px',
+												content: 'Email'
+											}
+										},
+										{
+											key: 'INPUT1',
+											name: 'INPUT',
+											props: {
+												name: 'email',
+												$margin: '2px',
+												type: 'email',
+												autoComplete: 'on'
+											}
+										}
+									]
+								},
+								{
+									key: 'INPUT_GROUP2',
+									name: 'INPUT_GROUP',
+									props: {
+										$layout: 'grid'
+									},
+									children: [
+										{
+											key: 'LABEL2',
+											name: 'LABEL',
+											props: {
+												name: 'password',
+												$margin: '2px',
+												content: 'Password'
+											}
+										},
+										{
+											key: 'INPUT2',
+											name: 'INPUT',
+											props: {
+												name: 'password',
+												$margin: '2px',
+												type: 'password'
+											}
+										}
+									]
 								}
 							]
 						},
@@ -63,7 +94,7 @@ export async function GET() {
 								{
 									key: 'submit',
 									name: 'BUTTON',
-									props: { type: 'submit', title: 'Login', $paddingX: '10px', $paddingY: '8px' }
+									props: { type: 'submit', title: 'Login', $paddingX: '10px', $paddingY: '8px', $borderRadius: '50%' }
 								}
 							]
 						}

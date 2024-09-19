@@ -125,7 +125,6 @@ export const lightTheme = new Theme()
 	.addElementStyles('INPUT', {
 		$height: '2rem',
 		$width: '10rem',
-		$borderRadius: '0.5rem',
 		$paddingLeft: '0.5rem'
 	})
 
