@@ -23,7 +23,7 @@ export async function GET() {
 						{
 							key: 'CARD_HEADER',
 							name: 'CARD_HEADER',
-							children: [{ key: 'card-header-title', name: 'H1', props: { content: 'Login Form' } }]
+							children: [{ key: 'card-header-title', name: 'H1', props: { content: 'Login' } }]
 						},
 						{
 							name: 'CARD_BODY',
