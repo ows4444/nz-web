@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 
-import { ComponentFormResponse } from '@app/types';
+import { ComponentResponse } from '@app/types';
 
 export async function GET() {
-	const ComponentResponse: ComponentFormResponse = {
+	const ComponentResponse: ComponentResponse = {
 		component: {
 			name: 'FORM',
 			props: { $margin: '10px', $layout: 'grid' },

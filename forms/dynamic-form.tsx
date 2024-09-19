@@ -2,11 +2,10 @@ import React from 'react';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { ComponentResponse } from '@app/types';
+import { ComponentFormResponse } from '@app/types';
+import { GenerateComponents } from '@components/generate-component';
 
-import { GenerateComponents } from './generate-component';
-
-export function DynamicForm({ component, submit: { href, method }, router }: Readonly<ComponentResponse>) {
+export function DynamicForm({ component, submit: { href, method }, router }: Readonly<ComponentFormResponse>) {
 	async function action(formData?: FormData) {
 		'use server';
 		let isSuccessful = false;

@@ -1,15 +1,20 @@
 import type React from 'next';
 
-import PublicTemplate from '@components/templates/public.template';
+import { GenerateComponents } from '@components/generate-component';
 import { DynamicForm } from '@forms/dynamic-form';
+import { getComponentsStructure } from '@forms/get-components';
 import { getFormStructure } from '@forms/get-form';
 
 export default async function Page() {
-	const props = await getFormStructure(`http://localhost:3000/api/login-form`);
+	const publicTemplateHeaderProps = await getComponentsStructure(`http://localhost:3000/api/templates/public-header`);
+	const publicTemplateFooterProps = await getComponentsStructure(`http://localhost:3000/api/templates/public-footer`);
+	const formProps = await getFormStructure(`http://localhost:3000/api/login-form`);
 
 	return (
-		<PublicTemplate>
-			<DynamicForm {...props} />
-		</PublicTemplate>
+		<>
+			<GenerateComponents {...publicTemplateHeaderProps} />
+			<DynamicForm {...formProps} />
+			<GenerateComponents {...publicTemplateFooterProps} />
+		</>
 	);
 }

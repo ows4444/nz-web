@@ -10,11 +10,11 @@ export type ChildComponent = {
 export type component = {
 	name: Component;
 	children?: ChildComponent[];
-	action?: any;
+	action?: (_formData?: FormData) => Promise<void>;
 	props?: Props & Record<string, any>;
 };
 
-export type ComponentResponse = {
+export type ComponentFormResponse = {
 	component: component;
 	router: {
 		current: string;
@@ -25,3 +25,5 @@ export type ComponentResponse = {
 		method: 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH';
 	};
 };
+
+export type ComponentResponse = component;
