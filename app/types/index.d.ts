@@ -1,13 +1,14 @@
+import { Component } from '@styles/theme/components';
 import { Props } from '@styles/theme/types';
 
 export type ChildComponent = {
 	key: any;
-	name: string;
+	name: Component;
 	children?: ChildComponent[];
 	props?: Props & Record<string, any>;
 };
 export type component = {
-	name: string;
+	name: Component;
 	children?: ChildComponent[];
 	action?: any;
 	props?: Props & Record<string, any>;
