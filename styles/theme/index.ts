@@ -316,7 +316,7 @@ export class Theme implements ThemeInterface {
 		if ($margin) {
 			css['margin'] = Array.isArray($margin) ? $margin.join(' ') : $margin;
 		} else {
-			css['margin'] = `${$marginY || 0} ${$marginX || 0}`;
+			css['margin'] = `${$marginY ?? 0} ${$marginX ?? 0}`;
 			$marginTop && (css['margin-top'] = $marginTop);
 			$marginRight && (css['margin-right'] = $marginRight);
 			$marginBottom && (css['margin-bottom'] = $marginBottom);
@@ -326,7 +326,7 @@ export class Theme implements ThemeInterface {
 		if ($padding) {
 			css['padding'] = Array.isArray($padding) ? $padding.join(' ') : $padding;
 		} else {
-			css['padding'] = `${$paddingY || 0} ${$paddingX || 0}`;
+			css['padding'] = `${$paddingY ?? 0} ${$paddingX ?? 0}`;
 			$paddingTop && (css['padding-top'] = $paddingTop);
 			$paddingRight && (css['padding-right'] = $paddingRight);
 			$paddingBottom && (css['padding-bottom'] = $paddingBottom);
@@ -377,7 +377,7 @@ export class Theme implements ThemeInterface {
 	generateCSS(component: Component, props: any): string {
 		const element = this.getElementStyles(component);
 		const css: Record<string, string> = {};
-		const data = Object.assign({}, element || {}, props);
+		const data = { ...(element || {}), ...props };
 		Object.assign(css, this.generateStyle(data, css));
 
 		const mediaCss = Object.keys(this.palate.mediaSizes).reduce((css: Record<string, string>, mediaSize: string) => {
