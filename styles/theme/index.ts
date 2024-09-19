@@ -377,7 +377,7 @@ export class Theme implements ThemeInterface {
 	generateCSS(component: Component, props: any): string {
 		const element = this.getElementStyles(component);
 		const css: Record<string, string> = {};
-		const data = Object.assign(element || {}, props);
+		const data = Object.assign({}, element || {}, props);
 		Object.assign(css, this.generateStyle(data, css));
 
 		const mediaCss = Object.keys(this.palate.mediaSizes).reduce((css: Record<string, string>, mediaSize: string) => {
