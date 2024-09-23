@@ -10,12 +10,15 @@ export type FormComponentData = {
 		href: string;
 		method: 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH';
 	};
+
+	key?: string;
 };
 
 export type PageResponse = {
 	name: Component;
 	children?: any[];
-	action?: (_formData?: FormData) => Promise<void>;
+	errorData?: any;
+	action?: (_?: any) => Promise<void>;
 	props?: Props & Record<string, any>;
 } & Partial<FormData>;
 

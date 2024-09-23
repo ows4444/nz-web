@@ -37,7 +37,7 @@ export async function GET() {
 				props: {},
 				children: [
 					{
-						key: 'Form',
+						key: 'Form123',
 						name: 'FORM',
 						props: { $margin: '10px', $layout: 'grid' },
 						children: [
@@ -145,7 +145,7 @@ export async function GET() {
 							next: 'dashboard'
 						},
 						submit: {
-							href: 'api/login',
+							href: 'auth/login',
 							method: 'POST'
 						}
 					}
