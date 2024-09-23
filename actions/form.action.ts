@@ -1,27 +1,28 @@
 'use server';
 
-export async function action<T = any>(
-	submit: {
-		href: string;
-		method: 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH';
-	},
-	x: T
-) {
+import { redirect } from 'next/navigation';
+
+import { FormComponentData } from '@app/types';
+
+export async function action<T = any>({ submit, router }: FormComponentData, x: T) {
+	let isSuccess = true;
+
+	console.log('>>>>>', process.env.API_BASE_URL + submit.href);
+
 	try {
-		const response = await fetch(submit.href, {
+		const response = await fetch(process.env.API_BASE_URL + submit.href, {
 			method: submit.method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(x)
 		});
 
-		await response.json();
+		if (!response.ok) throw new Error('Failed to fetch data');
 
-		if (!response.ok) {
-			throw new Error('Failed to fetch data');
-		}
+		await response.json();
 	} catch (error) {
-		console.error('Error:', error);
+		console.error(error);
+		isSuccess = false;
+	} finally {
+		redirect(isSuccess ? router.next : router.current);
 	}
 }
