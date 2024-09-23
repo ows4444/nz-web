@@ -145,7 +145,7 @@ export async function GET() {
 							next: 'dashboard'
 						},
 						submit: {
-							href: 'http://localhost:3000/api/login',
+							href: '/api/login',
 							method: 'POST'
 						}
 					}

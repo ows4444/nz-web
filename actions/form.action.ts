@@ -1,27 +1,27 @@
 'use server';
 
-export async function action(
+export async function action<T = any>(
 	submit: {
 		href: string;
 		method: 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH';
 	},
-	x: any
+	x: T
 ) {
-	console.log('Form submitted', x);
+	try {
+		const response = await fetch(submit.href, {
+			method: submit.method,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(x)
+		});
 
-	console.log('submit', submit);
+		await response.json();
 
-	const response = await fetch(submit.href, {
-		method: submit.method,
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(x)
-	});
-
-	await response.json();
-
-	if (!response.ok) {
-		throw new Error('Failed to fetch data');
+		if (!response.ok) {
+			throw new Error('Failed to fetch data');
+		}
+	} catch (error) {
+		console.error('Error:', error);
 	}
 }
