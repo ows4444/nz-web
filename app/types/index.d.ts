@@ -1,21 +1,7 @@
 import { Component } from '@styles/theme/components';
 import { Props } from '@styles/theme/types';
 
-export type ChildComponent = {
-	key: any;
-	name: Component;
-	children?: ChildComponent[];
-	props?: Props & Record<string, any>;
-};
-export type component = {
-	name: Component;
-	children?: ChildComponent[];
-	action?: (_formData?: FormData) => Promise<void>;
-	props?: Props & Record<string, any>;
-};
-
-export type ComponentFormResponse = {
-	component: component;
+export type FormComponentData = {
 	router: {
 		current: string;
 		next: string;
@@ -26,4 +12,15 @@ export type ComponentFormResponse = {
 	};
 };
 
-export type ComponentResponse = component;
+export type PageResponse = {
+	name: Component;
+	children?: any[];
+	action?: (_formData?: FormData) => Promise<void>;
+	props?: Props & Record<string, any>;
+} & Partial<FormData>;
+
+export type PageComponent = PageResponse & {
+	key: any;
+};
+
+export type FormComponent = FormComponentData & PageResponse;
