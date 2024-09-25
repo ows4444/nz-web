@@ -111,7 +111,8 @@ export async function GET() {
 														props: {
 															name: 'password',
 															$margin: '2px',
-															type: 'password'
+															type: 'password',
+															validation: { required: true, maxLength: 32, minLength: 6 }
 														}
 													}
 												]
@@ -126,7 +127,6 @@ export async function GET() {
 												key: 'Box2_Form1_Card1_CardFooter1_Button1',
 												name: 'BUTTON',
 												props: {
-													type: 'submit',
 													title: 'Login',
 													$paddingX: '10px',
 													$paddingY: '8px',

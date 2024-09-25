@@ -12,8 +12,6 @@ export function GenerateForm({
 	name,
 	children,
 	props,
-	register,
-	watch,
 	onSubmit
 }: Pick<FormComponent, 'name'> & Partial<FormComponent>): any {
 	const Component = components[name];
@@ -26,7 +24,7 @@ export function GenerateForm({
 
 	if (children?.length) {
 		propsData['children'] = children
-			.map((child: PageComponent) => (child.name === 'FORM' ? null : GenerateComponent({ ...child, register, watch })))
+			.map((child: PageComponent) => (child.name === 'FORM' ? null : GenerateComponent({ ...child })))
 			.filter(Boolean);
 	}
 

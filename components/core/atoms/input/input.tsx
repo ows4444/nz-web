@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { ComponentProps, FC } from 'react';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { Theme } from '@styles/theme';
@@ -9,21 +10,22 @@ import { Components } from '@styles/theme/components';
 import { Layout } from '@styles/theme/types';
 
 type InputProps = Layout<ComponentProps<'input'>> & {
-	watch?: any;
-	register?: any;
-	[key: string]: any;
+	validation?: Record<string, unknown>;
+	name: string;
 };
 
 const InputStyled = styled.input<InputProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.INPUT, props)}}
 `;
 
-const Input: FC<InputProps> = ({ watch, register, ...props }) => {
-	if (watch) {
+const Input: FC<InputProps> = ({ validation, ...props }) => {
+	const methods = useFormContext();
+	if (methods) {
+		const { register, watch } = methods;
 		watch(props.name);
+		return <InputStyled {...props} {...register(props.name, validation)} />;
 	}
-
-	return register ? <InputStyled {...props} {...register(props.name, props.validation)} /> : <InputStyled {...props} />;
+	return <InputStyled {...props} />;
 };
 
 export default Input;
