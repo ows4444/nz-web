@@ -1,19 +1,17 @@
 import { NextResponse } from 'next/server';
 
-import { PageResponse } from '@app/types';
-
 export async function GET() {
-	const ComponentResponse: PageResponse = {
+	const ComponentResponse = {
 		name: 'CONTAINER',
 		props: {},
 		children: [
 			{
-				key: 'PUBLIC_HEADER',
+				key: 'Box1',
 				name: 'BOX',
 				props: {},
 				children: [
 					{
-						key: 'PUBLIC_HEADER',
+						key: 'Box1_Div1',
 						name: 'DIV',
 						props: {
 							$layout: 'flex',
@@ -23,7 +21,7 @@ export async function GET() {
 						},
 						children: [
 							{
-								key: 'PUBLIC_HEADER_TITLE',
+								key: 'Box1_Div1_H1',
 								name: 'H1',
 								props: { content: 'Public Header' }
 							}
@@ -32,18 +30,18 @@ export async function GET() {
 				]
 			},
 			{
-				key: 'Container',
+				key: 'Box2',
 				name: 'BOX',
 				props: {},
 				children: [
 					{
-						key: 'Form123',
+						key: 'Box2_Form1',
 						name: 'FORM',
 						props: { $margin: '10px', $layout: 'grid' },
 						children: [
 							{
 								name: 'CARD',
-								key: 'CARD',
+								key: 'Box2_Form1_Card1',
 								props: {
 									$layout: 'flex',
 									$direction: 'column',
@@ -54,24 +52,24 @@ export async function GET() {
 								},
 								children: [
 									{
-										key: 'CARD_HEADER',
+										key: 'Box2_Form1_Card1_CardHeader1',
 										name: 'CARD_HEADER',
-										children: [{ key: 'card-header-title', name: 'H1', props: { content: 'Login' } }]
+										children: [{ key: 'Box2_Form1_Card1_CardHeader1_H1', name: 'H1', props: { content: 'Login' } }]
 									},
 									{
 										name: 'CARD_BODY',
-										key: 'CARD_BODY',
+										key: 'Box2_Form1_Card1_CardBody1',
 										props: { $margin: '10px', $layout: 'grid' },
 										children: [
 											{
-												key: 'INPUT_GROUP1',
+												key: 'Box2_Form1_Card1_CardBody1_InputGroup1',
 												name: 'INPUT_GROUP',
 												props: {
 													$layout: 'grid'
 												},
 												children: [
 													{
-														key: 'LABEL2',
+														key: 'Box2_Form1_Card1_CardBody1_InputGroup1_Label1',
 														name: 'LABEL',
 														props: {
 															name: 'email',
@@ -80,7 +78,7 @@ export async function GET() {
 														}
 													},
 													{
-														key: 'INPUT1',
+														key: 'Box2_Form1_Card1_CardBody1_InputGroup1_Input1',
 														name: 'INPUT',
 														props: {
 															name: 'email',
@@ -92,14 +90,14 @@ export async function GET() {
 												]
 											},
 											{
-												key: 'INPUT_GROUP2',
+												key: 'Box2_Form1_Card1_CardBody1_InputGroup2',
 												name: 'INPUT_GROUP',
 												props: {
 													$layout: 'grid'
 												},
 												children: [
 													{
-														key: 'LABEL2',
+														key: 'Box2_Form1_Card1_CardBody1_InputGroup2_Label1',
 														name: 'LABEL',
 														props: {
 															name: 'password',
@@ -108,7 +106,7 @@ export async function GET() {
 														}
 													},
 													{
-														key: 'INPUT2',
+														key: 'Box2_Form1_Card1_CardBody1_InputGroup2_Input1',
 														name: 'INPUT',
 														props: {
 															name: 'password',
@@ -122,10 +120,10 @@ export async function GET() {
 									},
 									{
 										name: 'CARD_FOOTER',
-										key: 'CARD_FOOTER',
+										key: 'Box2_Form1_Card1_CardFooter1',
 										children: [
 											{
-												key: 'submit',
+												key: 'Box2_Form1_Card1_CardFooter1_Button1',
 												name: 'BUTTON',
 												props: {
 													type: 'submit',
@@ -152,12 +150,12 @@ export async function GET() {
 				]
 			},
 			{
-				key: 'PUBLIC_FOOTER',
+				key: 'Box3',
 				name: 'BOX',
 				props: {},
 				children: [
 					{
-						key: 'PUBLIC_FOOTER',
+						key: 'Box3_Div1',
 						name: 'DIV',
 						props: {
 							$layout: 'flex',
@@ -167,7 +165,7 @@ export async function GET() {
 						},
 						children: [
 							{
-								key: 'PUBLIC_FOOTER_TITLE',
+								key: 'Box3_Div1_H1',
 								name: 'H1',
 								props: { content: 'Public Footer' }
 							}

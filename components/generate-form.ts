@@ -7,20 +7,26 @@ import { components } from '@components/index';
 
 import { GenerateComponent } from './generate-component';
 
-export function GenerateForm({ name, children, props, action }: FormComponent): any {
+export function GenerateForm({
+	ID,
+	name,
+	children,
+	props,
+	register,
+	watch,
+	onSubmit
+}: Pick<FormComponent, 'name'> & Partial<FormComponent>): any {
 	const Component = components[name];
 	if (!Component) {
 		console.warn(`Component ${name} not found`);
 		return null;
 	}
 
-	const propsData: Record<string, any> = { ...props, action };
+	const propsData: Record<string, any> = { ...props, onSubmit, key: ID };
 
 	if (children?.length) {
 		propsData['children'] = children
-			.map((child: PageComponent) => {
-				return child.name === 'FORM' ? null : GenerateComponent(child);
-			})
+			.map((child: PageComponent) => (child.name === 'FORM' ? null : GenerateComponent({ ...child, register, watch })))
 			.filter(Boolean);
 	}
 

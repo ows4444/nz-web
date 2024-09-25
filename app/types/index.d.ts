@@ -1,3 +1,5 @@
+import { ComponentProps } from 'react';
+
 import { Component } from '@styles/theme/components';
 import { Props } from '@styles/theme/types';
 
@@ -12,11 +14,12 @@ export type FormComponentData = {
 	};
 
 	key?: string;
+	[key: string]: any;
 };
 
 export type PageResponse = {
 	name: Component;
-	children?: any[];
+	children?: FormComponent[];
 	errorData?: any;
 	action?: (_?: any) => Promise<void>;
 	props?: Props & Record<string, any>;
@@ -24,6 +27,10 @@ export type PageResponse = {
 
 export type PageComponent = PageResponse & {
 	key: any;
+	[key: string]: any;
 };
 
-export type FormComponent = FormComponentData & PageResponse;
+export type FormComponent = FormComponentData &
+	PageComponent & {
+		defaultValue?: any;
+	} & ComponentProps<'form'>;
