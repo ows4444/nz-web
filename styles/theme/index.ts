@@ -131,6 +131,7 @@ export class Theme implements ThemeInterface {
 			$fontWeight,
 			$letterSpacing,
 			$lineHeight,
+			$textAlign,
 			$textDecoration,
 			$textTransform,
 			//$whiteSpace,
@@ -293,6 +294,7 @@ export class Theme implements ThemeInterface {
 		}
 
 		// $align && (css['align'] = $align);
+		$textAlign && (css['text-align'] = $textAlign);
 		$color && (css['color'] = this.getColor($color));
 		$fontFamily && (css['font-family'] = this.getFontFamily($fontFamily));
 		$fontSize && (css['font-size'] = this.pxToRem(this.getFontSize($fontSize)));
