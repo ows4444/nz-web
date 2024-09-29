@@ -22,8 +22,8 @@ export async function GET() {
 						children: [
 							{
 								key: 'Box1_Div1_H1',
-								name: 'H1',
-								props: { content: 'Public Header' }
+								name: 'H3',
+								props: { content: 'Header' }
 							}
 						]
 					}
@@ -128,6 +128,7 @@ export async function GET() {
 												name: 'BUTTON',
 												props: {
 													title: 'Login',
+													type: 'submit',
 													$paddingX: '10px',
 													$paddingY: '8px',
 													$borderRadius: '50%'
@@ -166,8 +167,8 @@ export async function GET() {
 						children: [
 							{
 								key: 'Box3_Div1_H1',
-								name: 'H1',
-								props: { content: 'Public Footer' }
+								name: 'H3',
+								props: { content: 'Footer' }
 							}
 						]
 					}

@@ -5,14 +5,14 @@ import { redirect } from 'next/navigation';
 
 import { FormComponentData } from '@app/types';
 
-export async function action({ submit, router, key }: FormComponentData, x: FormData) {
+export async function action({ submit, router, key }: FormComponentData, formData: Record<string, any>) {
 	let isSuccess = true;
 
 	try {
 		const response = await fetch(process.env.API_BASE_URL + submit.href, {
 			method: submit.method,
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(Object.fromEntries(x))
+			body: JSON.stringify(formData)
 		});
 
 		const data = await response.json();
