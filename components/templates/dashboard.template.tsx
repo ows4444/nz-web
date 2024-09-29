@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import Box from '@components/atoms/box/box';
 import Container from '@components/atoms/container/container';
-import { A, Div, Footer, H1, Header, Input, Li, Nav, P, Ul } from '@components/core/atoms';
+import { A, Footer, H1, Header, Li, Nav, P, Ul } from '@components/core/atoms';
 import { Theme } from '@styles/theme';
 import { Layout } from '@styles/theme/types';
 
@@ -66,59 +66,9 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = ({ children, ...prop
 				<Li $marginRight="10px">
 					<A href="#about" title="About" $layout="block" $textDecoration="none" $paddingX="16px" $paddingY="24px" />
 				</Li>
-
-				<Li $marginRight="10px">
-					<A
-						href="#services"
-						title="Services"
-						$layout="block"
-						$textDecoration="none"
-						$paddingX="16px"
-						$paddingY="24px"
-					/>
-					<Div className="dropdown-content">
-						<A
-							href="#service1"
-							title="Service 1"
-							$layout="block"
-							$textDecoration="none"
-							$paddingX="16px"
-							$paddingY="24px"
-						/>
-						<A
-							href="#service2"
-							title="Service 2"
-							$layout="block"
-							$textDecoration="none"
-							$paddingX="16px"
-							$paddingY="24px"
-						/>
-						<A
-							href="#service3"
-							title="Service 3"
-							$layout="block"
-							$textDecoration="none"
-							$paddingX="16px"
-							$paddingY="24px"
-						/>
-					</Div>
-				</Li>
-
-				<Li className="dropdown" $marginRight="10px">
-					<A href="#more" title="More" $layout="block" $textDecoration="none" $paddingY="24px" />
-					<Div className="dropdown-content">
-						<A href="#more1" title="More 1" $layout="block" $textDecoration="none" $paddingX="16px" $paddingY="24px" />
-						<A href="#more2" title="More 2" $layout="block" $textDecoration="none" $paddingX="16px" $paddingY="24px" />
-						<A href="#more3" title="More 3" $layout="block" $textDecoration="none" $paddingX="16px" $paddingY="24px" />
-					</Div>
-				</Li>
-
-				<Li $marginRight="10px">
-					<Input type="text" placeholder="Search..." />
-				</Li>
 			</Ul>
 		</Nav>
-		<Container $layoutItem="grid-item" $gridArea="Container" $marginY="10px" $overflow="auto">
+		<Container $layoutItem="grid-item" $gridArea="Container" $margin="1rem" $overflow="auto">
 			<DashboardTemplateStyled {...props}>{children}</DashboardTemplateStyled>
 		</Container>
 		<Footer
