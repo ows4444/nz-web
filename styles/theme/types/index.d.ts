@@ -246,7 +246,20 @@ export type MediaLayout = {
 	$xxxl?: BasicLayout & SelectorLayout;
 };
 
-export type Layout<T = {}> = T & BasicLayout & MediaLayout & SelectorLayout;
+export type DraggableLayout = {
+	$draggable?: boolean;
+	$droppable?: boolean;
+	$dragType?: string;
+	$acceptsDropTypes?: string[];
+};
+
+export type DragEvents = {
+	$isOver: boolean;
+	$canDrop: boolean;
+	$isDragging: boolean;
+};
+
+export type Layout<T = {}> = T & BasicLayout & MediaLayout & SelectorLayout & DraggableLayout;
 
 export type Props = PositionLayout &
 	MediaLayout &
