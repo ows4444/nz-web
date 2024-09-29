@@ -1,7 +1,7 @@
 import React from 'react';
 
-import AuthTemplate from '@components/templates/auth.template';
+import DashboardTemplate from '@components/templates/dashboard.template';
 
-export default async function LoginTemplate({ children }: Readonly<{ children: React.ReactNode }>) {
-	return <AuthTemplate>{children}</AuthTemplate>;
+export default async function LayoutTemplate({ children }: Readonly<{ children: React.ReactNode }>) {
+	return <DashboardTemplate>{children}</DashboardTemplate>;
 }

@@ -1,6 +1,7 @@
 import type React from 'react';
 import type { Metadata } from 'next';
 
+import DragAndDropProvider from '@providers/drag-n-drop/dnd.provider';
 import ReactQueryProvider from '@providers/react-query/react-query.provider';
 import StoreProvider from '@providers/store/store.provider';
 import StyledComponentProvider from '@providers/styled-component/styled-component.provider';
@@ -16,7 +17,9 @@ export default function Layout(props: any) {
 			<body>
 				<StoreProvider>
 					<ReactQueryProvider>
-						<StyledComponentProvider>{props.children}</StyledComponentProvider>
+						<StyledComponentProvider>
+							<DragAndDropProvider>{props.children}</DragAndDropProvider>
+						</StyledComponentProvider>
 					</ReactQueryProvider>
 				</StoreProvider>
 			</body>
