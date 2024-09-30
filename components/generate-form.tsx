@@ -1,6 +1,6 @@
 'use client';
 
-import { createElement } from 'react';
+import React from 'react';
 
 import { FormComponent, PageComponent } from '@app/types';
 import { components } from '@components/index';
@@ -8,7 +8,8 @@ import { components } from '@components/index';
 import { GenerateComponent } from './generate-component';
 
 export function GenerateForm({
-	ID,
+	childIndex: selfIndex,
+	parentKey,
 	name,
 	children,
 	props,
@@ -20,13 +21,25 @@ export function GenerateForm({
 		return null;
 	}
 
-	const propsData: Record<string, any> = { ...props, onSubmit, key: ID };
+	const propsData: Record<string, any> = {
+		...props,
+		onSubmit,
+		key: `${parentKey}${String(name).toLowerCase()}[${selfIndex}]`
+	};
 
 	if (children?.length) {
 		propsData['children'] = children
-			.map((child: PageComponent) => (child.name === 'FORM' ? null : GenerateComponent({ ...child })))
+			.map((child: PageComponent, idx: number) =>
+				child.name === 'FORM'
+					? null
+					: GenerateComponent({
+							...child,
+							parentKey: `${parentKey}${String(name).toLowerCase()}[${selfIndex}]`,
+							childIndex: `${idx + 1}`
+						})
+			)
 			.filter(Boolean);
 	}
 
-	return createElement(Component, propsData);
+	return <Component {...propsData} />;
 }

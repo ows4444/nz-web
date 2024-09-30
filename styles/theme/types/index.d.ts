@@ -47,6 +47,10 @@ export type GridLayout = {
 	$gridTemplateRows?: string;
 };
 
+export type NoneLayout = {
+	$layout: 'none';
+};
+
 export type FlexItemLayout = {
 	$layoutItem: 'flex-item';
 	$flex?: string;
@@ -186,17 +190,20 @@ export type CursorLayout = {
 type FlexLayoutProperties = Omit<FlexLayout, '$layout'>;
 type GridLayoutProperties = Omit<GridLayout, '$layout'>;
 type BlockLayoutProperties = Omit<BlockLayout, '$layout'>;
+type NoneLayoutProperties = Omit<NoneLayout, '$layout'>;
 
 type FlexItemLayoutProperties = Omit<FlexItemLayout, '$layoutItem'>;
 type GridItemLayoutProperties = Omit<GridItemLayout, '$layoutItem'>;
 
-type LayoutFor<T extends 'flex' | 'grid' | 'block'> = T extends 'flex'
+type LayoutFor<T extends 'flex' | 'grid' | 'block' | 'none'> = T extends 'flex'
 	? FlexLayoutProperties & { $layout: 'flex' }
 	: T extends 'grid'
 		? GridLayoutProperties & { $layout: 'grid' }
 		: T extends 'block'
 			? BlockLayoutProperties & { $layout: 'block' }
-			: never;
+			: T extends 'none'
+				? NoneLayoutProperties & { $layout: 'none' }
+				: never;
 
 type LayoutItemFor<T extends 'flex-item' | 'grid-item'> = T extends 'flex-item'
 	? FlexItemLayoutProperties & { $layoutItem: 'flex-item' }
@@ -220,6 +227,7 @@ export type BasicLayout = ColorLayout &
 		| (Omit<FlexLayout, '$layout'> & { $layout?: 'flex' })
 		| (Omit<GridLayout, '$layout'> & { $layout?: 'grid' })
 		| (Omit<BlockLayout, '$layout'> & { $layout?: 'block' })
+		| (Omit<NoneLayout, '$layout'> & { $layout?: 'none' })
 	) &
 	(
 		| (Omit<FlexItemLayout, '$layoutItem'> & { $layoutItem?: 'flex-item' })
@@ -251,12 +259,15 @@ export type DraggableLayout = {
 	$droppable?: boolean;
 	$dragType?: string;
 	$acceptsDropTypes?: string[];
+	$drop?: (itm: any) => void;
+	$hover?: (itm: any) => void;
+	$dragEnd?: (itm: any) => void;
 };
 
 export type DragEvents = {
-	$isOver: boolean;
-	$canDrop: boolean;
-	$isDragging: boolean;
+	$isOver?: boolean;
+	$canDrop?: boolean;
+	$isDragging?: boolean;
 };
 
 export type Layout<T = {}> = T & BasicLayout & MediaLayout & SelectorLayout & DraggableLayout;
@@ -280,7 +291,7 @@ export type Props = PositionLayout &
 	FlexItemLayoutProperties &
 	GridItemLayoutProperties &
 	StyleLayout & {
-		$layout?: 'flex' | 'grid' | 'block';
+		$layout?: 'flex' | 'grid' | 'block' | 'none';
 		$layoutItem?: 'flex-item' | 'grid-item';
 	};
 

@@ -26,7 +26,8 @@ export type PageResponse = {
 } & Partial<FormData>;
 
 export type PageComponent = PageResponse & {
-	key: any;
+	key: string;
+	parentKey: string;
 	[key: string]: any;
 };
 
