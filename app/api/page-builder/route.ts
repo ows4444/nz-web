@@ -9,7 +9,11 @@ export async function GET() {
 			$layout: 'flex',
 			$justifyContent: 'center',
 			$alignItems: 'center',
-			$direction: 'column'
+			$direction: 'column',
+			$droppable: true,
+			$acceptsDropTypes: ['H1', 'P'],
+			$draggable: false,
+			$dragType: 'P'
 		},
 
 		children: [

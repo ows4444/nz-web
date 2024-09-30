@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { forwardRef } from 'react';
 import type { ComponentProps, FC } from 'react';
 import styled from 'styled-components';
 
@@ -14,6 +14,11 @@ const SectionStyled = styled.section<SectionProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.SECTION, props)};
 `;
 
-const Section: FC<SectionProps> = (props) => <SectionStyled {...props} />;
+const Section: FC<SectionProps> = forwardRef(function Section(
+	props: SectionProps,
+	ref: React.ForwardedRef<HTMLElement>
+) {
+	return <SectionStyled ref={ref} {...props} />;
+});
 
 export default Section;

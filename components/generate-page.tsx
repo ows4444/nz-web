@@ -1,16 +1,18 @@
 'use client';
 
 import { useConditionalDragDrop } from 'hooks/react-dnd/dnd-hook';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect,  useState } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
 
 import { PageResponse } from '@app/types';
 import { components } from '@components/index';
 
-import { GenerateComponent } from './generate-component';
-
 export function GeneratePage({ name, children, props }: PageResponse) {
-	const [childrenState, setChildrenState] = useState(children || []);
+	console.log('GeneratePage', name, children, props);
+
 	const { dragDropRef, ...dragProps } = useConditionalDragDrop(props ?? ({} as any));
+	const [childrenState, setChildrenState] = useState(children || []);
+
 	useEffect(() => {
 		setChildrenState(children || []);
 	}, [children]);
@@ -21,16 +23,17 @@ export function GeneratePage({ name, children, props }: PageResponse) {
 		return null;
 	}
 
-	const renderChildren = () =>
-		childrenState.map(function ComponentGenerator(child) {
-			return <GenerateComponent ref={dragDropRef} {...child} {...dragProps} key={child.key} />;
-		});
+	if (props?.$droppable || props?.$draggable) {
+		console.log(dragDropRef);
 
-	return (
-		<Component ref={dragDropRef} {...props}>
-			{renderChildren()}
-		</Component>
-	);
+		return (
+			<Component ref={dragDropRef} {...props} {...dragProps}>
+				OK
+			</Component>
+		);
+	}
+
+	return <Component {...props}>OK</Component>;
 }
 
 export default GeneratePage;
