@@ -15,7 +15,7 @@ const InputGroupStyled = styled(Div)<InputGroupProps & { theme: Theme }>`
 `;
 
 const InputGroup: React.FC<InputGroupProps> = ({ innerRef, ...props }) => (
-	<InputGroupStyled ref={innerRef} {...props} />
+	<InputGroupStyled innerRef={innerRef} {...props} />
 );
 
 export default InputGroup;

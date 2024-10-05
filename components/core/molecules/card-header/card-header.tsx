@@ -14,6 +14,6 @@ const CardHeaderStyled = styled(Header)<CardHeaderProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.CARD_HEADER, props)};
 `;
 
-const CardHeader: FC<CardHeaderProps> = ({ innerRef, ...props }) => <CardHeaderStyled ref={innerRef} {...props} />;
+const CardHeader: FC<CardHeaderProps> = ({ innerRef, ...props }) => <CardHeaderStyled innerRef={innerRef} {...props} />;
 
 export default CardHeader;

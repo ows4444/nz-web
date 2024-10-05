@@ -15,7 +15,7 @@ const CardFooterStyled = styled(Footer)<CardFooterProps & { theme: Theme }>`
 `;
 
 const CardFooter: React.FC<CardFooterProps> = ({ innerRef, ...props }) => (
-	<CardFooterStyled ref={innerRef} {...props} />
+	<CardFooterStyled innerRef={innerRef} {...props} />
 );
 
 export default CardFooter;

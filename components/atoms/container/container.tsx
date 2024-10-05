@@ -15,7 +15,7 @@ const ContainerStyled = styled(Section)<ContainerProps & { theme: Theme }>`
 `;
 
 const Container: FC<ContainerProps> = ({ innerRef, ...props }: ContainerProps) => {
-	return <ContainerStyled ref={innerRef} {...props} />;
+	return <ContainerStyled innerRef={innerRef} {...props} />;
 };
 
 export default Container;

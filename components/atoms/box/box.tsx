@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ComponentProps, forwardRef } from 'react';
+import React, { ComponentProps, FC } from 'react';
 import styled from 'styled-components';
 
 import { Div } from '@components/core/atoms';
@@ -14,12 +14,6 @@ const BoxStyled = styled(Div)<BoxProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.BOX, props)};
 `;
 
-const Box = forwardRef(function Bo(props, ref: any): any {
-	return <BoxStyled {...props} ref={ref} />;
-});
-
-// const Box: FC<BoxProps> = (props) =>
-
-// <BoxStyled ref ={innerRef} {...props} />;
+const Box: FC<BoxProps> = ({ innerRef, ...props }: BoxProps) => <BoxStyled {...props} innerRef={innerRef} />;
 
 export default Box;
