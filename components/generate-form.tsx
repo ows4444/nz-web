@@ -8,8 +8,6 @@ import { components } from '@components/index';
 import { GenerateComponent } from './generate-component';
 
 export function GenerateForm({
-	childIndex: selfIndex,
-	parentKey,
 	name,
 	children,
 	props,
@@ -23,14 +21,8 @@ export function GenerateForm({
 
 	return (
 		<Component onSubmit={onSubmit} {...props}>
-			{children?.map((child: PageComponent, idx: number) =>
-				child.name === 'FORM'
-					? null
-					: GenerateComponent({
-							...child,
-							parentKey: `${parentKey}${String(name).toLowerCase()}[${selfIndex}]`,
-							childIndex: `${idx + 1}`
-						})
+			{children?.map(({ key, ...child }: PageComponent) =>
+				child.name === 'FORM' ? null : <GenerateComponent key={key ?? child.name} {...child} />
 			)}
 		</Component>
 	);
