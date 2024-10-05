@@ -14,6 +14,6 @@ const FooterStyled = styled.footer<FooterProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.FOOTER, props)};
 `;
 
-const Footer: FC<FooterProps> = (props) => <FooterStyled {...props} />;
+const Footer: FC<FooterProps> = ({ innerRef, ...props }) => <FooterStyled ref={innerRef} {...props} />;
 
 export default Footer;

@@ -13,6 +13,6 @@ type AsideProps = Layout<ComponentProps<'aside'>>;
 const AsideStyled = styled.aside<AsideProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.ASIDE, props)};
 `;
-const Aside: FC<AsideProps> = (props) => <AsideStyled {...props} />;
+const Aside: FC<AsideProps> = ({ innerRef, ...props }) => <AsideStyled ref={innerRef} {...props} />;
 
 export default Aside;

@@ -14,6 +14,6 @@ const OlStyled = styled.ol<OlProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.OL, props)};
 `;
 
-const Ol: FC<OlProps> = (props) => <OlStyled {...props} />;
+const Ol: FC<OlProps> = ({ innerRef, ...props }) => <OlStyled ref={innerRef} {...props} />;
 
 export default Ol;

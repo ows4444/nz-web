@@ -15,10 +15,10 @@ const SectionStyled = styled.section<SectionProps & { theme: Theme }>`
 `;
 
 const Section: FC<SectionProps> = forwardRef(function Section(
-	props: SectionProps,
+	{ innerRef, ...props }: SectionProps,
 	ref: React.ForwardedRef<HTMLElement>
 ) {
-	return <SectionStyled ref={ref} {...props} />;
+	return <SectionStyled ref={innerRef ?? ref} {...props} />;
 });
 
 export default Section;

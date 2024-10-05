@@ -16,6 +16,10 @@ const StrongStyled = styled.strong<StrongProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.STRONG, props)};
 `;
 
-const Strong: FC<StrongProps> = (props) => <StrongStyled {...props}>{props.content}</StrongStyled>;
+const Strong: FC<StrongProps> = ({ innerRef, ...props }) => (
+	<StrongStyled ref={innerRef} {...props}>
+		{props.content}
+	</StrongStyled>
+);
 
 export default Strong;

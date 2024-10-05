@@ -16,6 +16,10 @@ const THStyled = styled.th<THProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.TH, props)};
 `;
 
-const TH: FC<THProps> = (props) => <THStyled {...props}>{props.content}</THStyled>;
+const TH: FC<THProps> = ({ innerRef, ...props }) => (
+	<THStyled ref={innerRef} {...props}>
+		{props.content}
+	</THStyled>
+);
 
 export default TH;

@@ -14,6 +14,6 @@ const TFootStyled = styled.tfoot<TFootProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.TFOOT, props)};
 `;
 
-const TFoot: FC<TFootProps> = (props) => <TFootStyled {...props} />;
+const TFoot: FC<TFootProps> = ({ innerRef, ...props }) => <TFootStyled ref={innerRef} {...props} />;
 
 export default TFoot;

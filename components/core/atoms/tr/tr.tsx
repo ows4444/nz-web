@@ -14,6 +14,6 @@ const TRStyled = styled.tr<TRProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.TR, props)};
 `;
 
-const TR: FC<TRProps> = (props) => <TRStyled {...props} />;
+const TR: FC<TRProps> = ({ innerRef, ...props }) => <TRStyled ref={innerRef} {...props} />;
 
 export default TR;

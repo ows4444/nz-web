@@ -16,6 +16,8 @@ const TextareaStyled = styled.textarea<TextareaProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.TEXTAREA, props)};
 `;
 
-const Textarea: FC<TextareaProps> = (props) => <TextareaStyled value={props.content} {...props} />;
+const Textarea: FC<TextareaProps> = ({ innerRef, ...props }) => (
+	<TextareaStyled value={props.content} ref={innerRef} {...props} />
+);
 
 export default Textarea;

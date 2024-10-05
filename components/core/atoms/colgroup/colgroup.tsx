@@ -14,6 +14,6 @@ const ColgroupStyled = styled.colgroup<ColgroupProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.COLGROUP, props)};
 `;
 
-const Colgroup: FC<ColgroupProps> = (props) => <ColgroupStyled {...props} />;
+const Colgroup: FC<ColgroupProps> = ({ innerRef, ...props }) => <ColgroupStyled ref={innerRef} {...props} />;
 
 export default Colgroup;

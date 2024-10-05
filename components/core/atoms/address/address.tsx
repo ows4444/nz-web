@@ -12,6 +12,6 @@ type AddressProps = Layout<ComponentProps<'address'>>;
 const AddressStyled = styled.address<AddressProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.ADDRESS, props)}
 `;
-const Address: FC<AddressProps> = (props) => <AddressStyled {...props} />;
+const Address: FC<AddressProps> = ({ innerRef, ...props }) => <AddressStyled ref={innerRef} {...props} />;
 
 export default Address;

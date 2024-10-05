@@ -14,6 +14,6 @@ const TableStyled = styled.table<TableProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.TABLE, props)};
 `;
 
-const Table: FC<TableProps> = (props) => <TableStyled {...props} />;
+const Table: FC<TableProps> = ({ innerRef, ...props }) => <TableStyled ref={innerRef} {...props} />;
 
 export default Table;

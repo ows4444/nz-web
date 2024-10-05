@@ -14,6 +14,10 @@ const LiStyled = styled.li<LiProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.LI, props)};
 `;
 
-const Li: FC<LiProps> = (props) => <LiStyled {...props}>{props.children}</LiStyled>;
+const Li: FC<LiProps> = ({ innerRef, ...props }) => (
+	<LiStyled ref={innerRef} {...props}>
+		{props.children}
+	</LiStyled>
+);
 
 export default Li;

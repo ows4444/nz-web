@@ -14,6 +14,6 @@ const FigureStyled = styled.figure<FigureProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.FIGURE, props)};
 `;
 
-const Figure: FC<FigureProps> = (props) => <FigureStyled {...props} />;
+const Figure: FC<FigureProps> = ({ innerRef, ...props }) => <FigureStyled ref={innerRef} {...props} />;
 
 export default Figure;

@@ -16,6 +16,10 @@ const PStyled = styled.p<PProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.P, props)};
 `;
 
-const P: FC<PProps> = (props) => <PStyled {...props}>{props.content}</PStyled>;
+const P: FC<PProps> = ({ innerRef, ...props }) => (
+	<PStyled ref={innerRef} {...props}>
+		{props.content}
+	</PStyled>
+);
 
 export default P;

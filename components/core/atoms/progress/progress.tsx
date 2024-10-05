@@ -16,6 +16,10 @@ const ProgressStyled = styled.progress<ProgressProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.PROGRESS, props)};
 `;
 
-const Progress: FC<ProgressProps> = (props) => <ProgressStyled {...props}>{props.content}</ProgressStyled>;
+const Progress: FC<ProgressProps> = ({ innerRef, ...props }) => (
+	<ProgressStyled ref={innerRef} {...props}>
+		{props.content}
+	</ProgressStyled>
+);
 
 export default Progress;

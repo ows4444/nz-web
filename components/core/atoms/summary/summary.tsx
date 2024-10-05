@@ -16,6 +16,10 @@ const SummaryStyled = styled.summary<SummaryProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.SUMMARY, props)};
 `;
 
-const Summary: FC<SummaryProps> = (props) => <SummaryStyled {...props}>{props.content}</SummaryStyled>;
+const Summary: FC<SummaryProps> = ({ innerRef, ...props }) => (
+	<SummaryStyled ref={innerRef} {...props}>
+		{props.content}
+	</SummaryStyled>
+);
 
 export default Summary;

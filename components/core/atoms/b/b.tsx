@@ -15,6 +15,10 @@ const BStyled = styled.b<BProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.B, props)};
 `;
 
-const B: FC<BProps> = (props) => <BStyled {...props}>{props.content}</BStyled>;
+const B: FC<BProps> = ({ innerRef, ...props }) => (
+	<BStyled ref={innerRef} {...props}>
+		{props.content}
+	</BStyled>
+);
 
 export default B;

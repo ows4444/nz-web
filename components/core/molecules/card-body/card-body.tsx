@@ -14,6 +14,6 @@ const CardBodyStyled = styled(Section)<CardBodyProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.CARD_BODY, props)};
 `;
 
-const CardBody: React.FC<CardBodyProps> = (props) => <CardBodyStyled {...props} />;
+const CardBody: React.FC<CardBodyProps> = ({ innerRef, ...props }) => <CardBodyStyled ref={innerRef} {...props} />;
 
 export default CardBody;

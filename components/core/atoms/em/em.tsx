@@ -14,6 +14,6 @@ const EMStyled = styled.em<EMProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.EM, props)};
 `;
 
-const EM: FC<EMProps> = (props) => <EMStyled {...props} />;
+const EM: FC<EMProps> = ({ innerRef, ...props }) => <EMStyled ref={innerRef} {...props} />;
 
 export default EM;

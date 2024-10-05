@@ -34,7 +34,7 @@ export const useConditionalDragDrop = ({
 
 	// Setup useDrag hook conditionally
 	const [{ $isDragging }, dragRef] = useDrag({
-		type: $dragType || 'default',
+		type: $dragType ?? 'default',
 		item: $dragItem,
 		end: $dragEnd,
 		collect: (monitor) => ({ $isDragging: !!monitor.isDragging() })

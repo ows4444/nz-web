@@ -16,6 +16,10 @@ const SmallStyled = styled.small<SmallProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.SMALL, props)};
 `;
 
-const Small: FC<SmallProps> = (props) => <SmallStyled {...props}>{props.content}</SmallStyled>;
+const Small: FC<SmallProps> = ({ innerRef, ...props }) => (
+	<SmallStyled ref={innerRef} {...props}>
+		{props.content}
+	</SmallStyled>
+);
 
 export default Small;

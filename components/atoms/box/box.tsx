@@ -15,13 +15,11 @@ const BoxStyled = styled(Div)<BoxProps & { theme: Theme }>`
 `;
 
 const Box = forwardRef(function Bo(props, ref: any): any {
-	console.log('Box', ref);
-
 	return <BoxStyled {...props} ref={ref} />;
 });
 
 // const Box: FC<BoxProps> = (props) =>
 
-// <BoxStyled {...props} />;
+// <BoxStyled ref ={innerRef} {...props} />;
 
 export default Box;

@@ -14,6 +14,6 @@ const UlStyled = styled.ul<UlProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.UL, props)};
 `;
 
-const Ul: FC<UlProps> = (props) => <UlStyled {...props} />;
+const Ul: FC<UlProps> = ({ innerRef, ...props }) => <UlStyled ref={innerRef} {...props} />;
 
 export default Ul;

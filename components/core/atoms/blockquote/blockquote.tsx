@@ -13,6 +13,6 @@ type BlockquoteProps = Layout<ComponentProps<'blockquote'>>;
 const BlockquoteStyled = styled.blockquote<BlockquoteProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.BLOCKQUOTE, props)};
 `;
-const Blockquote: FC<BlockquoteProps> = (props) => <BlockquoteStyled {...props} />;
+const Blockquote: FC<BlockquoteProps> = ({ innerRef, ...props }) => <BlockquoteStyled ref={innerRef} {...props} />;
 
 export default Blockquote;

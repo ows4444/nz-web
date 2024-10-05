@@ -14,6 +14,6 @@ const CanvasStyled = styled.canvas<CanvasProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.CANVAS, props)};
 `;
 
-const Canvas: FC<CanvasProps> = (props) => <CanvasStyled {...props} />;
+const Canvas: FC<CanvasProps> = ({ innerRef, ...props }) => <CanvasStyled ref={innerRef} {...props} />;
 
 export default Canvas;

@@ -16,7 +16,7 @@ type ButtonProps = Layout<ComponentProps<'button'>> & {
 const ButtonStyled = styled.button<ButtonProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.BUTTON, props)}
 `;
-const Button: FC<ButtonProps> = ({ ...props }) => {
+const Button: FC<ButtonProps> = ({ innerRef, ...props }) => {
 	const methods = useFormContext();
 	if (methods) {
 		const { formState } = methods;
@@ -24,13 +24,17 @@ const Button: FC<ButtonProps> = ({ ...props }) => {
 		const isValid = formState.isValid;
 
 		return (
-			<ButtonStyled {...props} disabled={!isValid}>
+			<ButtonStyled ref={innerRef} {...props} disabled={!isValid}>
 				{props.title}
 			</ButtonStyled>
 		);
 	}
 
-	return <ButtonStyled {...props}>{props.title}</ButtonStyled>;
+	return (
+		<ButtonStyled ref={innerRef} {...props}>
+			{props.title}
+		</ButtonStyled>
+	);
 };
 
 export default Button;

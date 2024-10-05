@@ -14,6 +14,6 @@ const CaptionStyled = styled.caption<CaptionProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.CAPTION, props)};
 `;
 
-const Caption: FC<CaptionProps> = (props) => <CaptionStyled {...props} />;
+const Caption: FC<CaptionProps> = ({ innerRef, ...props }) => <CaptionStyled ref={innerRef} {...props} />;
 
 export default Caption;

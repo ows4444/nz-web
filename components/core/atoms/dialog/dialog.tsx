@@ -14,6 +14,6 @@ const DialogStyled = styled.dialog<DialogProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.DIALOG, props)};
 `;
 
-const Dialog: FC<DialogProps> = (props) => <DialogStyled {...props} />;
+const Dialog: FC<DialogProps> = ({ innerRef, ...props }) => <DialogStyled ref={innerRef} {...props} />;
 
 export default Dialog;

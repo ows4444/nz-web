@@ -16,6 +16,10 @@ const InsStyled = styled.ins<InsProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.INS, props)};
 `;
 
-const Ins: FC<InsProps> = (props) => <InsStyled {...props}>{props.content}</InsStyled>;
+const Ins: FC<InsProps> = ({ innerRef, ...props }) => (
+	<InsStyled ref={innerRef} {...props}>
+		{props.content}
+	</InsStyled>
+);
 
 export default Ins;

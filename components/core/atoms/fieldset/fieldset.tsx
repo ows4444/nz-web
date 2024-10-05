@@ -14,6 +14,6 @@ const FieldsetStyled = styled.fieldset<FieldsetProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.FIELDSET, props)};
 `;
 
-const Fieldset: FC<FieldsetProps> = (props) => <FieldsetStyled {...props} />;
+const Fieldset: FC<FieldsetProps> = ({ innerRef, ...props }) => <FieldsetStyled ref={innerRef} {...props} />;
 
 export default Fieldset;

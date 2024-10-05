@@ -14,6 +14,6 @@ const NavStyled = styled.nav<NavProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.NAV, props)}
 `;
 
-const Nav: FC<NavProps> = (props) => <NavStyled {...props} />;
+const Nav: FC<NavProps> = ({ innerRef, ...props }) => <NavStyled ref={innerRef} {...props} />;
 
 export default Nav;

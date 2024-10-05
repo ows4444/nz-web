@@ -13,6 +13,6 @@ type ArticleProps = Layout<ComponentProps<'article'>>;
 const ArticleStyled = styled.article<ArticleProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.ARTICLE, props)};
 `;
-const Article: FC<ArticleProps> = (props) => <ArticleStyled {...props} />;
+const Article: FC<ArticleProps> = ({ innerRef, ...props }) => <ArticleStyled ref={innerRef} {...props} />;
 
 export default Article;

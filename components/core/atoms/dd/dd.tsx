@@ -14,6 +14,6 @@ const DDStyled = styled.dd<DDProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.DD, props)};
 `;
 
-const DD: FC<DDProps> = (props) => <DDStyled {...props} />;
+const DD: FC<DDProps> = ({ innerRef, ...props }) => <DDStyled ref={innerRef} {...props} />;
 
 export default DD;

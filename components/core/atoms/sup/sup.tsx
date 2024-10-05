@@ -16,6 +16,10 @@ const SupStyled = styled.sup<SupProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.SUP, props)}
 `;
 
-const Sup: FC<SupProps> = (props) => <SupStyled {...props}>{props.content}</SupStyled>;
+const Sup: FC<SupProps> = ({ innerRef, ...props }) => (
+	<SupStyled ref={innerRef} {...props}>
+		{props.content}
+	</SupStyled>
+);
 
 export default Sup;

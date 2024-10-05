@@ -16,6 +16,10 @@ const PreStyled = styled.pre<PreProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.PRE, props)};
 `;
 
-const Pre: FC<PreProps> = (props) => <PreStyled {...props}>{props.content}</PreStyled>;
+const Pre: FC<PreProps> = ({ innerRef, ...props }) => (
+	<PreStyled ref={innerRef} {...props}>
+		{props.content}
+	</PreStyled>
+);
 
 export default Pre;

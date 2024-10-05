@@ -14,6 +14,6 @@ const DelStyled = styled.del<DelProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.DEL, props)};
 `;
 
-const DEL: FC<DelProps> = (props) => <DelStyled {...props} />;
+const DEL: FC<DelProps> = ({ innerRef, ...props }) => <DelStyled ref={innerRef} {...props} />;
 
 export default DEL;

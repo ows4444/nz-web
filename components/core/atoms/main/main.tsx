@@ -14,6 +14,6 @@ const MainStyled = styled.main<MainProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.MAIN, props)};
 `;
 
-const Main: FC<MainProps> = (props) => <MainStyled {...props} />;
+const Main: FC<MainProps> = ({ innerRef, ...props }) => <MainStyled ref={innerRef} {...props} />;
 
 export default Main;

@@ -14,6 +14,6 @@ const SelectStyled = styled.select<SelectProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.SELECT, props)};
 `;
 
-const Select: FC<SelectProps> = (props) => <SelectStyled {...props} />;
+const Select: FC<SelectProps> = ({ innerRef, ...props }) => <SelectStyled ref={innerRef} {...props} />;
 
 export default Select;

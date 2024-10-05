@@ -16,6 +16,10 @@ const IStyled = styled.i<IProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.I, props)};
 `;
 
-const I: FC<IProps> = (props) => <IStyled {...props}>{props.content}</IStyled>;
+const I: FC<IProps> = ({ innerRef, ...props }) => (
+	<IStyled ref={innerRef} {...props}>
+		{props.content}
+	</IStyled>
+);
 
 export default I;

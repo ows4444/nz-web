@@ -14,6 +14,6 @@ const MenuStyled = styled.menu<MenuProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.MENU, props)}
 `;
 
-const Menu: FC<MenuProps> = (props) => <MenuStyled {...props} />;
+const Menu: FC<MenuProps> = ({ innerRef, ...props }) => <MenuStyled ref={innerRef} {...props} />;
 
 export default Menu;

@@ -14,6 +14,6 @@ const DTStyled = styled.col<DTProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.DT, props)};
 `;
 
-const DT: FC<DTProps> = (props) => <DTStyled {...props} />;
+const DT: FC<DTProps> = ({ innerRef, ...props }) => <DTStyled ref={innerRef} {...props} />;
 
 export default DT;

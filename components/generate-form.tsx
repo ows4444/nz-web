@@ -21,15 +21,9 @@ export function GenerateForm({
 		return null;
 	}
 
-	const propsData: Record<string, any> = {
-		...props,
-		onSubmit,
-		key: `${parentKey}${String(name).toLowerCase()}[${selfIndex}]`
-	};
-
-	if (children?.length) {
-		propsData['children'] = children
-			.map((child: PageComponent, idx: number) =>
+	return (
+		<Component onSubmit={onSubmit} {...props}>
+			{children?.map((child: PageComponent, idx: number) =>
 				child.name === 'FORM'
 					? null
 					: GenerateComponent({
@@ -37,9 +31,7 @@ export function GenerateForm({
 							parentKey: `${parentKey}${String(name).toLowerCase()}[${selfIndex}]`,
 							childIndex: `${idx + 1}`
 						})
-			)
-			.filter(Boolean);
-	}
-
-	return <Component {...propsData} />;
+			)}
+		</Component>
+	);
 }

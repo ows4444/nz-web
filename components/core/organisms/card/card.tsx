@@ -13,6 +13,6 @@ const CardStyled = styled.div<CardProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.CARD, props)};
 `;
 
-const Card: React.FC<CardProps> = (props) => <CardStyled {...props} />;
+const Card: React.FC<CardProps> = ({ innerRef, ...props }) => <CardStyled ref={innerRef} {...props} />;
 
 export default Card;

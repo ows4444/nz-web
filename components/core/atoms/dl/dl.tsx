@@ -14,6 +14,6 @@ const DLStyled = styled.dl<DLProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.DL, props)};
 `;
 
-const DL: FC<DLProps> = (props) => <DLStyled {...props} />;
+const DL: FC<DLProps> = ({ innerRef, ...props }) => <DLStyled ref={innerRef} {...props} />;
 
 export default DL;

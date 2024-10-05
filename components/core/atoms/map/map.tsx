@@ -14,6 +14,6 @@ const MapStyled = styled.map<MapProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.MAP, props)};
 `;
 
-const Map: FC<MapProps> = (props) => <MapStyled {...props} />;
+const Map: FC<MapProps> = ({ innerRef, ...props }) => <MapStyled ref={innerRef} {...props} />;
 
 export default Map;

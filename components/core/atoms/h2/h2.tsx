@@ -16,6 +16,10 @@ const H2Styled = styled.h2<H2Props & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.H2, props)};
 `;
 
-const H2: FC<H2Props> = (props) => <H2Styled {...props}>{props.content}</H2Styled>;
+const H2: FC<H2Props> = ({ innerRef, ...props }) => (
+	<H2Styled ref={innerRef} {...props}>
+		{props.content}
+	</H2Styled>
+);
 
 export default H2;

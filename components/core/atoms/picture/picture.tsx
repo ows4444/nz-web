@@ -14,6 +14,6 @@ const PictureStyled = styled.picture<PictureProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.PICTURE, props)};
 `;
 
-const Picture: FC<PictureProps> = (props) => <PictureStyled {...props} />;
+const Picture: FC<PictureProps> = ({ innerRef, ...props }) => <PictureStyled ref={innerRef} {...props} />;
 
 export default Picture;

@@ -14,6 +14,6 @@ const ColStyled = styled.col<ColProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.COL, props)};
 `;
 
-const Col: FC<ColProps> = (props) => <ColStyled {...props} />;
+const Col: FC<ColProps> = ({ innerRef, ...props }) => <ColStyled ref={innerRef} {...props} />;
 
 export default Col;

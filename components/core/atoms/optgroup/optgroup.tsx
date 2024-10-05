@@ -14,6 +14,6 @@ const OptGroupStyled = styled.optgroup<OptGroupProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.OPTGROUP, props)};
 `;
 
-const OptGroup: FC<OptGroupProps> = (props) => <OptGroupStyled {...props} />;
+const OptGroup: FC<OptGroupProps> = ({ innerRef, ...props }) => <OptGroupStyled ref={innerRef} {...props} />;
 
 export default OptGroup;

@@ -16,6 +16,10 @@ const H4Styled = styled.h4<H4Props & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.H4, props)};
 `;
 
-const H4: FC<H4Props> = (props) => <H4Styled {...props}>{props.content}</H4Styled>;
+const H4: FC<H4Props> = ({ innerRef, ...props }) => (
+	<H4Styled ref={innerRef} {...props}>
+		{props.content}
+	</H4Styled>
+);
 
 export default H4;

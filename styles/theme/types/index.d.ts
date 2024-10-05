@@ -270,7 +270,13 @@ export type DragEvents = {
 	$isDragging?: boolean;
 };
 
-export type Layout<T = {}> = T & BasicLayout & MediaLayout & SelectorLayout & DraggableLayout;
+export type Layout<T = {}> = T &
+	BasicLayout &
+	MediaLayout &
+	SelectorLayout &
+	DraggableLayout & {
+		innerRef?: any;
+	};
 
 export type Props = PositionLayout &
 	MediaLayout &

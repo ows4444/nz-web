@@ -13,6 +13,6 @@ type AreaProps = Layout<ComponentProps<'area'>>;
 const AreaStyled = styled.area<AreaProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.AREA, props)};
 `;
-const Area: FC<AreaProps> = (props) => <AreaStyled {...props} />;
+const Area: FC<AreaProps> = ({ innerRef, ...props }) => <AreaStyled ref={innerRef} {...props} />;
 
 export default Area;

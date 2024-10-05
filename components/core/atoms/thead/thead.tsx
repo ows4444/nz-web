@@ -14,6 +14,6 @@ const THeadStyled = styled.thead<THeadProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.THEAD, props)};
 `;
 
-const THead: FC<THeadProps> = (props) => <THeadStyled {...props} />;
+const THead: FC<THeadProps> = ({ innerRef, ...props }) => <THeadStyled ref={innerRef} {...props} />;
 
 export default THead;

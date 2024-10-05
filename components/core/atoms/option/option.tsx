@@ -16,6 +16,10 @@ const OptionStyled = styled.option<OptionProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.OPTION, props)};
 `;
 
-const Option: FC<OptionProps> = (props) => <OptionStyled {...props}>{props.content}</OptionStyled>;
+const Option: FC<OptionProps> = ({ innerRef, ...props }) => (
+	<OptionStyled ref={innerRef} {...props}>
+		{props.content}
+	</OptionStyled>
+);
 
 export default Option;

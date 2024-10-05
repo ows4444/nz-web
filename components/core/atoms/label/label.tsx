@@ -16,6 +16,10 @@ const LabelStyled = styled.label<LabelProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.LABEL, props)};
 `;
 
-const Label: FC<LabelProps> = (props) => <LabelStyled {...props}>{props.content}</LabelStyled>;
+const Label: FC<LabelProps> = ({ innerRef, ...props }) => (
+	<LabelStyled ref={innerRef} {...props}>
+		{props.content}
+	</LabelStyled>
+);
 
 export default Label;

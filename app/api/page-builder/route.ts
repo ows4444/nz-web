@@ -39,7 +39,7 @@ export async function GET() {
 								name: 'P',
 								props: {
 									content: 'This is a paragraph',
-									$draggable: false,
+									$draggable: true,
 									$dragType: 'P'
 								}
 							}

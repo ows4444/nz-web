@@ -17,6 +17,6 @@ const FormStyled = styled.form<FormProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.FORM, props)}
 `;
 
-const Form: FC<FormProps> = (props) => <FormStyled {...props} />;
+const Form: FC<FormProps> = ({ innerRef, ...props }) => <FormStyled ref={innerRef} {...props} />;
 
 export default Form;

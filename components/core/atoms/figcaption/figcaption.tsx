@@ -14,6 +14,6 @@ const FigcaptionStyled = styled.fieldset<FigcaptionProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.FIGCAPTION, props)};
 `;
 
-const Figcaption: FC<FigcaptionProps> = (props) => <FigcaptionStyled {...props} />;
+const Figcaption: FC<FigcaptionProps> = ({ innerRef, ...props }) => <FigcaptionStyled ref={innerRef} {...props} />;
 
 export default Figcaption;

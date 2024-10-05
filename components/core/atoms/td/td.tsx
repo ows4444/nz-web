@@ -14,6 +14,6 @@ const TDStyled = styled.td<TDProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.TD, props)};
 `;
 
-const TD: FC<TDProps> = (props) => <TDStyled {...props} />;
+const TD: FC<TDProps> = ({ innerRef, ...props }) => <TDStyled ref={innerRef} {...props} />;
 
 export default TD;

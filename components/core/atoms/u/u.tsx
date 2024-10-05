@@ -16,6 +16,10 @@ const UStyled = styled.u<UProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.U, props)};
 `;
 
-const U: FC<UProps> = (props) => <UStyled {...props}>{props.content}</UStyled>;
+const U: FC<UProps> = ({ innerRef, ...props }) => (
+	<UStyled ref={innerRef} {...props}>
+		{props.content}
+	</UStyled>
+);
 
 export default U;

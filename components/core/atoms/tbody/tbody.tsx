@@ -14,6 +14,6 @@ const TBodyStyled = styled.tbody<TBodyProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.TBODY, props)};
 `;
 
-const TBody: FC<TBodyProps> = (props) => <TBodyStyled {...props} />;
+const TBody: FC<TBodyProps> = ({ innerRef, ...props }) => <TBodyStyled ref={innerRef} {...props} />;
 
 export default TBody;

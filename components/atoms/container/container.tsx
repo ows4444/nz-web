@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ComponentProps, FC, forwardRef } from 'react';
+import React, { ComponentProps, FC } from 'react';
 import styled from 'styled-components';
 
 import { Section } from '@components/core/atoms';
@@ -14,14 +14,8 @@ const ContainerStyled = styled(Section)<ContainerProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.CONTAINER, props)};
 `;
 
-const Container: FC<ContainerProps> = forwardRef(function Container(
-	props: ContainerProps,
-	ref: React.ForwardedRef<HTMLElement>
-) {
-
-console.log('Container', ref);
-
-	return <ContainerStyled ref={ref} {...props} />;
-});
+const Container: FC<ContainerProps> = ({ innerRef, ...props }: ContainerProps) => {
+	return <ContainerStyled ref={innerRef} {...props} />;
+};
 
 export default Container;

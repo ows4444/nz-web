@@ -14,6 +14,6 @@ const EmbedStyled = styled.embed<EmbedProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.EMBED, props)};
 `;
 
-const Embed: FC<EmbedProps> = (props) => <EmbedStyled {...props} />;
+const Embed: FC<EmbedProps> = ({ innerRef, ...props }) => <EmbedStyled ref={innerRef} {...props} />;
 
 export default Embed;

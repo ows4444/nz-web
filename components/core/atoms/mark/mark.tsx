@@ -14,6 +14,6 @@ const MarkStyled = styled.mark<MarkProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.MARK, props)};
 `;
 
-const Mark: FC<MarkProps> = (props) => <MarkStyled {...props} />;
+const Mark: FC<MarkProps> = ({ innerRef, ...props }) => <MarkStyled ref={innerRef} {...props} />;
 
 export default Mark;

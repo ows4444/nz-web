@@ -15,6 +15,10 @@ type AProps = Layout<ComponentProps<'a'>> & {
 const AStyled = styled.a<AProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.A, props)}
 `;
-const A: FC<AProps> = (props) => <AStyled {...props}>{props.title}</AStyled>;
+const A: FC<AProps> = ({ innerRef, ...props }) => (
+	<AStyled ref={innerRef} {...props}>
+		{props.title}
+	</AStyled>
+);
 
 export default A;

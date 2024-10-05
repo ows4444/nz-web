@@ -14,6 +14,6 @@ const DetailsStyled = styled.details<DetailsProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.DETAILS, props)};
 `;
 
-const DETAILS: FC<DetailsProps> = (props) => <DetailsStyled {...props} />;
+const DETAILS: FC<DetailsProps> = ({ innerRef, ...props }) => <DetailsStyled ref={innerRef} {...props} />;
 
 export default DETAILS;

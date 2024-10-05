@@ -14,6 +14,6 @@ const SpanStyled = styled.span<SpanProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.SPAN, props)};
 `;
 
-const Span: FC<SpanProps> = (props) => <SpanStyled {...props} />;
+const Span: FC<SpanProps> = ({ innerRef, ...props }) => <SpanStyled ref={innerRef} {...props} />;
 
 export default Span;

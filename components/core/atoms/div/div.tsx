@@ -14,6 +14,6 @@ const DivStyled = styled.div<DivProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.DIV, props)};
 `;
 
-const Div: FC<DivProps> = (props) => <DivStyled {...props} />;
+const Div: FC<DivProps> = ({ innerRef, ...props }) => <DivStyled ref={innerRef} {...props} />;
 
 export default Div;

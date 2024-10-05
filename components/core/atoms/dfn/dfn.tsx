@@ -14,6 +14,6 @@ const DfnStyled = styled.dfn<DfnProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.DFN, props)};
 `;
 
-const Dfn: FC<DfnProps> = (props) => <DfnStyled {...props} />;
+const Dfn: FC<DfnProps> = ({ innerRef, ...props }) => <DfnStyled ref={innerRef} {...props} />;
 
 export default Dfn;

@@ -16,6 +16,10 @@ const QStyled = styled.p<QProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.Q, props)};
 `;
 
-const Q: FC<QProps> = (props) => <QStyled {...props}>{props.content}</QStyled>;
+const Q: FC<QProps> = ({ innerRef, ...props }) => (
+	<QStyled ref={innerRef} {...props}>
+		{props.content}
+	</QStyled>
+);
 
 export default Q;

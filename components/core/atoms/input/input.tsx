@@ -18,14 +18,14 @@ const InputStyled = styled.input<InputProps & { theme: Theme }>`
   ${({ theme, ...props }) => theme?.generateCSS?.(Components.INPUT, props)}}
 `;
 
-const Input: FC<InputProps> = ({ validation, ...props }) => {
+const Input: FC<InputProps> = ({ innerRef, validation, ...props }) => {
 	const methods = useFormContext();
 	if (methods) {
 		const { register, watch } = methods;
 		watch(props.name);
 		return <InputStyled {...props} {...register(props.name, validation)} />;
 	}
-	return <InputStyled {...props} />;
+	return <InputStyled ref={innerRef} {...props} />;
 };
 
 export default Input;

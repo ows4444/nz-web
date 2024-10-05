@@ -16,6 +16,10 @@ const SubStyled = styled.sub<SubProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.SUB, props)};
 `;
 
-const Sub: FC<SubProps> = (props) => <SubStyled {...props}>{props.content}</SubStyled>;
+const Sub: FC<SubProps> = ({ innerRef, ...props }) => (
+	<SubStyled ref={innerRef} {...props}>
+		{props.content}
+	</SubStyled>
+);
 
 export default Sub;

@@ -14,6 +14,8 @@ const CardFooterStyled = styled(Footer)<CardFooterProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.CARD_FOOTER, props)};
 `;
 
-const CardFooter: React.FC<CardFooterProps> = (props) => <CardFooterStyled {...props} />;
+const CardFooter: React.FC<CardFooterProps> = ({ innerRef, ...props }) => (
+	<CardFooterStyled ref={innerRef} {...props} />
+);
 
 export default CardFooter;

@@ -14,6 +14,6 @@ const HeaderStyled = styled.header<HeaderProps & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.HEADER, props)};
 `;
 
-const Header: FC<HeaderProps> = (props) => <HeaderStyled {...props} />;
+const Header: FC<HeaderProps> = ({ innerRef, ...props }) => <HeaderStyled ref={innerRef} {...props} />;
 
 export default Header;

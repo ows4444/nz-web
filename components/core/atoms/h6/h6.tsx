@@ -16,6 +16,10 @@ const H6Styled = styled.h6<H6Props & { theme: Theme }>`
 	${({ theme, ...props }) => theme?.generateCSS?.(Components.H6, props)};
 `;
 
-const H6: FC<H6Props> = (props) => <H6Styled {...props}>{props.content}</H6Styled>;
+const H6: FC<H6Props> = ({ innerRef, ...props }) => (
+	<H6Styled ref={innerRef} {...props}>
+		{props.content}
+	</H6Styled>
+);
 
 export default H6;
